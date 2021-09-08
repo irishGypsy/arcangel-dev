@@ -49,13 +49,17 @@ Route::get('/terms_and_conditions', function () {
     return view('terms_and_conditions');
 });
 
-Route::get('/signup', function () {
-    return view('signup');
-});
+//Route::get('/register', function () {
+//    return view('auth.register');
+//});
+//
+//Route::get('/login', function () {
+//    return view('auth.login');
+//})->name('login');
 
-Route::get('/affiliate_login', function () {
-    return view('affiliate_login');
-});
+//Route::get('/affiliate_login', function () {
+//    return view('affiliate_login');
+//});
 
 Route::get('slider', [SliderController::class, 'index']);
 

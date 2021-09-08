@@ -1,12 +1,12 @@
 @extends('site.app')
 @section('title', 'Shopping Cart')
 @section('content')
-    <section class="section-pagetop bg-dark">
+    <section class="section-pagetop bg-dark" style="background-color: white;">
         <div class="container clearfix">
             <h2 class="title-page">Cart</h2>
         </div>
     </section>
-    <section class="section-content bg padding-y border-top">
+    <section class="section-content bg padding-y border-top" style="background-color: white;">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
@@ -90,5 +90,6 @@
                 </aside>
             </div>
         </div>
+        <br><br>
     </section>
 @stop

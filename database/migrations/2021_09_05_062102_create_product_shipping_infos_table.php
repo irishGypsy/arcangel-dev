@@ -36,7 +36,7 @@ class CreateProductShippingInfosTable extends Migration
             $table->timestamps();
         });
 
-        \Illuminate\Support\Facades\DB::table('product_shipping_infos')->insert([
+        DB::table('product_shipping_infos')->insert([
            [
                "product_id" => "1"
            ],

@@ -47,6 +47,17 @@ return [
             'hash' => false,
         ],
 
+        'affiliate' => [
+            'driver' => 'session',
+            'provider' => 'affiliates',
+        ],
+
+        'affiliate-api' => [
+            'driver' => 'token',
+            'provider' => 'affiliates',
+            'hash' => false,
+        ],
+
         'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
@@ -81,6 +92,12 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
+
+        'affiliates' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Affiliate::class,
+        ],
+
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,

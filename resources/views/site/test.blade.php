@@ -23,7 +23,7 @@
 
 </head>
 <body>
-@include('site.partials.nav')
+@include('site.partials.header')
 @include('site.test.carousel')
 @include('site.test.batteryfinder')
 @include('site.test.featured')

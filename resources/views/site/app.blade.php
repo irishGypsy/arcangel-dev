@@ -17,7 +17,7 @@
     </script>
 </head>
 <body>
-@include('site.partials.nav')
+@include('site.partials.header')
 {{--@include('site.pages.product')--}}
 @yield('content')
 @include('site.partials.footer')

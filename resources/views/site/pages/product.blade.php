@@ -98,6 +98,7 @@
                                                 <dt class="col-sm-3">Quantity: </dt>
                                                     <input class="form-control" type="number" min="1" value="1" max="{{ $product->id }}" name="qty" style="width:70px;">
                                                     <input type="hidden" name="productId" value="{{ $product->id }}">
+                                                <input type="hidden" name="price" value="500">
                                                     {{--                                                        <input type="hidden" name="price" id="finalPrice" value="{{ $product->sale_price != '' ? $product->sale_price : $product->price }}">--}}
                                                     </dt>
                                                 <dd class="col-sm-9"><button type="submit" class="btn btn-success">

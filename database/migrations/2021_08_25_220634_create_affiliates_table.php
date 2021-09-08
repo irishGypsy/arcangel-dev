@@ -19,14 +19,15 @@ class CreateAffiliatesTable extends Migration
             $table->string('username');
             $table->string('fname');
             $table->string('lname');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('password');
-            $table->string('status')->default('Pending');
+            $table->enum('status',['Pending','Active','Refused'])->default('Pending');
             $table->bigInteger('countrycode_id')->unsigned();
             $table->foreign('countrycode_id')->references('id')->on('country_codes');
-            $table->string('commission')->default('Product Base');
-            $table->string('bank_details')->default('N/A');
-            $table->string('comm_in_per')->default('10');
+            $table->string('commission')->default('Product Base')->nullable();
+            $table->string('bank_details')->default('N/A')->nullable();
+            $table->string('comm_in_per')->default('10')->nullable();
+            $table->rememberToken();
             $table->timestamps();
         });
 

@@ -1,59 +1,6 @@
 <div id="wrapper">
 
 <header id="header">
-        <div class="top_header">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 col-md-4 col-sm-3 col-xs-12 top_h_l">
-                        <div class=" top_h_l_inn aff_menu">
-                            <a href="https://www.facebook.com/Arc-Angel-Battery-172640030326755/?modal=admin_todo_tour"
-                               class="fa fa-facebook"
-                               target="_blank">
-                                {{--                            <i class="fa fa-facebook" aria-hidden="true"></i>--}}
-                            </a>
-                            <ul class="">
-                                <li class="log_bt">
-                                    <a href="https://www.arcangelbattery.com/signup/">Become An Affiliate</a> <span style="font-weight: 700; font-size: 16px;">/</span>
-                                    <a href="https://www.arcangelbattery.com/affiliate-login/">Affiliate Login</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-8 col-md-8 col-sm-9 col-xs-12 top_h_r">
-                        <div class="top_h_r_inn">
-                            <form name="searchform1" action="https://www.arcangelbattery.com/searchproducts" method="post">
-                                <div class="custom-search-input">
-                                    <div class="input-group col-md-12">
-                                        <input type="text" class="form-control required" placeholder="Search" name="searchbox" required="">
-                                        <span class="input-group-btn">
-                              <button class="btn btn-info btn-lg" type="submit">
-                                <i class="fa fa-search"></i>
-                              </button>
-                            </span>
-                                    </div>
-                                </div>
-
-                                <span class="cart_fix">
-                        <ul>
-                            <li class="log_bt">
-                                <a href="javascript:void(0)" class="log_btn" id="showLogin"><!-- <i class="fa fa-lock" aria-hidden="true"></i> --> Login</a>
-                                    <span>/</span>
-                                <a href="javascript:void(0)" class="sig_btn" id="showRegister"><!-- <i class="fa fa-key" aria-hidden="true"> --> Sign Up </a>
-                            </li>
-                        </ul>
-
-                        <div class="h_cart">
-                            <p><a href="https://www.arcangelbattery.com/cart">Cart <span>(0)</span></a> <img src="https://www.arcangelbattery.com/assets/front/images/cart.png" alt="Cart"></p>
-                        </div>
-</span>
-
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="top">
             <div class="container">
                 <div class="row">

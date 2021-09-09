@@ -22,7 +22,12 @@ class CreateAffiliatesTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->enum('status',['Pending','Active','Refused'])->default('Pending');
-            $table->bigInteger('countrycode_id')->unsigned();
+            //address
+            $table->string('address', 255)->nullable();
+            $table->string('city')->nullable();
+            $table->string('state')->nullable();
+            $table->string('zip')->nullable();
+            $table->bigInteger('countrycode_id')->unsigned()->nullable();
             $table->foreign('countrycode_id')->references('id')->on('country_codes');
             $table->string('commission')->default('Product Base')->nullable();
             $table->string('bank_details')->default('N/A')->nullable();

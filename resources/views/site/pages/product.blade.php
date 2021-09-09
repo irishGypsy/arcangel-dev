@@ -2,9 +2,9 @@
 @section('title', $product->name)
 @section('content')
     <section class="section-pagetop" style="background-color: white; height: 50px;">
-{{--        <div class="container clearfix">--}}
-{{--            <h2 class="title-page">{{ $product->name }}</h2>--}}
-{{--        </div>--}}
+        <div class="container clearfix">
+            <h2 class="title-page">{{ $product->name }}</h2>
+        </div>
     </section>
     <section class="section-content bg padding-y border-top" id="site" style="background-color: white;">
         <div class="container">

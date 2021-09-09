@@ -75,6 +75,19 @@ class CreateUsersTable extends Migration
                 'state'=> 'TX',
                 'zip' => '77058',
                 'country' => 'USA'
+            ],
+            [
+                'first_name' => 'Joseph',
+                'last_name' => 'Brodnax',
+                'affiliate' => '0',
+                'phone' => '876-876-0000',
+                'email' => 'joseph.brodnax@gmail.com',
+                'password' => Hash::make('password1'),
+                'address' => '987 green blvd',
+                'city' => 'Ghost Town',
+                'state'=> 'TX',
+                'zip' => '77058',
+                'country' => 'USA'
             ]
         ]);
 

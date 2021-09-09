@@ -1,12 +1,12 @@
 @extends('site.app')
 @section('title', 'Register')
 @section('content')
-    <section class="section-pagetop bg-dark" style="background-color: white;">
+    <section class="section-pagetop bg-dark">
         <div class="container clearfix">
             <h2 class="title-page">Register</h2>
         </div>
     </section>
-    <section class="section-content bg padding-y" style="background-color: white;">
+    <section class="section-content bg padding-y">
         <div class="container">
             <div class="col-md-6 mx-auto">
                 <div class="card">

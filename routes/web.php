@@ -91,3 +91,4 @@ Route::get('payment/success', 'App\Http\Controllers\PayPalController@success')->
 
 Auth::routes();
 require 'admin.php';
+require 'affiliates.php';

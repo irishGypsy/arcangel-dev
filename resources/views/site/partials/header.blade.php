@@ -2,8 +2,8 @@
                 <div class="d-flex flex-row justify-content-around header-flex log-bt cart_fix" style="height:50px;">
                     <div>
                         <a href="https://www.facebook.com/Arc-Angel-Battery-172640030326755/?modal=admin_todo_tour" class="fa fa-facebook-square fa-2x" target="_blank" style="color: blue;"></a>
-                        <a href="https://www.arcangelbattery.com/signup/">Become An Affiliate</a> <span style="font-weight: 700; font-size: 16px;">/</span>
-                        <a href="https://www.arcangelbattery.com/affiliate-login/">Affiliate Login</a>
+                        <a href="{{ route('affiliate.register') }}">Become An Affiliate</a> <span style="font-weight: 700; font-size: 16px;">/</span>
+                        <a href="{{ route('affiliate.login') }}">Affiliate Login</a>
                     </div>
                     <div>
                         <form action="#" method="post">
@@ -29,6 +29,7 @@
                                 <span>|</span>
                                 @endguest
                                 <a href="{{ route('checkout.cart') }}" class="icontext">Cart ({{ $cartCount }})</a>
+                                    <i class="fa fa-shopping-cart"></i>
                                 <img src="https://www.arcangelbattery.com/assets/front/images/cart.png" alt="Cart">
                                 @auth
                                 <a class="dropdown-item" href="{{ route('admin.logout') }}"><i class="fa fa-sign-out fa-lg"></i> Logout</a>

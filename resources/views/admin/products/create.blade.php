@@ -175,7 +175,7 @@
                                 <div class="tile-footer">
                                     <div class="row d-print-none mt-2">
                                         <div class="col-12 text-right">
-                                            <button class="btn btn-success" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Save Product</button>
+                                            <button class="btn btn-success" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Save Post</button>
                                             <a class="btn btn-danger" href="{{ route('admin.products.index') }}"><i class="fa fa-fw fa-lg fa-arrow-left"></i>Go Back</a>
                                         </div>
                                     </div>
@@ -189,43 +189,4 @@
     </div>
 
 @endsection
-{{--@push('scripts')--}}
 
-{{--    <script src="{{ asset('node_modules/tinymce/tinymce.js') }}"></script>--}}
-{{--    <script type="text/javascript">--}}
-{{--        tinymce.init({--}}
-{{--            selector: 'textarea.tinymce-editor',--}}
-{{--            height: 300,--}}
-{{--            menubar: false,--}}
-{{--            plugins: [--}}
-{{--                'advlist autolink lists link image charmap print preview anchor',--}}
-{{--                'searchreplace visualblocks code fullscreen',--}}
-{{--                'insertdatetime media table paste code help image imagetools wordcount'--}}
-{{--            ],--}}
-{{--            toolbar1: 'undo redo | formatselect | fontselect | fontsizeselect bold italic backcolor',--}}
-{{--            toolbar2:    ' | alignleft aligncenter ' +--}}
-{{--                'alignright alignjustify | bullist numlist outdent indent | ' +--}}
-{{--                'removeformat | imagetools | help' ,--}}
-{{--            menu: {--}}
-{{--                file: {question: 'File', items: 'newdocument restoredraft | preview | print '},--}}
-{{--                edit: {question: 'Edit', items: 'undo redo | cut copy paste | selectall | searchreplace'},--}}
-{{--                view: {--}}
-{{--                    question: 'View',--}}
-{{--                    items: 'code | visualaid visualchars visualblocks | spellchecker | preview fullscreen'--}}
-{{--                },--}}
-{{--                insert: {--}}
-{{--                    question: 'Insert',--}}
-{{--                    items: 'image link media template codesample inserttable | charmap emoticons hr | pagebreak nonbreaking anchor toc | insertdatetime'--}}
-{{--                },--}}
-{{--                format: {--}}
-{{--                    question: 'Format',--}}
-{{--                    items: 'bold italic underline strikethrough superscript subscript codeformat | formats blockformats fontformats fontsizes align lineheight | forecolor backcolor | removeformat'--}}
-{{--                },--}}
-{{--                tools: {question: 'Tools', items: 'spellchecker spellcheckerlanguage | code wordcount'},--}}
-{{--                table: {question: 'Table', items: 'inserttable | cell row column | tableprops deletetable'},--}}
-{{--                help: {question: 'Help', items: 'help'}--}}
-{{--            },--}}
-{{--            content_css: '//www.tiny.cloud/css/codepen.min.css'--}}
-{{--        });--}}
-{{--    </script>--}}
-{{--@endpush--}}

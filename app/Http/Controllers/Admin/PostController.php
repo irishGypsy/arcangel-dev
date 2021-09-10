@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\BaseController;
 use Illuminate\Http\Request;
 use App\Contracts\PostContract;
+use Illuminate\Support\Str;
 
 
 class PostController extends BaseController
@@ -62,6 +63,11 @@ class PostController extends BaseController
 
         $params = $request->except('_token');
 
+//        ddd($;params['excerpt']);
+        if($params['excerpt'] == null){
+            $params['excerpt'] = Str::of($params['body'])->limit(50,'(...)');
+        }
+//ddd($params);
         $post= $this->PostRepository->createPost($params);
 //        ddd($post);
         if (!$post) {

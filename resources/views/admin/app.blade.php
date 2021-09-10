@@ -16,6 +16,9 @@
 <main class="app-content" id="app">
     @yield('content')
 </main>
+</body>
+</html>
+@stack('scripts')
 <script src="{{ asset('backend/js/jquery-3.2.1.min.js') }}"></script>
 <script src="{{ asset('backend/js/popper.min.js') }}"></script>
 <script src="{{ asset('backend/js/bootstrap.min.js') }}"></script>
@@ -59,6 +62,5 @@
     });
 </script>
 
-@stack('scripts')
-</body>
-</html>
+
+

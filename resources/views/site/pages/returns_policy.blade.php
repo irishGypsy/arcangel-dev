@@ -29,21 +29,21 @@
 
 <div id="wrapper">
 
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $("#searchform1f").validate();
-        });
+{{--    <script type="text/javascript">--}}
+{{--        $(document).ready(function(){--}}
+{{--            $("#searchform1f").validate();--}}
+{{--        });--}}
 
-        $('.aimgactive').on('click',function() {
-            alert('hi');
-            $(".imgactive").removeClass("active");
-            // $(".tab").addClass("active"); // instead of this do the below
-            $(this).addClass("active");
-        });
-        function chagecurrency(currency){
-            window.location="https://www.arcangelbattery.com/currency-convert/"+currency;
-        }
-    </script>
+{{--        $('.aimgactive').on('click',function() {--}}
+{{--            alert('hi');--}}
+{{--            $(".imgactive").removeClass("active");--}}
+{{--            // $(".tab").addClass("active"); // instead of this do the below--}}
+{{--            $(this).addClass("active");--}}
+{{--        });--}}
+{{--        function chagecurrency(currency){--}}
+{{--            window.location="https://www.arcangelbattery.com/currency-convert/"+currency;--}}
+{{--        }--}}
+{{--    </script>--}}
 
     <div class="inner_banner">
         <img class="img-responsive" src="https://www.arcangelbattery.com/uploads/banner/retirm1702066349banner.jpg" alt="Return and Warranty Policy">

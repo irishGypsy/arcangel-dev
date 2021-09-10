@@ -6,7 +6,7 @@
             <h1><i class="fa fa-tags"></i> {{ $pageTitle }}</h1>
             <p>{{ $subTitle }}</p>
         </div>
-        <a href="{{ route('admin.posts.create') }}" class="btn btn-primary pull-right">Add Banner</a>
+        <a href="{{ route('admin.posts.create') }}" class="btn btn-primary pull-right">Add Post</a>
     </div>
     @include('admin.partials.flash')
     <div class="row">
@@ -17,6 +17,7 @@
                         <thead>
                         <tr>
                             <th> # </th>
+                            <th> Image </th>
                             <th> Title </th>
                             <th> Excerpt </th>
                             <th class="text-center"> Menu Placement </th>
@@ -25,14 +26,12 @@
                         </thead>
                         <tbody>
                         @foreach($posts as $post)
-{{--                            @if ($post->id != 1)--}}
                                 <tr>
                                     <td>{{ $post->id }}</td>
-{{--                                    <td><img src="{{ asset('storage/'.$banner->image) }}" id="bannerImage" class="img-fluid" alt="img"></td>--}}
+                                    <td><img src="{{ asset('storage/'.$post->image) }}" alt="{{ $post->slug }}" width="200px"></td>
                                     <td>{{ $post->title }}</td>
                                     <td>{{ $post->excerpt }}</td>
                                     <td>{{ $post->menu_placement }}</td>
-{{--                                    <td>{{ $banner->url }}</td>--}}
                                     <td class="text-center">
                                         <div class="btn-group" role="group" aria-label="Second group">
                                             <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
@@ -40,7 +39,6 @@
                                         </div>
                                     </td>
                                 </tr>
-{{--                            @endif--}}
                         @endforeach
                         </tbody>
                     </table>

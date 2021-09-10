@@ -29,39 +29,39 @@
 
 <div id="wrapper">
 
-    <script>
-        $(window).scroll(function () {
-            if ($(window).scrollTop() > 200) {
-                $(".headpanel").addClass('sticky');
-            } else {
-                $(".headpanel").removeClass('sticky');
+{{--    <script>--}}
+{{--        $(window).scroll(function () {--}}
+{{--            if ($(window).scrollTop() > 200) {--}}
+{{--                $(".headpanel").addClass('sticky');--}}
+{{--            } else {--}}
+{{--                $(".headpanel").removeClass('sticky');--}}
 
-            }
+{{--            }--}}
 
-        });
+{{--        });--}}
 
-    </script>
+{{--    </script>--}}
 
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $("#searchform1f").validate();
-        });
+{{--    <script type="text/javascript">--}}
+{{--        $(document).ready(function(){--}}
+{{--            $("#searchform1f").validate();--}}
+{{--        });--}}
 
-        $('.aimgactive').on('click',function() {
-            alert('hi');
-            $(".imgactive").removeClass("active");
-            // $(".tab").addClass("active"); // instead of this do the below
-            $(this).addClass("active");
-        });
-        function chagecurrency(currency){
+{{--        $('.aimgactive').on('click',function() {--}}
+{{--            alert('hi');--}}
+{{--            $(".imgactive").removeClass("active");--}}
+{{--            // $(".tab").addClass("active"); // instead of this do the below--}}
+{{--            $(this).addClass("active");--}}
+{{--        });--}}
+{{--        function chagecurrency(currency){--}}
 
-            window.location="https://www.arcangelbattery.com/currency-convert/"+currency;
-        }
+{{--            window.location="https://www.arcangelbattery.com/currency-convert/"+currency;--}}
+{{--        }--}}
 
-    </script>
+{{--    </script>--}}
 
 
-    <div class="cl"></div>
+{{--    <div class="cl"></div>--}}
     <!-- inner banner start -->
     <div class="inner_banner">
 

@@ -22,30 +22,25 @@
                         <div class="form-group">
                             <label class="control-label">Menu Placement</label>
                             <select name="menu_placement" id="menu_placement" class="form-control @error('menu_placement') is-invalid @enderror">
-                                <option value="header">Header</option>
-                                <option value="footer">Footer</option>
+                                <option value="Header" selected>Header</option>
+                                <option value="Footer">Footer</option>
                             </select>
                         </div>
-
                         <div class="form-group">
                             <label class="control-label">Excerpt</label>
                             <input class="form-control @error('excerpt') is-invalid @enderror" type="text" id="excerpt" name="excerpt"/>
                             @error('excerpt') {{ $message }} @enderror
                         </div>
-
                         <div class="form-group">
                             <label class="control-label" for="body">Body</label>
-                            <textarea class="form-control" rows="4" name="body" id="body">{{ old('body') }}</textarea>
+                            <textarea class="form-control tinymce-editor" rows="4" name="body" id="body">{{ old('body') }}</textarea>
                         </div>
-
                         <div class="form-group">
                             <label class="control-label" for="keywords">Keywords</label>
-                            <textarea class="form-control" rows="6" name="keywords" id="keywords">{{ old('keywords') }}</textarea>
+                            <textarea class="form-control" rows="2" name="keywords" id="keywords">{{ old('keywords') }}</textarea>
                         </div>
-
                     <div class="tile-footer">
                         <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Save Post</button>
-                        &nbsp;&nbsp;&nbsp;
                         <a class="btn btn-secondary" href="{{ route('admin.posts.index') }}"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>
                     </div>
                 </form>

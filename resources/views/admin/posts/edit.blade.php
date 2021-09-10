@@ -35,17 +35,15 @@
                             @error('excerpt') {{ $message }} @enderror
                         </div>
 
+
                         <div class="form-group">
                             <label class="control-label" for="body">Body <span class="m-l-5 text-danger"> *</span></label>
-                            <input class="form-control @error('body') is-invalid @enderror" type="text" name="body" id="body" value="{{ old('body', $posts->body) }}"/>
-                            @error('body') {{ $message }} @enderror
+                            <textarea name="body" rows="5" cols="40" class="form-control tinymce-editor">{{ $posts->body }}</textarea>
                         </div>
 
-
                         <div class="form-group">
-                            <label class="control-label" for="keywords">Keywords </label>
-                            <input class="form-control @error('keywords') is-invalid @enderror" type="text" name="keywords" id="keywords" value="{{ old('keywords', $posts->keywords) }}"/>
-                            @error('keywords') {{ $message }} @enderror
+                            <label class="control-label" for="keywords">Keywords <span class="m-l-5 text-danger"> *</span></label>
+                            <textarea name="keywords" rows="5" cols="40" class="form-control">{{ $posts->keywords }}</textarea>
                         </div>
 
                     </div>

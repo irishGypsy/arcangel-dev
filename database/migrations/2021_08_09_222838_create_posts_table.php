@@ -22,6 +22,7 @@ class CreatePostsTable extends Migration
             $table->string('keywords')->nullable();
             $table->string('image')->nullable();
             $table->enum('menu_placement',['Header','Footer'])->default('Header');
+            $table->enum('status',['Active','Inactive'])->default('Active');
             $table->timestamps();
         });
 

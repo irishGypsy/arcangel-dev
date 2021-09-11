@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\BaseController;
 use Illuminate\Http\Request;
 use App\Contracts\PostContract;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 
@@ -36,6 +37,8 @@ class PostController extends BaseController
         $this->setPageTitle('Posts', 'List of all Posts');
         return view('admin.posts.index', compact('posts'));
     }
+
+
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View

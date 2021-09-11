@@ -38,22 +38,6 @@ class BannerController extends BaseController
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function display()
-    {
-        $banners = $this->BannerRepository->listBanners();
-
-        $products = DB::table('products')
-            ->join('product_images','products.id','=','product_images.product_id')
-            ->select('products.id','products.name','products.mrp','product_images.image')
-            ->where('products.popular','=','1')
-            ->get();
-//ddd($products);
-        return view('site.test', compact('banners','products'));
-    }
-
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function create()
     {
         $banners = $this->BannerRepository->listBanners('id', 'asc');

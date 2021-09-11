@@ -18,8 +18,11 @@
 </head>
 <body>
 @include('site.partials.header')
-{{--@include('site.pages.product')--}}
-@yield('content')
+@include('site.partials.nav')
+@include('site.partials.carousel')
+@include('site.partials.batteryfinder')
+@include('site.partials.featured')
+@include('site.partials.intro')
 @include('site.partials.footer')
 </body>
 </html>

@@ -30,7 +30,10 @@ body {font-family: 'FuturaPT-Light' !important;margin: 0;padding: 0;outline: non
   font-weight: 400;
   font-style: normal
 }
-a {color: inherit}
+a {color: #a2a2a2 !important;}
+
+.header-black {color: black !important;}
+/*.header-black {color: black !important;}*/
 p {text-align: justify;font-size: 17px;color: #6b6b6b;line-height: 22px}
 .cl {margin: 0;padding: 0;clear: both}
 #wrapper {
@@ -779,7 +782,7 @@ form .buttons-set {margin-top: 0;float: right;padding-bottom: 0}
 #wrapper .goog-te-menu2-item div, .goog-te-menu2-item:link div, .goog-te-menu2-item:visited div, .goog-te-menu2-item:active div {color: #333 !important;background: #f5f5f5 !important}
 .la_cnvrt span {color: #333 !important}
 .rmv_img {float: left;margin-left: 38px;margin-top: 5px;font-size: 15px}
-.btn:focus, .btn.focus {color: #fff !important;text-decoration: none}
+
 .boxselect ul li i {color: #767676;font-size: 12px;margin-left: 3px}
 .boxselect ul {width: 70% !important}
 .error {color: red !important;font-weight: normal !important}

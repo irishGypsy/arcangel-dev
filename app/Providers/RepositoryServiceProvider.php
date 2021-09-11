@@ -44,30 +44,33 @@ use App\Contracts\ProductReviewContract;
 use App\Repositories\ProductReviewRepository;
 use App\Contracts\ProductShippingInfoContract;
 use App\Repositories\ProductShippingInfoRepository;
+use App\Contracts\VideoContract;
+use App\Repositories\VideoRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
     protected $repositories = [
-        CategoryContract::class         =>          CategoryRepository::class,
-        AttributeContract::class        =>          AttributeRepository::class,
-        BatteryGroupContract::class            =>          BatteryGroupRepository::class,
-        ProductContract::class          =>          ProductRepository::class,
-        OrderContract::class            =>          OrderRepository::class,
-        BannerContract::class            =>          BannerRepository::class,
-        PostContract::class            =>          PostRepository::class,
+        CategoryContract::class                 =>          CategoryRepository::class,
+        AttributeContract::class                =>          AttributeRepository::class,
+        BatteryGroupContract::class             =>          BatteryGroupRepository::class,
+        ProductContract::class                  =>          ProductRepository::class,
+        OrderContract::class                    =>          OrderRepository::class,
+        BannerContract::class                   =>          BannerRepository::class,
+        PostContract::class                     =>          PostRepository::class,
         BatteryFinderContract::class            =>          BatteryFinderRepository::class,
-        FaqContract::class            =>          FaqRepository::class,
-        TestimonialContract::class            =>          TestimonialRepository::class,
-        CouponContract::class            =>          CouponRepository::class,
+        FaqContract::class                      =>          FaqRepository::class,
+        TestimonialContract::class              =>          TestimonialRepository::class,
+        CouponContract::class                   =>          CouponRepository::class,
         ReturnProductContract::class            =>          ReturnProductRepository::class,
-        SaleContract::class            =>          SaleRepository::class,
-        InventoryContract::class            =>          InventoryRepository::class,
-        CapacityContract::class            =>          CapacityRepository::class,
-        UserContract::class            =>          UserRepository::class,
-        AffiliateContract::class            =>          AffiliateRepository::class,
-        ReferralContract::class            =>          ReferralRepository::class,
+        SaleContract::class                     =>          SaleRepository::class,
+        InventoryContract::class                =>          InventoryRepository::class,
+        CapacityContract::class                 =>          CapacityRepository::class,
+        UserContract::class                     =>          UserRepository::class,
+        AffiliateContract::class                =>          AffiliateRepository::class,
+        ReferralContract::class                 =>          ReferralRepository::class,
         ProductReviewContract::class            =>          ProductReviewRepository::class,
-        ProductShippingInfoContract::class            =>          ProductShippingInfoRepository::class,
+        ProductShippingInfoContract::class      =>          ProductShippingInfoRepository::class,
+        VideoContract::class                    =>          VideoRepository::class,
 
     ];
 

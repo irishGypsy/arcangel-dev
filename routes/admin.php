@@ -109,6 +109,17 @@ Route::group(['prefix'  =>  'admin'], function () {
 
     });
 
+    Route::group(['prefix'  =>   'videos'], function() {
+
+        Route::get('/', 'App\Http\Controllers\Admin\VideoController@index')->name('admin.videos.index');
+        Route::get('/create', 'App\Http\Controllers\Admin\VideoController@create')->name('admin.videos.create');
+        Route::post('/store', 'App\Http\Controllers\Admin\VideoController@store')->name('admin.videos.store');
+        Route::get('/{id}/edit', 'App\Http\Controllers\Admin\VideoController@edit')->name('admin.videos.edit');
+        Route::post('/update', 'App\Http\Controllers\Admin\VideoController@update')->name('admin.videos.update');
+        Route::get('/{id}/delete', 'App\Http\Controllers\Admin\VideoController@delete')->name('admin.videos.delete');
+
+    });
+
     Route::group(['prefix'  =>   'productreviews'], function() {
 
         Route::get('/', 'App\Http\Controllers\Admin\ProductReviewController@index')->name('admin.productreviews.index');
@@ -198,24 +209,7 @@ Route::group(['prefix'  =>  'admin'], function () {
 
     });
 
-    Route::group(['prefix'  =>   'attributes'], function() {
-
-        Route::get('/', 'App\Http\Controllers\Admin\AttributeController@index')->name('admin.attributes.index');
-        Route::get('/create', 'App\Http\Controllers\Admin\AttributeController@create')->name('admin.attributes.create');
-        Route::post('/store', 'App\Http\Controllers\Admin\AttributeController@store')->name('admin.attributes.store');
-        Route::get('/{id}/edit', 'App\Http\Controllers\Admin\AttributeController@edit')->name('admin.attributes.edit');
-        Route::post('/update', 'App\Http\Controllers\Admin\AttributeController@update')->name('admin.attributes.update');
-        Route::get('/{id}/delete', 'App\Http\Controllers\Admin\AttributeController@delete')->name('admin.attributes.delete');
-
-    });
-
-    Route::post('/get-values', 'App\Http\Controllers\Admin\AttributeValueController@getValues');
-    Route::post('/add-values', 'App\Http\Controllers\Admin\AttributeValueController@addValues');
-    Route::post('/update-values', 'App\Http\Controllers\Admin\AttributeValueController@updateValues');
-    Route::post('/delete-values', 'App\Http\Controllers\Admin\AttributeValueController@deleteValues');
-
-
-    Route::group(['prefix' => 'products'], function () {
+    Route::group(['prefix'  =>   'products'], function () {
 
         Route::get('/', 'App\Http\Controllers\Admin\ProductController@index')->name('admin.products.index');
         Route::get('/create', 'App\Http\Controllers\Admin\ProductController@create')->name('admin.products.create');
@@ -238,6 +232,21 @@ Route::group(['prefix'  =>  'admin'], function () {
 
     });
 
+    Route::group(['prefix'  =>   'attributes'], function() {
+
+        Route::get('/', 'App\Http\Controllers\Admin\AttributeController@index')->name('admin.attributes.index');
+        Route::get('/create', 'App\Http\Controllers\Admin\AttributeController@create')->name('admin.attributes.create');
+        Route::post('/store', 'App\Http\Controllers\Admin\AttributeController@store')->name('admin.attributes.store');
+        Route::get('/{id}/edit', 'App\Http\Controllers\Admin\AttributeController@edit')->name('admin.attributes.edit');
+        Route::post('/update', 'App\Http\Controllers\Admin\AttributeController@update')->name('admin.attributes.update');
+        Route::get('/{id}/delete', 'App\Http\Controllers\Admin\AttributeController@delete')->name('admin.attributes.delete');
+
+    });
+
+    Route::post('/get-values', 'App\Http\Controllers\Admin\AttributeValueController@getValues');
+    Route::post('/add-values', 'App\Http\Controllers\Admin\AttributeValueController@addValues');
+    Route::post('/update-values', 'App\Http\Controllers\Admin\AttributeValueController@updateValues');
+    Route::post('/delete-values', 'App\Http\Controllers\Admin\AttributeValueController@deleteValues');
     // Load attributes on the page load
     Route::get('attributes/load', 'App\Http\Controllers\Admin\ProductAttributeController@loadAttributes');
     // Load product attributes on the page load

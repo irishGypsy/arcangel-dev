@@ -97,19 +97,19 @@
                     </div>
 
 
-                    <div class="panel">
-                        <div class="panel-heading"><span data-toggle="collapse" data-target="#demoprice" class="clickable">Price <i class="fa fa-minus-circle"></i></span>
-                        </div><!-- end of panel-heading -->
-                        <div class="panel-body collapse in scrol" id="demoprice">
+{{--                    <div class="panel">--}}
+{{--                        <div class="panel-heading"><span data-toggle="collapse" data-target="#demoprice" class="clickable">Price <i class="fa fa-minus-circle"></i></span>--}}
+{{--                        </div><!-- end of panel-heading -->--}}
+{{--                        <div class="panel-body collapse in scrol" id="demoprice">--}}
 
-                            <div class="rangeslider">
-                                <b class="lep" id="app_min_price">$ 1</b>
-                                <div class="slider slider-horizontal" id=""><div class="slider-track"><div class="slider-track-low" style="left: 0px; width: 0%;"></div><div class="slider-selection" style="left: 0%; width: 100%;"></div><div class="slider-track-high" style="right: 0px; width: 0%;"></div><div class="slider-handle min-slider-handle round" role="slider" aria-valuemin="1" aria-valuemax="2600" aria-valuenow="1" tabindex="0" style="left: 0%;"></div><div class="slider-handle max-slider-handle round" role="slider" aria-valuemin="1" aria-valuemax="2600" aria-valuenow="2600" tabindex="0" style="left: 100%;"></div></div><div class="tooltip tooltip-main top" role="presentation" style="left: 50%; margin-left: -30px;"><div class="tooltip-arrow"></div><div class="tooltip-inner">1 : 2600</div></div><div class="tooltip tooltip-min top" role="presentation" style="left: 0%; margin-left: -11.5px;"><div class="tooltip-arrow"></div><div class="tooltip-inner">1</div></div><div class="tooltip tooltip-max top" role="presentation" style="left: 100%; margin-left: -21.5px;"><div class="tooltip-arrow"></div><div class="tooltip-inner">2600</div></div></div><input id="ex2" type="text" class="span2" value="1,2600" data-slider-min="1" data-slider-max="2600" data-slider-step="5" data-slider-value="[1,2600]" data-value="1,2600" style="display: none;">
-                                <b class="rip" id="app_max_price">$ 2600</b>
-                            </div><!-- end of rangeslider -->
+{{--                            <div class="rangeslider">--}}
+{{--                                <b class="lep" id="app_min_price">$ 1</b>--}}
+{{--                                <div class="slider slider-horizontal" id=""><div class="slider-track"><div class="slider-track-low" style="left: 0px; width: 0%;"></div><div class="slider-selection" style="left: 0%; width: 100%;"></div><div class="slider-track-high" style="right: 0px; width: 0%;"></div><div class="slider-handle min-slider-handle round" role="slider" aria-valuemin="1" aria-valuemax="2600" aria-valuenow="1" tabindex="0" style="left: 0%;"></div><div class="slider-handle max-slider-handle round" role="slider" aria-valuemin="1" aria-valuemax="2600" aria-valuenow="2600" tabindex="0" style="left: 100%;"></div></div><div class="tooltip tooltip-main top" role="presentation" style="left: 50%; margin-left: -30px;"><div class="tooltip-arrow"></div><div class="tooltip-inner">1 : 2600</div></div><div class="tooltip tooltip-min top" role="presentation" style="left: 0%; margin-left: -11.5px;"><div class="tooltip-arrow"></div><div class="tooltip-inner">1</div></div><div class="tooltip tooltip-max top" role="presentation" style="left: 100%; margin-left: -21.5px;"><div class="tooltip-arrow"></div><div class="tooltip-inner">2600</div></div></div><input id="ex2" type="text" class="span2" value="1,2600" data-slider-min="1" data-slider-max="2600" data-slider-step="5" data-slider-value="[1,2600]" data-value="1,2600" style="display: none;">--}}
+{{--                                <b class="rip" id="app_max_price">$ 2600</b>--}}
+{{--                            </div><!-- end of rangeslider -->--}}
 
-                        </div><!-- end of panel-body -->
-                    </div><!-- end fo panel -->
+{{--                        </div><!-- end of panel-body -->--}}
+{{--                    </div><!-- end fo panel -->--}}
 
                 </div><!-- end of col -->
 

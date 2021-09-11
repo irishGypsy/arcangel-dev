@@ -14,54 +14,28 @@ use App\Http\Controllers\SliderController;
 |
 */
 
-Route::get('/', 'App\Http\Controllers\Admin\BannerController@display')->name('site.app');
+Route::get('/', 'App\Http\Controllers\Site\WelcomeController@display')->name('site.app');
 
-Route::get('/about',function() {
-    return view('site.pages.about');
+Route::group(['prefix' => 'batteryfinders'], function(){
+
+    Route::get('/getmakes', 'App\Http\Controllers\Admin\BatteryFinderController@listMakes');
+    Route::get('/getmodels/{make}', 'App\Http\Controllers\Admin\BatteryFinderController@listModels');
+    Route::get('/getyears/{make}/{model}', 'App\Http\Controllers\Admin\BatteryFinderController@listYears');
+    Route::get('/getengines/{make}/{model}/{year}', 'App\Http\Controllers\Admin\BatteryFinderController@listEngines');
+    Route::get('/getbatterygroup/{make}/{model}/{year}/{engine}', 'App\Http\Controllers\Admin\BatteryFinderController@getBatteryGroup')->name('site.batteryfinder.search');
+    Route::get('/', 'App\Http\Controllers\Admin\BatteryFinderController@getBatteryGroup2')->name('site.batteryfinder.products');
+
 });
 
-Route::get('/test', 'App\Http\Controllers\Admin\BannerController@display')->name('site.test');
+Route::get('/faq','App\Http\Controllers\Site\WelcomeController@getFaqs')->name('site.faq');
 
-Route::get('/batteryfinders/getmakes', 'App\Http\Controllers\Admin\BatteryFinderController@listMakes');
-Route::get('/batteryfinders/getmodels/{make}', 'App\Http\Controllers\Admin\BatteryFinderController@listModels');
-Route::get('/batteryfinders/getyears/{make}/{model}', 'App\Http\Controllers\Admin\BatteryFinderController@listYears');
-Route::get('/batteryfinders/getengines/{make}/{model}/{year}', 'App\Http\Controllers\Admin\BatteryFinderController@listEngines');
-Route::get('/batteryfinders/getbatterygroup/{make}/{model}/{year}/{engine}', 'App\Http\Controllers\Admin\BatteryFinderController@getBatteryGroup')->name('site.batteryfinder.search');
-Route::get('/batteryfinders', 'App\Http\Controllers\Admin\BatteryFinderController@getBatteryGroup2')->name('site.batteryfinder.products');
-
-Route::get('/technical_comparisons',function() {
-    return view('site.pages.technical_comparisons');
-});
-
-Route::get('/faq',function() {
-    return view('site.pages.faq');
-});
+Route::get('/video','App\Http\Controllers\Site\WelcomeController@getVideos')->name('site.video');
 
 Route::get('/contact_us',function() {
     return view('site.pages.contact_us');
-});
+})->name('site.contact');
 
-Route::get('/returns_policy', function () {
-    return view('site.pages.returns_policy');
-});
-
-Route::get('/terms_and_conditions', function () {
-    return view('terms_and_conditions');
-});
-
-//Route::get('/register', function () {
-//    return view('auth.register');
-//});
-//
-//Route::get('/login', function () {
-//    return view('auth.login');
-//})->name('login');
-
-//Route::get('/affiliate_login', function () {
-//    return view('affiliate_login');
-//});
-
-Route::get('slider', [SliderController::class, 'index']);
+Route::get('post/{id}', 'App\Http\Controllers\Site\WelcomeController@getPage')->name('post.page');
 
 Route::get('/category/{slug}', 'App\Http\Controllers\Site\CategoryController@show')->name('category.show');
 

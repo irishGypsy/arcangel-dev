@@ -42,7 +42,7 @@
                                     @error('image') {{ $message }} @enderror
                                 </div>
                             </div>
-
+                        </div>
 {{--                        status--}}
 
 

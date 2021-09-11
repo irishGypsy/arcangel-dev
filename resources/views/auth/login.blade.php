@@ -1,6 +1,17 @@
-@extends('site.app')
-@section('title', 'Login')
-@section('content')
+{{--@extends('site.app')--}}
+{{--@section('title', 'Login')--}}
+{{--@section('content')--}}
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ asset('backend/css/main.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('backend/css/font-awesome/4.7.0/css/font-awesome.min.css') }}"/>
+    <title>Login - {{ config('app.name') }}</title>
+</head>
+<body>
     <section class="section-pagetop bg-white" style="background-color: white;">
         <div class="container clearfix">
             <h2 class="title-page">Login</h2>
@@ -54,4 +65,5 @@
             </div>
         </div>
     </section>
-@stop
+</body>
+{{--@stop--}}

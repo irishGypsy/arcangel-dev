@@ -58,16 +58,42 @@ class ProductController extends BaseController
     public function show($id)
     {
         $product = $this->productRepository->findProductById($id);
+        $sale = DB::table('sales')->where('productID','=',$product->id)->first();
+        $saleprice = null;
+        if(!$sale == null)
+        {
+            $saleprice = $product->price - ($product->price * $sale->discount);
+////            $product->price = $saleprice;
+        }
+//
+//        ddd($product);
+
+
 //ddd($product);
-        return view('site.pages.product', compact('product'));
+        return view('site.pages.product', compact('product', 'saleprice'));
     }
 
     public function addToCart(Request $request)
     {
+//        $product = new Product();
         $product = $this->productRepository->findProductById($request->input('productId'));
         $options = $request->except('_token', 'productId', 'price', 'qty');
+        $options = array_add($options,"shipping", $product->shipping);
 
-        Cart::add(uniqid(), $product->name, $request->input('price'), $request->input('qty'), $options);
+        $shippingCondition = new \Darryldecode\Cart\CartCondition(array(
+            'name' => 'shipping',
+            'type' => 'shipping',
+            'value' => $product->shipping
+        ));
+//ddd($options);
+        Cart::add(uniqid(), $product->name, $request->input('price'), $request->input('qty'), $options, $shippingCondition);
+//ddd(Cart::getCondition('shipping'));
+//        $subTotal = Cart::getSubTotal();
+////        ddd($subTotal);
+//        $condition = Cart::getCondition('shipping');
+//        ddd($condition);
+//        $conditionCalculatedValue = $condition->getCalculatedValue($subTotal);
+//        ddd($conditionCalculatedValue);
 
         return redirect()->back()->with('message', 'Item added to cart successfully.');
     }

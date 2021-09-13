@@ -48,11 +48,15 @@ Route::post('/product/add/cart', 'App\Http\Controllers\Site\ProductController@ad
 Route::get('/cart', 'App\Http\Controllers\Site\CartController@getCart')->name('checkout.cart');
 Route::get('/cart/item/{id}/remove', 'App\Http\Controllers\Site\CartController@removeItem')->name('checkout.cart.remove');
 Route::get('/cart/clear', 'App\Http\Controllers\Site\CartController@clearCart')->name('checkout.cart.clear');
+Route::post('/cart/applycouponcode', 'App\Http\Controllers\Site\CartController@applyCouponCode')->name('checkout.cart.applycouponcode');
+Route::get('/cart/addQty/{id}', 'App\Http\Controllers\Site\CartController@addQty')->name('checkout.cart.addQty');
+Route::get('/cart/subtractQty{id}', 'App\Http\Controllers\Site\CartController@subtractQty')->name('checkout.cart.subtractQty');
 
-Route::group(['middleware' => ['auth']], function () {
+
+//Route::group(['middleware' => ['auth']], function () {
     Route::get('/checkout', 'App\Http\Controllers\Site\CheckoutController@getCheckout')->name('checkout.index');
     Route::post('/checkout/order', 'App\Http\Controllers\Site\CheckoutController@placeOrder')->name('checkout.place.order');
-});
+//});
 
 Route::get('checkout/payment/complete', 'App\Http\Controllers\Site\CheckoutController@complete')->name('checkout.payment.complete');
 

@@ -1278,7 +1278,11 @@ a.bncart {background: #f59835;padding: 8px 18px;text-transform: uppercase;border
     line-height: 1.42857143;
     color: #333;
 }
-
+.button-primary{
+    background-color: #e8a038;
+    color:white;
+    font-family: 'FuturaPT-Medium' !important
+}
 
 /*.navbar-nav {*/
 /*    flex-direction: row !important;*/

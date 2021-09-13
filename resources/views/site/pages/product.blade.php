@@ -1,7 +1,32 @@
-@extends('site.app')
-@section('title', $product->name)
-@section('content')
-    <section class="section-pagetop" style="background-color: white; height: 50px;">
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@yield('title') - {{ config('app.name') }}</title>
+    @include('site.partials.styles')
+    @include('site.partials.scripts')
+
+    <script>
+        $(window).scroll(function () {
+            if ($(window).scrollTop() > 200) {
+                $(".headpanel").addClass('sticky');
+            } else {
+                $(".headpanel").removeClass('sticky');
+
+            }
+
+        });
+
+    </script>
+    {{--    @include('site.partials.header')--}}
+
+</head>
+<body style="background-color:#333333">
+@include('site.partials.header')
+@include('site.partials.nav')
+
+<section class="section-pagetop" style="background-color: white; height: 50px;">
         <div class="container clearfix">
             <h2 class="title-page">{{ $product->name }}</h2>
         </div>
@@ -73,15 +98,20 @@
                                         </i></h3></dd>
                                     </dl>
                                     <div class="mb-3">
-                                        @if ($product->mrp > 0)
-                                            <var class="price h3 text-danger">
-                                                <span class="currency">${{ config('settings.currency_symbol') }}</span><span class="num" id="productPrice">{{ $product->mrp }}</span>
-{{--                                                <del class="price-old"> {{ config('settings.currency_symbol') }}{{ $product->price }}</del>--}}
-                                            </var>
-{{--                                        @else--}}
-{{--                                            <var class="price h3 text-success">--}}
-{{--                                                <span class="currency">{{ config('settings.currency_symbol') }}</span><span class="num" id="productPrice">{{ $product->mrp }}</span>--}}
-{{--                                            </var>--}}
+                                        @if ($product->price > 0)
+                                            @if($saleprice != null)
+                                                <var class="price h3 text-danger">
+                                                    <span class="currency">${{ config('settings.currency_symbol') }}</span>
+                                                    <span class="num" id="productPrice" STYLE="text-decoration:line-through">{{ $product->price }}</span>
+                                                    <span class="num" id="productPrice">Sale Price:  ${{ $saleprice }}</span>
+                                                </var>
+                                            @else
+                                                <var class="price h3 text-danger">
+                                                    <span class="currency">${{ config('settings.currency_symbol') }}</span><span class="num" id="productPrice">{{ $product->price }}</span>
+                                                </var>
+                                            @endif
+
+
                                         @endif
                                     </div>
                                     <hr>
@@ -98,7 +128,7 @@
                                                 <dt class="col-sm-3">Quantity: </dt>
                                                     <input class="form-control" type="number" min="1" value="1" max="{{ $product->id }}" name="qty" style="width:70px;">
                                                     <input type="hidden" name="productId" value="{{ $product->id }}">
-                                                <input type="hidden" name="price" value="500">
+                                                <input type="hidden" name="price" value="{{ $saleprice != null ? $saleprice : $product->price }}">
                                                     {{--                                                        <input type="hidden" name="price" id="finalPrice" value="{{ $product->sale_price != '' ? $product->sale_price : $product->price }}">--}}
                                                     </dt>
                                                 <dd class="col-sm-9"><button type="submit" class="btn btn-success">
@@ -108,20 +138,7 @@
                                                 </dd>
                                             </dl>
                                         </div>
-
-{{--                                            <div class="col-sm-12">--}}
-{{--                                                <dl class="dlist-inline">--}}
-{{--                                                    <dt>Quantity: </dt>--}}
-{{--                                                    <dd>--}}
-{{--                                                        <input class="form-control" type="number" min="1" value="1" max="{{ $product->id }}" name="qty" style="width:70px;">--}}
-{{--                                                        <input type="hidden" name="productId" value="{{ $product->id }}">--}}
-{{--                                                        <input type="hidden" name="price" id="finalPrice" value="{{ $product->sale_price != '' ? $product->sale_price : $product->price }}">--}}
-{{--                                                    </dd>--}}
-{{--                                                </dl>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                        <hr>--}}
-{{--                                        <button type="submit" class="btn btn-success"><i class="fas fa-shopping-cart"></i> Add To Cart</button>--}}
+                                        </div>
                                     </form>
 
 <br>
@@ -151,7 +168,8 @@
     <br>
 {{--    <hr>--}}
     <br>
-@stop
+@include('site.partials.footer')
+{{--@stop--}}
 @push('scripts')
     <script>
         $(document).ready(function () {

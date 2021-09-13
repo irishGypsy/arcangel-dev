@@ -31,7 +31,7 @@ class CreateProductsTable extends Migration
             $table->unsignedInteger('min_quantity')->nullable();
             $table->boolean('popular')->default(0);
             $table->text('technical_specifications')->nullable();
-            $table->float('mrp',10,2)->nullable();
+            $table->float('price',10,2)->nullable();
             $table->float('shipping',8,2)->nullable();
             $table->string('warranty')->nullable();
             $table->enum('ship_type',['Small Parcel','Large Parcel'])->default('Small Parcel')->nullable();
@@ -58,7 +58,7 @@ class CreateProductsTable extends Migration
                 "min_quantity" => "1",
                 "popular" => "0",
                 "technical_specifications" => "<p>Arc-Angel Battery&nbsp;lithium batteries delivers all you can ask for and more in a battery and&nbsp;has shown to provide:</p>\r\n\r\n<p>Less horsepower draw from the alternator due to efficient charging (5 times faster than lead),</p>\r\n\r\n<p>Lasts&nbsp;longer usually hits 10 years of life,</p>\r\n\r\n<p>Significant weight savings&nbsp;(around&nbsp;1/2&nbsp;the weight),</p>\r\n\r\n<p>Don&rsquo;t self-discharge as much, so if the battery is disconnected (no draw or via power disconnect switch), they can sit for over a year plus&nbsp;and still maintain voltage&nbsp;to start the vehicle.</p>\r\n\r\n<p>No off-gassing issues so they are more enviromentally friendly,</p>\r\n\r\n<p>Provide excellent Cold Cranking Amp ratings as compared to other battery chemistries,</p>\r\n\r\n<p>Specifications List:</p>\r\n\r\n<p>Part #: 6010008</p>\r\n\r\n<p>Type: LiFePO4</p>\r\n\r\n<p>Voltage: 12 V</p>\r\n\r\n<p>CCA: 1300A</p>\r\n\r\n<p>Group #: 49</p>\r\n\r\n<p>Dimensions: 352*174*190&nbsp;mm or 13.85*6.85*7.48&nbsp;in</p>\r\n\r\n<p>Weight: 19.73 lbs</p>\r\n'",
-                "mrp" => "920",
+                "price" => "920",
                 "shipping" => "0",
                 "warranty" => "10 Year",
                 "ship_type" => NULL,
@@ -71,7 +71,7 @@ class CreateProductsTable extends Migration
                 "countrycode_id" => "234",
                 "name" => "arc-angel group 48 starting battery",
                 "sku" => "860000495264",
-                "mrp" => "840",
+                "price" => "840",
                 "shipping" => "0",
                 "warranty" => "10 Year",
                 "init_quantity" => "0",
@@ -88,7 +88,7 @@ class CreateProductsTable extends Migration
                 "countrycode_id" => "234",
                 "name" => "Arc-Angel Group 47 Starting Battery - Out of Stock",
                 "sku" => "860000495257",
-                "mrp" => "820",
+                "price" => "820",
                 "shipping" => "0",
                 "warranty" => "10 Year",
                 "init_quantity" => "0",
@@ -105,7 +105,7 @@ class CreateProductsTable extends Migration
                 "countrycode_id" => "234",
                 "name" => "Arc-Angel Group 24F Starting Battery",
                 "sku" => "860000495233",
-                "mrp" => "420",
+                "price" => "420",
                 "shipping" => "0",
                 "warranty" => "10 Year",
                 "init_quantity" => "6",
@@ -122,7 +122,7 @@ class CreateProductsTable extends Migration
                 "countrycode_id" => "234",
                 "name" => "arc-angel group 51 starting battery",
                 "sku" => "860000495240",
-                "mrp" => "380",
+                "price" => "380",
                 "shipping" => "0",
                 "warranty" => "10 Year",
                 "init_quantity" => "5",
@@ -139,7 +139,7 @@ class CreateProductsTable extends Migration
                 "countrycode_id" => "234",
                 "name" => "Arc-Angel Group 40R Starting Battery",
                 "sku" => "860000495202",
-                "mrp" => "820",
+                "price" => "820",
                 "shipping" => "0",
                 "warranty" => "10 Year",
                 "init_quantity" => "0",
@@ -156,7 +156,7 @@ class CreateProductsTable extends Migration
                 "countrycode_id" => "234",
                 "name" => "arc-angel group 35 starting battery",
                 "sku" => "860000495226",
-                "mrp" => "416",
+                "price" => "416",
                 "shipping" => "0",
                 "warranty" => "10 Year",
                 "init_quantity" => "0",
@@ -173,7 +173,7 @@ class CreateProductsTable extends Migration
                 "countrycode_id" => "234",
                 "name" => "Arc-Angel Group 94R Starting Battery - Out of stock a new model should return in September/October",
                 "sku" => "860000495219",
-                "mrp" => "820",
+                "price" => "820",
                 "shipping" => "0",
                 "warranty" => "10 Year",
                 "init_quantity" => "0",
@@ -190,7 +190,7 @@ class CreateProductsTable extends Migration
                 "countrycode_id" => "234",
                 "name" => "48V Arc-Angel Battery - See Description",
                 "sku" => "NULL",
-                "mrp" => "2600",
+                "price" => "2600",
                 "shipping" => "0",
                 "warranty" => "4",
                 "init_quantity" => "4",
@@ -207,7 +207,7 @@ class CreateProductsTable extends Migration
                 "countrycode_id" => "234",
                 "name" => "48V Battery",
                 "sku" => "NULL",
-                "mrp" => "2160",
+                "price" => "2160",
                 "shipping" => "0",
                 "warranty" => "4",
                 "init_quantity" => "5",

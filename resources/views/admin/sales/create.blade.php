@@ -26,10 +26,19 @@
                             <textarea class="form-control" rows="4" name="description" id="description">{{ old('description') }}</textarea>
                         </div>
 
+                        <div class="form-group">
+                            <label class="control-label" for="discount"> Discount <span class="m-l-5 text-danger"> *</span></label>
+                            <input class="form-control @error('discount') is-invalid @enderror" type="number" min="0" max="100" step="1" name="discount" id="discount" value="{{ old('discount')*100 }} %"/>
+                            @error('discount') {{ $message }} @enderror
+                            <input type="hidden" name="productID" value="{{ $productidv }}">
+                        </div>
+
+
                     <div class="tile-footer">
                         <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Save Sale</button>
                         &nbsp;&nbsp;&nbsp;
                         <a class="btn btn-secondary" href="{{ route('admin.sales.index') }}"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>
+                    </div>
                     </div>
                 </form>
             </div>

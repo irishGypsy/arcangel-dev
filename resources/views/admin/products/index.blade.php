@@ -58,7 +58,18 @@
     {{--                                show productreviews for this product index table--}}
                                     <td><a href="{{ route('admin.productreviews.index', $product->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-search-plus"></i></a></td>
     {{--                                add this product to a sale--}}
-                                    <td><a href="{{ route('admin.sales.create', $product->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-plus-square"></i></a></td>
+                                    <td>
+                                        <a href="{{ route('admin.sales.create', $product->id) }}" class="btn btn-sm btn-primary">
+                                            <i class="fa fa-plus-square"></i>
+                                        </a>
+                                        @foreach($sales as $s)
+                                            @if($s->productID == $product->id)
+                                                <a href="{{ route('admin.sales.edit', $product->id) }}" class="btn btn-sm btn-primary">
+                                                    <i class="fa fa-edit"></i>
+                                                {{ '('.($s->discount*100).'%)' }}
+                                            @endif
+                                        @endforeach
+                                    </td>
     {{--                                update inventory for this item--}}
                                     <td><a href="{{ route('admin.inventories.edit', $product->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-plus-circle"></i></a></td>
     {{--                                edit item and delete item buttons--}}

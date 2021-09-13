@@ -44,6 +44,7 @@ class ProductController extends BaseController
         $products = $this->productRepository->listProducts();
 //        $brands = $this->brandRepository->listBrands();
         $sales = $this->saleRepository->listSales();
+
         $inventories = $this->inventoryRepository->listInventories();
 
         $this->setPageTitle('Products', 'Products List');

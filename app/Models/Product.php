@@ -17,7 +17,7 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        'capacity_id', 'batterygroup_id','countrycode_id','sku', 'name','init_quantity','min_quantity','popular', 'technical_specifications','mrp','shipping','warranty','ship_type','sales_applicable'
+        'capacity_id', 'batterygroup_id','countrycode_id','sku', 'name','init_quantity','min_quantity','popular', 'technical_specifications','price','shipping','warranty','ship_type','sales_applicable'
     ];
 
     /**
@@ -113,4 +113,13 @@ class Product extends Model
     {
         return $this->hasOne(ProductShippingInfo::class, 'product_id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function sale()
+    {
+        return $this->hasOne(Sale::class, 'productID');
+    }
+
 }

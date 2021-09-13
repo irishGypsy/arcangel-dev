@@ -33,7 +33,7 @@ class SaleController extends BaseController
 
         $sales = DB::table('sales')
             ->join('products','sales.productID','=','products.id')
-            ->select('sales.*','products.sku','products.mrp','products.popular')
+            ->select('sales.*','products.sku','products.price','products.popular')
             ->get();
 
         $this->setPageTitle('Sales', 'List of all sales');
@@ -65,6 +65,8 @@ class SaleController extends BaseController
         ]);
 
         $params = $request->except('_token');
+        $params['discount'] = $params['discount']/100;
+//        ddd($params);
 
         $sales= $this->SaleRepository->createSale($params);
 
@@ -82,10 +84,12 @@ class SaleController extends BaseController
      */
     public function edit($id)
     {
-        $sales = $this->SaleRepository->findSaleById($id);
+//        $sales = $this->SaleRepository->findSaleById($id);
+        $sales = DB::table('sales')->where('productID','=',$id)->first();
+//        ddd($sales);
 //        $sales = $this->SaleRepository->treeList();
 
-        $this->setPageTitle('Sales', 'Edit Sale : '.$sales->name);
+        $this->setPageTitle('Sales', 'Edit Sale : '.$sales->title);
         return view('admin.sales.edit', compact('sales'));
     }
 
@@ -102,6 +106,7 @@ class SaleController extends BaseController
         ]);
         //ddd($request);
         $params = $request->except('_token');
+        $params['discount'] = $params['discount']/100;
 
         $sale = $this->SaleRepository->updateSale($params);
 

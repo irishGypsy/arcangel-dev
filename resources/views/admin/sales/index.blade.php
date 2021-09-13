@@ -6,7 +6,7 @@
             <h1><i class="fa fa-tags"></i> {{ $pageTitle }}</h1>
             <p>{{ $subTitle }}</p>
         </div>
-{{--        <a href="{{ route('admin.sales.create') }}" class="btn btn-primary pull-right">Add Sale</a>--}}
+        <a href="{{ route('admin.products.index') }}" class="btn btn-primary pull-right">Back to Products</a>
     </div>
     @include('admin.partials.flash')
     <div class="row">
@@ -41,7 +41,7 @@
                                 <td>{{ $sale->sku }}</td>
                                 <td>{{ $sale->description }}</td>
 
-                                <td>{{ $sale->mrp }}</td>
+                                <td>{{ $sale->price }}</td>
                                 <td>{{ $sale->discount * 100 }}%</td>
 
                                 <td><a href="{{ route('admin.products.flippopular', $sale->productID) }}">

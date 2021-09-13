@@ -23,6 +23,7 @@
 
 </head>
 <body style="background-color:#333333">
+@include('site.partials.header')
 @include('site.partials.nav')
 
 
@@ -169,7 +170,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td scope="row"><b>Price</b></td>
-                                                    <td><strong>${{ number_format($p->mrp,2,'.',',') }}</strong></td>
+                                                    <td><strong>${{ number_format($p->price,2,'.',',') }}</strong></td>
                                                 </tr>
                                                 </tbody>
                                             </table>

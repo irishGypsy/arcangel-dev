@@ -14,22 +14,11 @@ class CartController extends Controller
     public function getCart()
     {
 
-
-
-//        $subTotal = Cart::getSubTotal();
-////        ddd($subTotal);
-//        $condition = Cart::getCondition('shipping');
-//        ddd($condition);
-//        $conditionCalculatedValue = $condition->getCalculatedValue($subTotal);
-//        ddd($conditionCalculatedValue);
-$totalShipping = null;
+        $totalShipping = null;
         foreach(Cart::getContent() as $c){
-//            ddd($c->conditions->parsedRawValue * $c->quantity);
             $totalShipping = $totalShipping + ($c->conditions->parsedRawValue * $c->quantity);
         }
 
-
-//ddd($totalShipping);
         $coupons = DB::table('coupons')->where('status','=','Free')->get();
         $sales = DB::table('sales')->get();
 

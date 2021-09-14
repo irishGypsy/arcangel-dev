@@ -53,10 +53,11 @@ Route::get('/cart/addQty/{id}', 'App\Http\Controllers\Site\CartController@addQty
 Route::get('/cart/subtractQty{id}', 'App\Http\Controllers\Site\CartController@subtractQty')->name('checkout.cart.subtractQty');
 
 
-//Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth']], function () {
     Route::get('/checkout', 'App\Http\Controllers\Site\CheckoutController@getCheckout')->name('checkout.index');
+    Route::post('/checkout/revieworder', 'App\Http\Controllers\Site\CheckoutController@reviewOrder')->name('checkout.review.order');
     Route::post('/checkout/order', 'App\Http\Controllers\Site\CheckoutController@placeOrder')->name('checkout.place.order');
-//});
+});
 
 Route::get('checkout/payment/complete', 'App\Http\Controllers\Site\CheckoutController@complete')->name('checkout.payment.complete');
 

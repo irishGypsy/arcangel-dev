@@ -26,13 +26,27 @@ class CreateOrdersTable extends Migration
             $table->boolean('payment_status')->default(1);
             $table->string('payment_method')->nullable();
 
-            $table->string('first_name')->nullable();
-            $table->string('last_name')->nullable();
-            $table->text('address')->nullable();
-            $table->string('city')->nullable();
-            $table->string('country')->nullable();
-            $table->string('post_code')->nullable();
-            $table->string('phone_number')->nullable();
+            $table->string('billing_first_name')->nullable();
+            $table->string('billing_last_name')->nullable();
+            $table->text('billing_address')->nullable();
+            $table->string('billing_city')->nullable();
+            $table->bigInteger('billing_state')->unsigned()->nullable();
+            $table->foreign('billing_state')->on('state_codes')->references('id');
+            $table->bigInteger('billing_country')->unsigned()->nullable();
+            $table->foreign('billing_country')->on('country_codes')->references('id');
+            $table->string('billing_post_code')->nullable();
+            $table->string('billing_phone_number')->nullable();
+
+            $table->string('shipping_first_name')->nullable();
+            $table->string('shipping_last_name')->nullable();
+            $table->text('shipping_address')->nullable();
+            $table->string('shipping_city')->nullable();
+            $table->bigInteger('shipping_state')->unsigned()->nullable();
+            $table->foreign('shipping_state')->on('state_codes')->references('id');
+            $table->bigInteger('shipping_country')->unsigned()->nullable();
+            $table->foreign('shipping_country')->on('country_codes')->references('id');
+            $table->string('shipping_post_code')->nullable();
+            $table->string('shipping_phone_number')->nullable();
             $table->text('notes')->nullable();
 
             $table->timestamps();

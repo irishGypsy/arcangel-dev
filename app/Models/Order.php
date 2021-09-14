@@ -10,7 +10,8 @@ class Order extends Model
 
     protected $fillable = [
         'order_number', 'user_id', 'status', 'grand_total', 'item_count', 'payment_status', 'payment_method',
-        'first_name', 'last_name', 'address', 'city', 'country', 'post_code', 'phone_number', 'notes'
+        'billing_first_name', 'billing_last_name', 'billing_address', 'billing_city', 'billing_country', 'billing_post_code', 'billing_phone_number',
+        'shipping_first_name', 'shipping_last_name', 'shipping_address', 'shipping_city', 'shipping_country', 'shipping_post_code', 'shipping_phone_number', 'notes'
     ];
 
     public function user()
@@ -26,6 +27,12 @@ class Order extends Model
     public function return_products()
     {
         return $this->hasMany(ReturnProduct::class);
+
+    }
+
+    public function countrycodes()
+    {
+        return $this->belongsTo(CountryCode::class);
 
     }
 }

@@ -26,18 +26,35 @@ class CheckoutController extends Controller
         return view('site.pages.checkout');
     }
 
+    public function reviewOrder(Request $request)
+    {
+        $params = $request->except('_token');
+        $cart = Cart::getContent();
+        $totalShipping = null;
+        foreach(Cart::getContent() as $c){
+            $totalShipping = $totalShipping + ($c->conditions->parsedRawValue * $c->quantity);
+        }
+//        ddd($totalShipping);
+//        $params = $request->
+        return view('site.pages.revieworder', compact('params', 'cart','totalShipping'));
+
+
+    }
+
     public function placeOrder(Request $request)
     {
         // Before storing the order we should implement the
         // request validation which I leave it to you
         $order = $this->orderRepository->storeOrderDetails($request->all());
 
-        // You can add more control here to handle if the order is not stored properly
-        if ($order) {
-            $this->payPal->processPayment($order);
-        }
 
-        return redirect()->back()->with('message','Order not placed');
+
+        // You can add more control here to handle if the order is not stored properly
+//        if ($order) {
+//            $this->payPal->processPayment($order);
+//        }
+
+//        return redirect()->back()->with('message','Order not placed');
     }
 
     public function complete(Request $request)

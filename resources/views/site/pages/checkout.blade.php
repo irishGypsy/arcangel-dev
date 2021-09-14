@@ -1,7 +1,27 @@
-@extends('site.app')
-@section('title', 'Checkout')
-@section('content')
-    <section class="section-pagetop" style="background-color: white;">
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@yield('title') - {{ config('app.name') }}</title>
+    @include('site.partials.styles')
+    @include('site.partials.scripts')
+    <script>
+        $(window).scroll(function () {
+            if ($(window).scrollTop() > 200) {
+                $("#stickymenu").addClass('sticky');
+            } else {
+                $("#stickymenu").removeClass('sticky');
+            }
+        });
+    </script>
+</head>
+<body style="background-color:#333333">
+@include('site.partials.header')
+@include('site.partials.nav')
+<div class="bg-white">
+    <br><br>
+<section class="section-pagetop" style="background-color: white;">
         <div class="container clearfix">
             <h2 class="title-page">Checkout</h2>
         </div>
@@ -15,7 +35,7 @@
                     @endif
                 </div>
             </div>
-            <form action="{{ route('checkout.place.order') }}" method="POST" role="form">
+            <form action="{{ route('checkout.review.order') }}" method="POST" role="form">
                 @csrf
                 <div class="row">
                     <div class="col-md-8">
@@ -23,52 +43,60 @@
                             <header class="card-header">
                                 <h4 class="card-title mt-2">Billing Details</h4>
                             </header>
-                            <article class="card-body">
-                                <div class="form-row">
-                                    <div class="col form-group">
-                                        <label>First name</label>
-                                        <input type="text" class="form-control" name="first_name">
-                                    </div>
-                                    <div class="col form-group">
-                                        <label>Last name</label>
-                                        <input type="text" class="form-control" name="last_name">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Address</label>
-                                    <input type="text" class="form-control" name="address">
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label>City</label>
-                                        <input type="text" class="form-control" name="city">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label>Country</label>
-                                        <input type="text" class="form-control" name="country">
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group  col-md-6">
-                                        <label>Post Code</label>
-                                        <input type="text" class="form-control" name="post_code">
-                                    </div>
-                                    <div class="form-group  col-md-6">
-                                        <label>Phone Number</label>
-                                        <input type="text" class="form-control" name="phone_number">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Email Address</label>
-                                    <input type="email" class="form-control" name="email" value="{{ auth()->user()->email }}" disabled>
-                                    <small class="form-text text-muted">We'll never share your email with anyone else.</small>
-                                </div>
-                                <div class="form-group">
-                                    <label>Order Notes</label>
-                                    <textarea class="form-control" name="notes" rows="6"></textarea>
-                                </div>
-                            </article>
+
                         </div>
+
+
+                        <article class="card-body">
+                            <div class="form-row">
+                                <div class="col form-group">
+                                    <label>First name <span class="m-l-5 text-danger"> *</span></label>
+                                    <input type="text" class="form-control" id="billing_first_name" name="billing_first_name">
+                                </div>
+                                <div class="col form-group">
+                                    <label>Last name <span class="m-l-5 text-danger"> *</span></label>
+                                    <input type="text" class="form-control" id="billing_last_name" name="billing_last_name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Address <span class="m-l-5 text-danger"> *</span></label>
+                                <input type="text" class="form-control" id="billing_address" name="billing_address">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>City <span class="m-l-5 text-danger"> *</span></label>
+                                    <input type="text" class="form-control" id="billing_city" name="billing_city">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Country <span class="m-l-5 text-danger"> *</span></label>
+                                    <input type="text" class="form-control" id="billing_country" name="billing_country">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>State <span class="m-l-5 text-danger"> *</span></label>
+                                    <input type="text" class="form-control" id="billing_state" name="billing_state">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group  col-md-6">
+                                    <label>Post Code <span class="m-l-5 text-danger"> *</span></label>
+                                    <input type="text" class="form-control" id="billing_post_code" name="billing_post_code">
+                                </div>
+                                <div class="form-group  col-md-6">
+                                    <label>Phone Number <span class="m-l-5 text-danger"> *</span></label>
+                                    <input type="text" class="form-control" id="billing_phone_number" name="billing_phone_number">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Email Address <span class="m-l-5 text-danger"> *</span></label>
+                                <input type="text" class="form-control" id="billing_email" name="billing_email" value="{{ auth()->user()->email }}">
+                                <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+                            </div>
+                            <div class="form-group">
+
+                                <input type="checkbox" id="sameAs" name="billing_sameAs">
+                                <label for="sameAs">Shipping details same as billing</label>
+                            </div>
+                        </article>
                     </div>
                     <div class="col-md-4">
                         <div class="row">
@@ -91,7 +119,100 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <header class="card-header">
+                                <h4 class="card-title mt-2">Shipping Details</h4>
+                            </header>
+                            <article class="card-body">
+                                <div class="form-row">
+                                    <div class="col form-group">
+                                        <label>First name <span class="m-l-5 text-danger"> *</span></label>
+                                        <input type="text" class="form-control" id="shipping_first_name" name="shipping_first_name">
+                                    </div>
+                                    <div class="col form-group">
+                                        <label>Last name <span class="m-l-5 text-danger"> *</span></label>
+                                        <input type="text" class="form-control" id="shipping_last_name" name="shipping_last_name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Address <span class="m-l-5 text-danger"> *</span></label>
+                                    <input type="text" class="form-control" id="shipping_address" name="shipping_address">
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label>City <span class="m-l-5 text-danger"> *</span></label>
+                                        <input type="text" class="form-control" id="shipping_city" name="shipping_city">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Country <span class="m-l-5 text-danger"> *</span></label>
+                                        <input type="text" class="form-control" id="shipping_country" name="shipping_country">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>State <span class="m-l-5 text-danger"> *</span></label>
+                                        <input type="text" class="form-control" id="shipping_state" name="shipping_state">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group  col-md-6">
+                                        <label>Post Code <span class="m-l-5 text-danger"> *</span></label>
+                                        <input type="text" class="form-control" id="shipping_post_code" name="shipping_post_code">
+                                    </div>
+                                    <div class="form-group  col-md-6">
+                                        <label>Phone Number <span class="m-l-5 text-danger"> *</span></label>
+                                        <input type="text" class="form-control" id="shipping_phone_number" name="shipping_phone_number">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Email Address <span class="m-l-5 text-danger"> *</span></label>
+                                    <input type="text" class="form-control" id="shipping_email" name="shipping_email" value="{{ auth()->user()->email }}">
+                                    <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                </div>
+                                <div class="form-group">
+                                    <label>Order Notes</label>
+                                    <textarea class="form-control" id="notes" name="notes" rows="6"></textarea>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
             </form>
         </div>
+        <br><br>
     </section>
-@stop
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#sameAs").click(function () {
+            if ($('#sameAs').is(':checked')) {
+                $("#shipping_first_name").val($("#billing_first_name").val());
+                $("#shipping_last_name").val($("#billing_last_name").val());
+                $("#shipping_email").val($("#billing_email").val());
+                $("#shipping_address").val($("#billing_address").val());
+                $("#shipping_city").val($("#billing_city").val());
+                $("#shipping_post_code").val($("#billing_post_code").val());
+                $("#shipping_state").val($("#billing_state").val());
+                $("#shipping_country").val($("#billing_country").val());
+                $("#shipping_phone_number").val($("#billing_phone_number").val());
+
+            }
+            else {
+                $("#shipping_first_name").val('');
+                $("#shipping_last_name").val('');
+                $("#shipping_email").val('');
+                $("#shipping_address").val('');
+                $("#shipping_city").val('');
+                $("#shipping_post_code").val('');
+                $("#shipping_state").val('');
+                $("#shipping_country").val('');
+                $("#shipping_phone_number").val('');
+            }
+        });
+    });
+
+
+</script>
+
+@include('site.partials.footer')

@@ -58,7 +58,7 @@
                             </thead>
                             <tbody>
                             @foreach(\Cart::getContent() as $item)
-                                <tr><tr><td><div style="height: 30px;" </td></tr>
+                                <tr><tr><td><div style="height: 30px;"></div> </td></tr>
     {{--                                    Name of product--}}
                                     <td style="vertical-align: middle;">
 {{--                                        <div class="d-flex flex-column align-content-end">--}}
@@ -107,7 +107,7 @@
                                     </td>
 
                                     <td class="text-right">
-                                        <a href="{{ route('checkout.cart.remove', $item->id) }}" class="btn btn-outline-danger"><i class="fa fa-trash"></i> </a>
+                                        <a href="{{ route('checkout.cart.remove', $item->id) }}" class="btn btn-primary"><i class="fa fa-trash"></i> </a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -140,7 +140,7 @@
                             <div class="font-weight-light">(inclusive of all taxes)
                             </div>
                         </div>
-                        <div class="font-weight-bold"> $ {{ number_format(\Cart::getTotal(),2,'.','.') }}</div>
+                        <div class="font-weight-bold"> $ {{ number_format(\Cart::getTotal(),2,'.',',') }}</div>
                     </div>
                 </div>
             </div>
@@ -154,13 +154,13 @@
                         <div class="font-weight-bold p-2 border-light bg-light">Apply Coupon Code</div>
                         <label for="coupon_code" class="p-2">Enter Coupon Code</label>
                         <input class="form-control input-text" id="coupon_code" name="coupon_code"/>
-                        <button type="submit" class="button button-primary m-lg-1 p-lg-1" style="height:40px">Apply Coupon</button>
+                        <button type="submit" class="button button-primary btn-lg m-lg-1 p-lg-1" style="height:40px">Apply Coupon</button>
                     </form>
                 </div>
 
                 <div class="col-lg-4 mt-3 ml-5 pl-5 d-flex flex-row justify-content-center p-2 border border-light border-top border-bottom" style="height:60px">
-                    <button href="{{ route('products.list') }}" type="button" style="height:40px" class="mx-3 p-1 px-3 button button-primary">Continue Shopping</button>
-                    <button href="{{ route('checkout.index') }}" type="button" style="height:40px" class="mx-2 p-1 px-3 button button-primary">Checkout</button>
+                    <a href="{{ route('products.list') }}" type="button" style="height:40px;width:140px;" class="button button-primary btn-lg m-lg-2 ">Continue Shopping</a>
+                    <a href="{{ route('checkout.index') }}" style="height:40px;width:140px;" class="button button-primary btn-lg m-lg-2 ">Checkout</a>
                 </div>
             </div>
     </div>

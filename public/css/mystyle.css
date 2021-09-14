@@ -1,5 +1,5 @@
 * {margin: 0;padding: 0;outline: none !important;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box}
-body {font-family: 'FuturaPT-Light' !important;margin: 0;padding: 0;outline: none;font-size: 17px;background-color: #131822  !important;}
+body {font-family: 'FuturaPT-Light' !important;margin: 0;padding: 0;outline: none;font-size: 17px !important;background-color: #131822  !important;}
 @font-face {
   font-family: 'FuturaPT-Medium';
   src: url('../frontend/fonts/FuturaPT-Medium.eot?#iefix') format('embedded-opentype'), url(../frontend/fonts/FuturaPT-Medium.otf) format('opentype'), url(../frontend/fonts/FuturaPT-Medium.woff) format('woff'), url(../frontend/fonts/FuturaPT-Medium.ttf) format('truetype'), url('../frontend/fonts/FuturaPT-Medium.svg#FuturaPT-Medium') format('svg');
@@ -1279,10 +1279,44 @@ a.bncart {background: #f59835;padding: 8px 18px;text-transform: uppercase;border
     color: #333;
 }
 .button-primary{
-    background-color: #e8a038;
-    color:white;
-    font-family: 'FuturaPT-Medium' !important
+    background-color: #e8a038 !important;
+    color:white !important;
+    font-family: 'FuturaPT-Light' !important;
+    border-color: #e8a038 !important;
+    border-style: none !important;
+    margin: 10px;
+    text-align: center;
 }
+
+.table .thead-light th {
+    background-color: lightgray !important;
+    border-bottom: 1px solid #131822 !important;
+    padding: 8px !important;
+
+}
+
+.thead-light-v th {
+    background-color: lightgray !important;
+    border-right: 1px solid #131822 !important;
+    padding: 8px !important;
+}
+
+.checkout-table, .checkout-table th, .checkout-table td {
+    /*border: 1px solid lightgray !important;*/
+    font-family: FuturaPT-light !important;
+    font-size: 16px !important;
+    padding: 8px !important;
+
+}
+
+.checkoutcardtitle{
+    background-color: lightgray !important;
+    /*border-bottom: 1px solid #131822 !important;*/
+    padding: 8px !important;
+    text-align: center;
+    font-size: xx-large;
+}
+
 
 /*.navbar-nav {*/
 /*    flex-direction: row !important;*/

@@ -1,7 +1,7 @@
 <?php
 
 //use Illuminate\Support\Facades\Route;
-
+//use App\Http\Controllers\Affiliates\AffiliateDashboardController;
 
 Route::group(['prefix'  =>  'affiliate'], function () {
 
@@ -9,9 +9,12 @@ Route::group(['prefix'  =>  'affiliate'], function () {
     Route::post('login', 'App\Http\Controllers\Affiliates\LoginController@login')->name('affiliate.login.post');
 //    Route::post('register', '\App\Http\Controllers\Affiliates\AffilliateRegisterController@create')->name('affiliate.register');
     Route::get('logout', 'App\Http\Controllers\Affiliates\LoginController@logout')->name('affiliate.logout');
+    Route::group(['middleware' => ['auth:affiliate']], function () {
 
-    Route::get('/', function () {
-        return view('affiliate.dashboard.index');
+        Route::get('/', 'App\Http\Controllers\Affiliates\AffiliateDashboardController@getDashboard')->name('affiliate.dashboard');
+        Route::post('updateProfile', 'App\Http\Controllers\Affiliates\AffiliateDashboardController@updateProfile')->name('affiliate.updateprofile');
+        Route::post('updateBank','App\Http\Controllers\Affiliates\AffiliateDashboardController@updateProfile')->name('affiliate.updatebank');
+        Route::post('changePassword','App\Http\Controllers\Affiliates\AffiliateDashboardController@updatePass')->name('affiliate.updatepass');
+
     });
-
 });

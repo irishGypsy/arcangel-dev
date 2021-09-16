@@ -8,12 +8,12 @@ use Illuminate\Database\Eloquent\Relations;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Hash;
+//use Illuminate\Support\Facades\Hash;
 
 
 class Affiliate extends Authenticatable
 {
-    use Notifiable, \Illuminate\Auth\MustVerifyEmail;
+    use Notifiable;
 
     /**
      * @var string
@@ -62,10 +62,10 @@ class Affiliate extends Authenticatable
         return $this->created_at->format('M d, Y');
     }
 
-    public function setPasswordAttribute($value)
-    {
-        $this->attributes['password'] = Hash::make($value);
-    }
+//    public function setPasswordAttribute($value)
+//    {
+//        $this->attributes['password'] = Hash::make($value);
+//    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

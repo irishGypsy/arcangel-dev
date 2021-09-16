@@ -27,9 +27,12 @@ class CreateUsersTable extends Migration
             //address
             $table->string('address', 255)->nullable();
             $table->string('city')->nullable();
-            $table->string('state')->nullable();
+            $table->bigInteger('state_id')->unsigned()->nullable();
+            $table->foreign('state_id')->references('id')->on('state_codes');
             $table->string('zip')->nullable();
-            $table->string('country')->nullable();
+            $table->bigInteger('countrycode_id')->unsigned()->nullable();
+            $table->foreign('countrycode_id')->references('id')->on('country_codes');
+
             //authentication and shop cart order token
             $table->rememberToken();
             //created at and modify at
@@ -46,9 +49,9 @@ class CreateUsersTable extends Migration
                 'password' => Hash::make('password1'),
                 'address' => '123 blue street',
                 'city' => 'localville',
-                'state'=> 'TX',
+                'state_id'=> 43,
                 'zip' => '77508',
-                'country' => 'USA'
+                'countrycode_id' => 234
             ],
             [
                 'first_name' => 'Jane',
@@ -59,9 +62,9 @@ class CreateUsersTable extends Migration
                 'password' => Hash::make('password1'),
                 'address' => '234 black st',
                 'city' => 'anyville',
-                'state'=> 'TX',
+                'state_id'=> 43,
                 'zip' => '77058',
-                'country' => 'USA'
+                'countrycode_id' => 234
             ],
             [
                 'first_name' => 'Pedro',
@@ -72,22 +75,22 @@ class CreateUsersTable extends Migration
                 'password' => Hash::make('password1'),
                 'address' => '987 green blvd',
                 'city' => 'Ghost Town',
-                'state'=> 'TX',
+                'state_id'=> 43,
                 'zip' => '77058',
-                'country' => 'USA'
+                'countrycode_id' => 234
             ],
             [
                 'first_name' => 'Joseph',
                 'last_name' => 'Brodnax',
-                'affiliate' => '0',
+                'affiliate' => '1',
                 'phone' => '876-876-0000',
                 'email' => 'joseph.brodnax@gmail.com',
                 'password' => Hash::make('password1'),
                 'address' => '987 green blvd',
                 'city' => 'Ghost Town',
-                'state'=> 'TX',
+                'state_id'=> 43,
                 'zip' => '77058',
-                'country' => 'USA'
+                'countrycode_id' => 234
             ]
         ]);
 

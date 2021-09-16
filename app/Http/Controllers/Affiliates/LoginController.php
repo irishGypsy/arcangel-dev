@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+
 class LoginController extends Controller
 {
     use AuthenticatesUsers;
@@ -43,17 +44,23 @@ class LoginController extends Controller
      */
     public function login(Request $request)
     {
-        $this->validate($request, [
-            'email'   => 'required|email',
-            'password' => 'required|min:6'
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
         ]);
-        if (Auth::guard('affiliate')->attempt([
-            'email' => $request->email,
-            'password' => $request->password
-        ], $request->get('remember'))) {
-            return redirect()->intended(route('affiliate.dashboard'));
+
+//        ddd(Auth::guard('affiliate')->attempt($credentials));
+
+        if (Auth::guard('affiliate')->attempt($credentials)) {
+            $request->session()->regenerate();
+
+            return redirect()->route('affiliate.dashboard');
         }
-        return back()->withInput($request->only('email', 'remember'));
+ddd('didnt work');
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ]);
+
     }
 
     /**

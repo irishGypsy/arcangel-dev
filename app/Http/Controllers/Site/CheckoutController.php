@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Services\PayPalService;
 use App\Contracts\OrderContract;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class CheckoutController extends Controller
 {
@@ -23,7 +24,10 @@ class CheckoutController extends Controller
 
     public function getCheckout()
     {
-        return view('site.pages.checkout');
+        $states = DB::table('state_codes')->get();
+        $country_codes = DB::table('country_codes')->get();
+
+        return view('site.pages.checkout', compact('states', 'country_codes'));
     }
 
     public function reviewOrder(Request $request)

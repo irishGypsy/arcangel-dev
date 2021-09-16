@@ -67,26 +67,44 @@
                                     <label>City <span class="m-l-5 text-danger"> *</span></label>
                                     <input type="text" class="form-control" id="billing_city" name="billing_city">
                                 </div>
+
                                 <div class="form-group col-md-6">
-                                    <label>Country <span class="m-l-5 text-danger"> *</span></label>
-                                    <input type="text" class="form-control" id="billing_country" name="billing_country">
+                                    <label class="control-label" for="billing_state">State</label>
+                                    <select name="billing_state" id="billing_state" class="form-control @error('billing_state') is-invalid @enderror">
+                                        <option value="0">Choose...</option>
+                                        @foreach($states as $s)
+                                            <option value="{{$s->id}}">{{$s->state}}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('billing_state') {{ $message }} @enderror
+{{--                                    <div class="invalid-feedback active">--}}
+{{--                                        <i class="fa fa-exclamation-circle fa-fw"></i> @error('billing_state') <span>{{ $message }}</span> @enderror--}}
+{{--                                    </div>--}}
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label>State <span class="m-l-5 text-danger"> *</span></label>
-                                    <input type="text" class="form-control" id="billing_state" name="billing_state">
-                                </div>
-                            </div>
                             <div class="form-row">
-                                <div class="form-group  col-md-6">
+                                <div class="form-group col-md-6">
                                     <label>Post Code <span class="m-l-5 text-danger"> *</span></label>
                                     <input type="text" class="form-control" id="billing_post_code" name="billing_post_code">
                                 </div>
-                                <div class="form-group  col-md-6">
+                                <div class="form-group col-md-6">
+                                    <label class="control-label" for="billing_country">Country</label>
+                                    <select name="billing_country" id="billing_country" class="form-control @error('billing_country') is-invalid @enderror">
+                                        <option value="0">Choose...</option>
+                                        @foreach($country_codes as $s)
+                                            <option value="{{$s->id}}">{{$s->country}}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('billing_country') {{ $message }} @enderror
+                                    {{--                                    <div class="invalid-feedback active">--}}
+                                    {{--                                        <i class="fa fa-exclamation-circle fa-fw"></i> @error('billing_country') <span>{{ $message }}</span> @enderror--}}
+                                    {{--                                    </div>--}}
+                                </div>
+                                <div class="form-group col-md-6">
                                     <label>Phone Number <span class="m-l-5 text-danger"> *</span></label>
                                     <input type="text" class="form-control" id="billing_phone_number" name="billing_phone_number">
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group col-md-12">
                                 <label>Email Address <span class="m-l-5 text-danger"> *</span></label>
                                 <input type="text" class="form-control" id="billing_email" name="billing_email" value="{{ auth()->user()->email }}">
                                 <small class="form-text text-muted">We'll never share your email with anyone else.</small>
@@ -145,26 +163,45 @@
                                         <label>City <span class="m-l-5 text-danger"> *</span></label>
                                         <input type="text" class="form-control" id="shipping_city" name="shipping_city">
                                     </div>
+
                                     <div class="form-group col-md-6">
-                                        <label>Country <span class="m-l-5 text-danger"> *</span></label>
-                                        <input type="text" class="form-control" id="shipping_country" name="shipping_country">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label>State <span class="m-l-5 text-danger"> *</span></label>
-                                        <input type="text" class="form-control" id="shipping_state" name="shipping_state">
+                                        <label class="control-label" for="shipping_state">State</label>
+                                        <select name="shipping_state" id="shipping_state" class="form-control @error('shipping_state') is-invalid @enderror">
+                                            <option value="0">Choose...</option>
+                                            @foreach($states as $s)
+                                                <option value="{{$s->id}}">{{$s->state}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('shipping_state') {{ $message }} @enderror
+{{--                                        <div class="invalid-feedback active">--}}
+{{--                                            <i class="fa fa-exclamation-circle fa-fw"></i> @error('shipping_state') <span>{{ $message }}</span> @enderror--}}
+{{--                                        </div>--}}
                                     </div>
                                 </div>
                                 <div class="form-row">
-                                    <div class="form-group  col-md-6">
+                                    <div class="form-group col-md-6">
                                         <label>Post Code <span class="m-l-5 text-danger"> *</span></label>
                                         <input type="text" class="form-control" id="shipping_post_code" name="shipping_post_code">
                                     </div>
-                                    <div class="form-group  col-md-6">
+                                    <div class="form-group col-md-6">
+                                        <label class="control-label" for="shipping_country">Country</label>
+                                        <select name="shipping_country" id="shipping_country" class="form-control @error('shipping_country') is-invalid @enderror">
+                                            <option value="0">Choose...</option>
+                                            @foreach($country_codes as $s)
+                                                <option value="{{$s->id}}">{{$s->country}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('shipping_country') {{ $message }} @enderror
+                                        {{--                                    <div class="invalid-feedback active">--}}
+                                        {{--                                        <i class="fa fa-exclamation-circle fa-fw"></i> @error('shipping_country') <span>{{ $message }}</span> @enderror--}}
+                                        {{--                                    </div>--}}
+                                    </div>
+                                    <div class="form-group col-md-6">
                                         <label>Phone Number <span class="m-l-5 text-danger"> *</span></label>
                                         <input type="text" class="form-control" id="shipping_phone_number" name="shipping_phone_number">
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group col-md-12">
                                     <label>Email Address <span class="m-l-5 text-danger"> *</span></label>
                                     <input type="text" class="form-control" id="shipping_email" name="shipping_email" value="{{ auth()->user()->email }}">
                                     <small class="form-text text-muted">We'll never share your email with anyone else.</small>

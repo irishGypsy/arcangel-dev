@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Auth;
 use Illuminate\Http\Request;
 use App\Contracts\BannerContract;
 use App\Http\Controllers\BaseController;
@@ -9,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class BannerController extends BaseController
 {
-
+//use Auth;
     /**
      * @var BannerContract
      */
@@ -29,6 +30,8 @@ class BannerController extends BaseController
      */
     public function index()
     {
+        $admin = Auth::guard('admin')->user()->id;
+//        ddd($admin);
         $banners = $this->BannerRepository->listBanners();
 
         $this->setPageTitle('Banners', 'List of all banners');

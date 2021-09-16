@@ -46,6 +46,8 @@ use App\Contracts\ProductShippingInfoContract;
 use App\Repositories\ProductShippingInfoRepository;
 use App\Contracts\VideoContract;
 use App\Repositories\VideoRepository;
+use App\Contracts\AffiliateDashboardContract;
+use App\Repositories\AffiliateDashboardRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -71,6 +73,7 @@ class RepositoryServiceProvider extends ServiceProvider
         ProductReviewContract::class            =>          ProductReviewRepository::class,
         ProductShippingInfoContract::class      =>          ProductShippingInfoRepository::class,
         VideoContract::class                    =>          VideoRepository::class,
+        AffiliateDashboardContract::class       =>          AffiliateDashboardRepository::class
 
     ];
 

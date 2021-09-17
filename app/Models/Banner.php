@@ -16,7 +16,7 @@ class Banner extends Model
      * @var array
      */
     protected $fillable = [
-        'title','image','status','description','url','status'
+        'title','image','entry_date','status','description','url','status'
     ];
     protected $status = [
         'active' => 'Active',

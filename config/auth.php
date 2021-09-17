@@ -46,7 +46,7 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
-
+//remove
         'affiliate' => [
             'driver' => 'session',
             'provider' => 'affiliates',
@@ -57,7 +57,7 @@ return [
             'provider' => 'affiliates',
             'hash' => false,
         ],
-
+//---
         'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
@@ -92,12 +92,12 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-
+//remove
         'affiliates' => [
             'driver' => 'eloquent',
             'model' => App\Models\Affiliate::class,
         ],
-
+//---
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
@@ -125,11 +125,13 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
         ],
+//        remove
         'affiliates' => [
             'provider' => 'users',
             'table' => 'password_resets',
             'expire' => 60,
         ],
+//        ----
         'admins' => [
             'provider' => 'users',
             'table' => 'password_resets',

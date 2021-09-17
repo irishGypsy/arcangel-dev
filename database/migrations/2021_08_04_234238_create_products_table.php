@@ -38,12 +38,7 @@ class CreateProductsTable extends Migration
             $table->boolean('sales_applicable')->nullable();
 
             $table->timestamps();
-//            $table->string('slug')->nullable();
-//            $table->text('description')->nullable();
-//            $table->decimal('weight', 8, 2)->nullable();
-//            $table->decimal('price', 8, 2)->nullable();
-//            $table->boolean('status')->default(1);
-//            $table->decimal('sale_price', 8, 2)->nullable();
+
         });
 
         DB::table('products')->insert([
@@ -53,7 +48,7 @@ class CreateProductsTable extends Migration
                 "batterygroup_id" => "7",
                 "countrycode_id" => "234",
                 "sku" => "860000495271",
-                "name" => "Arc-Angel Group 49 Starting Battery - Out of Stock",
+                "name" => "Arc-Angel Group 49 Starting Battery",
                 "init_quantity" => "0",
                 "min_quantity" => "1",
                 "popular" => "0",
@@ -69,7 +64,7 @@ class CreateProductsTable extends Migration
                 "capacity_id" => "4",
                 "batterygroup_id" => "6",
                 "countrycode_id" => "234",
-                "name" => "arc-angel group 48 starting battery",
+                "name" => "Arc-Angel Group 48 Starting Battery",
                 "sku" => "860000495264",
                 "price" => "840",
                 "shipping" => "0",
@@ -86,7 +81,7 @@ class CreateProductsTable extends Migration
                 "capacity_id" => "6",
                 "batterygroup_id" => "1",
                 "countrycode_id" => "234",
-                "name" => "Arc-Angel Group 47 Starting Battery - Out of Stock",
+                "name" => "Arc-Angel Group 47 Starting Battery",
                 "sku" => "860000495257",
                 "price" => "820",
                 "shipping" => "0",
@@ -120,7 +115,7 @@ class CreateProductsTable extends Migration
                 "capacity_id" => "1",
                 "batterygroup_id" => "2",
                 "countrycode_id" => "234",
-                "name" => "arc-angel group 51 starting battery",
+                "name" => "Arc-Angel Group 51 Starting Battery",
                 "sku" => "860000495240",
                 "price" => "380",
                 "shipping" => "0",
@@ -154,7 +149,7 @@ class CreateProductsTable extends Migration
                 "capacity_id" => "3",
                 "batterygroup_id" => "5",
                 "countrycode_id" => "234",
-                "name" => "arc-angel group 35 starting battery",
+                "name" => "Arc-Angel Group 35 Starting Battery",
                 "sku" => "860000495226",
                 "price" => "416",
                 "shipping" => "0",
@@ -171,7 +166,7 @@ class CreateProductsTable extends Migration
                 "capacity_id" => "7",
                 "batterygroup_id" => "9",
                 "countrycode_id" => "234",
-                "name" => "Arc-Angel Group 94R Starting Battery - Out of stock a new model should return in September/October",
+                "name" => "Arc-Angel Group 94R Starting Battery",
                 "sku" => "860000495219",
                 "price" => "820",
                 "shipping" => "0",
@@ -188,7 +183,7 @@ class CreateProductsTable extends Migration
                 "capacity_id" => "10",
                 "batterygroup_id" => "11",
                 "countrycode_id" => "234",
-                "name" => "48V Arc-Angel Battery - See Description",
+                "name" => "48V Arc-Angel Battery",
                 "sku" => "NULL",
                 "price" => "2600",
                 "shipping" => "0",

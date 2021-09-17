@@ -15,10 +15,12 @@ class CreateReturnProductsTable extends Migration
     {
         Schema::create('return_products', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('order_id')->nullable();
+            $table->bigInteger('order_id')->unsigned()->nullable();
             $table->foreign('order_id')->references('id')->on('orders');
+            $table->bigInteger('product_id')->unsigned()->nullable()->default('1');
+            $table->foreign('product_id')->references('id')->on('products');
             $table->string('reason');
             $table->enum('status', ['Paid','Pending','Denied'])->default('Pending');
             $table->timestamps();

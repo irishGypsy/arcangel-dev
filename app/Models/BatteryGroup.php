@@ -15,7 +15,7 @@ class BatteryGroup extends Model
     /**
      * @var array
      */
-    protected $fillable = ['material_name', 'material_code','status'];
+    protected $fillable = ['battery_group_name', 'battery_group_code','status'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

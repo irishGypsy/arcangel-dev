@@ -15,16 +15,16 @@
                     @csrf
                     <div class="tile-body">
                         <div class="form-group">
-                            <label class="control-label" for="material_name"> Battery Group Name <span class="m-l-5 text-danger"> *</span></label>
-                            <input class="form-control @error('material_name') is-invalid @enderror" type="text" name="material_name" id="material_name" value="{{ old('material_name', $batterygroup->material_name) }}"/>
+                            <label class="control-label" for="battery_group_name"> Battery Group Name <span class="m-l-5 text-danger"> *</span></label>
+                            <input class="form-control @error('battery_group_name') is-invalid @enderror" type="text" name="battery_group_name" id="battery_group_name" value="{{ old('battery_group_name', $batterygroup->battery_group_name) }}"/>
                             <input type="hidden" name="id" value="{{ $batterygroup->id }}">
-                            @error('material_name') {{ $message }} @enderror
+                            @error('battery_group_name') {{ $message }} @enderror
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label" for="material_code">Battery Group Code <span class="m-l-5 text-danger"> *</span></label>
-                            <input class="form-control @error('material_code') is-invalid @enderror" type="text" name="material_code" id="material_code" value="{{ old('material_code', $batterygroup->material_code) }}"/>
-                            @error('material_code') {{ $message }} @enderror
+                            <label class="control-label" for="battery_group_code">Battery Group Code <span class="m-l-5 text-danger"> *</span></label>
+                            <input class="form-control @error('battery_group_code') is-invalid @enderror" type="text" name="battery_group_code" id="battery_group_code" value="{{ old('battery_group_code', $batterygroup->battery_group_code) }}"/>
+                            @error('battery_group_code') {{ $message }} @enderror
                         </div>
                         <div class="form-group">
                             <div class="row">

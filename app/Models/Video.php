@@ -10,7 +10,7 @@ class Video extends Model
     protected $table = 'videos';
 
     protected $fillable = [
-        'title','creator','post_date','host_site','length','url','embed_code','pinned','subtitle','description','status','thumbnail','file'
+        'title','creator','post_date','host_site','length','url','embed_code','pinned','subtitle','description','status','thumbnail'
         ];
 
     protected $status = [

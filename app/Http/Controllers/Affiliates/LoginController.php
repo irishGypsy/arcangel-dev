@@ -63,15 +63,16 @@ ddd('didnt work');
 
     }
 
-    /**
-     * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
+
     public function logout(Request $request)
     {
         Auth::guard('affiliate')->logout();
+
         $request->session()->invalidate();
-        return redirect()->route('affiliate.login');
+
+        $request->session()->regenerateToken();
+
+        return redirect()->route('site.app');
     }
 
 }

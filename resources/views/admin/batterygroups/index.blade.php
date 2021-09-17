@@ -26,8 +26,8 @@
                         @foreach($batterygroups as $batterygroup)
                             <tr>
                                 <td>{{ $batterygroup->id }}</td>
-                                <td>{{ $batterygroup->material_code }}</td>
-                                <td>{{ $batterygroup->material_name }}</td>
+                                <td>{{ $batterygroup->battery_group_code }}</td>
+                                <td>{{ $batterygroup->battery_group_name }}</td>
                                 <td class="text-center">
                                     <div class="btn-group" role="group" aria-label="Second group">
                                         <a href="{{ route('admin.batterygroups.edit', $batterygroup->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>

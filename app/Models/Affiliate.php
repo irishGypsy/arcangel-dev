@@ -26,7 +26,7 @@ class Affiliate extends Authenticatable
      * @var array
      */
     protected $fillable = [
-      'username','fname','lname','email','status','countrycode_id','commission','bank_details','comm_in_per','created_at','password'
+      'status','commission','bank_details','comm_in_per','affiliate_code'
     ];
 
     /**

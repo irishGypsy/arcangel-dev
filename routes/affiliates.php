@@ -7,8 +7,10 @@ Route::group(['prefix'  =>  'affiliate'], function () {
 
     Route::get('login', 'App\Http\Controllers\Affiliates\LoginController@showLoginForm')->name('affiliate.login');
     Route::post('login', 'App\Http\Controllers\Affiliates\LoginController@login')->name('affiliate.login.post');
-//    Route::post('register', '\App\Http\Controllers\Affiliates\AffilliateRegisterController@create')->name('affiliate.register');
+    Route::get('signup', '\App\Http\Controllers\Affiliates\RegisterController@signup')->name('affiliate.signup');
+    Route::post('register', '\App\Http\Controllers\Affiliates\RegisterController@create')->name('affiliate.register');
     Route::get('logout', 'App\Http\Controllers\Affiliates\LoginController@logout')->name('affiliate.logout');
+
     Route::group(['middleware' => ['auth:affiliate']], function () {
 
         Route::get('/', 'App\Http\Controllers\Affiliates\AffiliateDashboardController@getDashboard')->name('affiliate.dashboard');

@@ -49,7 +49,8 @@ class BatteryGroupController extends BaseController
     public function store(Request $request)
     {
         $this->validate($request, [
-            'material_name'      =>  'required|max:191',
+            'battery_group_name'      =>  'required|max:191',
+            'battery_group_code'      =>  'required|max:191'
         ]);
 
         $params = $request->except('_token');
@@ -70,7 +71,7 @@ class BatteryGroupController extends BaseController
     {
         $batterygroup = $this->BatteryGroupRepository->findBatteryGroupById($id);
 
-        $this->setPageTitle('Battery Group', 'Edit Battery Group : '.$batterygroup->material_name);
+        $this->setPageTitle('Battery Group', 'Edit Battery Group : '.$batterygroup->battery_group_name);
         return view('admin.batterygroups.edit', compact('batterygroup'));
     }
 
@@ -82,7 +83,8 @@ class BatteryGroupController extends BaseController
     public function update(Request $request)
     {
         $this->validate($request, [
-            'material_name'      =>  'required|max:191',
+            'battery_group_name'      =>  'required|max:191',
+            'battery_group_code'      =>  'required|max:191',
         ]);
 
         $params = $request->except('_token');

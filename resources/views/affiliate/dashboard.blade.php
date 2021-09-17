@@ -7,7 +7,7 @@
             <h2><i class="fa fa-dashboard m-3 mt-0"></i>Affiliate Dashboard</h2>
         </div>
         <div>
-            <p>Welcome {{ auth()->user()->first_name.' '.auth()->user()->last_name}}</p>
+            <p>Welcome {{ Auth::guard('affiliate')->user()->fname.' '.Auth::guard('affiliate')->user()->lname}}</p>
         </div>
     </div>
     <div class="d-flex flex-row justify-content-center">
@@ -22,7 +22,7 @@
                         <li class="nav-item"><a class="nav-link" href="#myprofile" data-toggle="tab">My Profile</a></li>
                         <li class="nav-item"><a class="nav-link" href="#bankdetails" data-toggle="tab">Bank Details</a></li>
                         <li class="nav-item"><a class="nav-link" href="#changepassword" data-toggle="tab">Change Password</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#logout" data-toggle="tab">Logout</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('affiliate.logout') }}" >Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -150,14 +150,14 @@
                         <div class="widget-small primary mx-3 my-2">
                             {{--                    <i class="icon fa fa-users fa-2x"></i>--}}
                             <div class="info">
-                                <p class="p-3"><b>$0.00 USD</b></p>
+                                <p class="p-3"><b>${{$referraltotal ?? 0.00}} USD</b></p>
                                 <h4 class="p-2">Your earnings to date (total transactions)</h4>
                             </div>
                         </div>
                         <div class="widget-small primary mx-3 my-2">
                             {{--                    <i class="icon fa fa-users fa-2x"></i>--}}
                             <div class="info">
-                                <p class="p-3"><b>$0.00 USD</b></p>
+                                <p class="p-3"><b>${{$referralbalance ?? 0.00}} USD</b></p>
                                 <h4 class="p-2">Your current balance</h4>
                             </div>
                         </div>
@@ -176,62 +176,23 @@
                                                 <th class="text-center"> Payment Status </th>
                                             </tr>
                                             </thead>
-{{--                                            <tbody>--}}
-{{--                                            @foreach($products as $product)--}}
-{{--                                                <tr class="text-center">--}}
-{{--                                                    <td>{{ $product->id }}</td>--}}
-{{--                                                    --}}{{--                                show the first product image in the index table--}}
-{{--                                                    <td><img src="{{ asset('storage/'.$product->firstImage() ) }}" id="bannerImage" class="img-fluid" alt="img" width="400px"></td>--}}
-{{--                                                    <td>{{ $product->name }}</td>--}}
-{{--                                                    <td>{{ $product->sku }}</td>--}}
-{{--                                                    <td>{{ \Illuminate\Support\Str::of($product->technical_specifications)->limit('50','--}}
-{{--(...)') }}</td>--}}
-{{--                                                    <td>${{ number_format($product->mrp,2,'.',',') }}</td>--}}
-{{--                                                    --}}{{--                                shipping cost, formatted--}}
-{{--                                                    <td>${{ number_format($product->shipping,2,'.',',') }}</td>--}}
-{{--                                                    --}}{{--                                clickable star indicator to set item popular or not--}}
-{{--                                                    <td><a href="{{ route('admin.products.flippopular', $product->id) }}">--}}
-{{--                                                            @if($product->popular)--}}
-{{--                                                                <i class="fa fa-star" aria-hidden="true"></i>--}}
-{{--                                                            @else--}}
-{{--                                                                <i class="fa fa-star-o" aria-hidden="true"></i>--}}
-{{--                                                            @endif--}}
-{{--                                                        </a>--}}
-{{--                                                    </td>--}}
-{{--                                                    --}}{{--                                show productreviews for this product index table--}}
-{{--                                                    <td><a href="{{ route('admin.productreviews.index', $product->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-search-plus"></i></a></td>--}}
-{{--                                                    --}}{{--                                add this product to a sale--}}
-{{--                                                    <td>--}}
-{{--                                                        <a href="{{ route('admin.sales.create', $product->id) }}" class="btn btn-sm btn-primary">--}}
-{{--                                                            <i class="fa fa-plus-square"></i>--}}
-{{--                                                        </a>--}}
-{{--                                                        @foreach($sales as $s)--}}
-{{--                                                            @if($s->productID == $product->id)--}}
-{{--                                                                <a href="{{ route('admin.sales.edit', $product->id) }}" class="btn btn-sm btn-primary">--}}
-{{--                                                                    <i class="fa fa-edit"></i>--}}
-{{--                                                                {{ '('.($s->discount*100).'%)' }}--}}
-{{--                                                            @endif--}}
-{{--                                                        @endforeach--}}
-{{--                                                    </td>--}}
-{{--                                                    --}}{{--                                update inventory for this item--}}
-{{--                                                    <td><a href="{{ route('admin.inventories.edit', $product->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-plus-circle"></i></a></td>--}}
-{{--                                                    --}}{{--                                edit item and delete item buttons--}}
-{{--                                                    <td class="text-center">--}}
-{{--                                                        <div class="btn-group" role="group" aria-label="Second group">--}}
-{{--                                                            <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>--}}
-{{--                                                            <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>--}}
-{{--                                                        </div>--}}
-{{--                                                    </td>--}}
-{{--                                                </tr>--}}
-{{--                                            @endforeach--}}
-{{--                                            </tbody>--}}
+                                            <tbody>
+                                            @foreach($payments as $p)
+                                                <tr class="text-center">
+                                                    <td>{{ $p->id }}</td>
+                                                    <td>{{ $p->amount }}</td>
+                                                    <td>{{ $p->created_at }}</td>
+                                                    <td>{{ $p->paid_date }}</td>
+                                                    <td>{{ $p->status }}</td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
                         </div>
                 </div>
-
             </div>
 
             <div class="tab-pane" id="affiliatelinks">
@@ -244,7 +205,7 @@
                         <div class="col-md-12">
                             <div class="tile">
                                 <div class="tile-body">
-                                    <table class="table table-hover table-bordered" id="sampleTable">
+                                    <table class="affiliate-table table table-hover table-bordered" id="sampleTable" style="width:800px;text-align: left; text-overflow: initial;line-height:1;">
                                         <thead>
                                         <tr class="text-center">
                                             <th class="text-center"> # </th>
@@ -253,55 +214,16 @@
                                             <th class="text-center"> Product Affiliate Link </th>
                                         </tr>
                                         </thead>
-                                        {{--                                            <tbody>--}}
-                                        {{--                                            @foreach($products as $product)--}}
-                                        {{--                                                <tr class="text-center">--}}
-                                        {{--                                                    <td>{{ $product->id }}</td>--}}
-                                        {{--                                                    --}}{{--                                show the first product image in the index table--}}
-                                        {{--                                                    <td><img src="{{ asset('storage/'.$product->firstImage() ) }}" id="bannerImage" class="img-fluid" alt="img" width="400px"></td>--}}
-                                        {{--                                                    <td>{{ $product->name }}</td>--}}
-                                        {{--                                                    <td>{{ $product->sku }}</td>--}}
-                                        {{--                                                    <td>{{ \Illuminate\Support\Str::of($product->technical_specifications)->limit('50','--}}
-                                        {{--(...)') }}</td>--}}
-                                        {{--                                                    <td>${{ number_format($product->mrp,2,'.',',') }}</td>--}}
-                                        {{--                                                    --}}{{--                                shipping cost, formatted--}}
-                                        {{--                                                    <td>${{ number_format($product->shipping,2,'.',',') }}</td>--}}
-                                        {{--                                                    --}}{{--                                clickable star indicator to set item popular or not--}}
-                                        {{--                                                    <td><a href="{{ route('admin.products.flippopular', $product->id) }}">--}}
-                                        {{--                                                            @if($product->popular)--}}
-                                        {{--                                                                <i class="fa fa-star" aria-hidden="true"></i>--}}
-                                        {{--                                                            @else--}}
-                                        {{--                                                                <i class="fa fa-star-o" aria-hidden="true"></i>--}}
-                                        {{--                                                            @endif--}}
-                                        {{--                                                        </a>--}}
-                                        {{--                                                    </td>--}}
-                                        {{--                                                    --}}{{--                                show productreviews for this product index table--}}
-                                        {{--                                                    <td><a href="{{ route('admin.productreviews.index', $product->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-search-plus"></i></a></td>--}}
-                                        {{--                                                    --}}{{--                                add this product to a sale--}}
-                                        {{--                                                    <td>--}}
-                                        {{--                                                        <a href="{{ route('admin.sales.create', $product->id) }}" class="btn btn-sm btn-primary">--}}
-                                        {{--                                                            <i class="fa fa-plus-square"></i>--}}
-                                        {{--                                                        </a>--}}
-                                        {{--                                                        @foreach($sales as $s)--}}
-                                        {{--                                                            @if($s->productID == $product->id)--}}
-                                        {{--                                                                <a href="{{ route('admin.sales.edit', $product->id) }}" class="btn btn-sm btn-primary">--}}
-                                        {{--                                                                    <i class="fa fa-edit"></i>--}}
-                                        {{--                                                                {{ '('.($s->discount*100).'%)' }}--}}
-                                        {{--                                                            @endif--}}
-                                        {{--                                                        @endforeach--}}
-                                        {{--                                                    </td>--}}
-                                        {{--                                                    --}}{{--                                update inventory for this item--}}
-                                        {{--                                                    <td><a href="{{ route('admin.inventories.edit', $product->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-plus-circle"></i></a></td>--}}
-                                        {{--                                                    --}}{{--                                edit item and delete item buttons--}}
-                                        {{--                                                    <td class="text-center">--}}
-                                        {{--                                                        <div class="btn-group" role="group" aria-label="Second group">--}}
-                                        {{--                                                            <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>--}}
-                                        {{--                                                            <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>--}}
-                                        {{--                                                        </div>--}}
-                                        {{--                                                    </td>--}}
-                                        {{--                                                </tr>--}}
-                                        {{--                                            @endforeach--}}
-                                        {{--                                            </tbody>--}}
+                                        <tbody>
+                                        @foreach($products as $o)
+                                            <tr class="text-center">
+                                                <td>{{ $o->id }}</td>
+                                                <td><img src="{{ asset('frontend/images/logo2.png') }}" width="80px"></td>
+                                                <td>{{ $o->name }}</td>
+                                                <td>https://www.arcangelbattery.com/ref?id={{ Auth::guard('affiliate')->user()->affiliate_code }}&url=product/{{ $o->name }}</td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>

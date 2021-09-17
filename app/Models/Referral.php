@@ -12,7 +12,7 @@ class Referral extends Model
     protected $table = 'referrals';
 
     protected $fillable = [
-        'affiliate_name','total','commission','status','paid','created_at'
+        'affiliate_id','payment_id','total','commission','status','paid'
     ];
 
 }

@@ -33,7 +33,7 @@
                                     <td>{{ $returnproduct->first_name.' '.$returnproduct->last_name }}</td>
                                     <td>{{ $returnproduct->email }}</td>
                                     <td>{{ $returnproduct->phone }}</td>
-                                    <td>{{ $returnproduct->product_name }}</td>
+                                    <td>{{ $returnproduct->name }}</td>
                                     <td>{{ $returnproduct->reason }}</td>
                                     <td class="text-center">
                                         <div class="btn-group" role="group" aria-label="Second group">

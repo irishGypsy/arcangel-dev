@@ -16,7 +16,7 @@ class ProductReview extends Model
      * @var array
      */
     protected $fillable = [
-        'product_id','user_id','name','email','title','description','rating','status'
+        'product_id','user_id','title','description','rating','status'
     ];
     protected $status = [
         'active' => 'Active',

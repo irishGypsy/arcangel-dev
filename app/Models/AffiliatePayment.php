@@ -7,5 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class AffiliatePayment extends Model
 {
-    use HasFactory;
+
+    protected $table = 'affiliate_payments';
+
+    protected $fillable = [
+        'affiliate_id','order_id','amount','paid_date','status'
+    ];
+
+
 }

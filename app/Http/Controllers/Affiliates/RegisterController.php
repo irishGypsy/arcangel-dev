@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Affiliates;
 
 use App\Models\Affiliate;
 use App\Http\Controllers\Controller;
@@ -56,15 +56,15 @@ class RegisterController extends Controller
         ]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Models\Affiliate
-     */
+    public function signup()
+    {
+        return view('affiliate.register');
+    }
+
+
     protected function create(array $data)
     {
-        return Affiliate::create([
+        Affiliate::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
@@ -74,7 +74,7 @@ class RegisterController extends Controller
             'country' => $data['country'],
         ]);
 
-        //gotta add a returnredirect to 'wait while you're approved' page
+        return view('affiliate.auth.registersuccess');
 
     }
 }

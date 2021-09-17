@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Contracts\ReturnProductContract;
 use App\Http\Controllers\BaseController;
+use Illuminate\Support\Facades\DB;
 
 class ReturnProductController extends BaseController
 {
@@ -29,8 +30,12 @@ class ReturnProductController extends BaseController
      */
     public function index()
     {
-        $returnproducts = $this->ReturnProductRepository->listReturnProducts();
-
+//        $returnproducts = $this->ReturnProductRepository->listReturnProducts();
+        $returnproducts = DB::table('return_products')
+            ->leftJoin('products','return_products.product_id','=','products.id')
+            ->leftJoin('users','return_products.user_id','=','users.id')
+            ->get();
+//ddd($returnproducts);
 
         $this->setPageTitle('Return Products', 'List of all return products');
         return view('admin.returnproducts.index', compact('returnproducts'));

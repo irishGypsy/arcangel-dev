@@ -16,7 +16,7 @@ class Post extends Model
      * @var array
      */
     protected $fillable = [
-        'title','excerpt','body','slug','keywords','menu_placement'
+        'title','excerpt','body','slug','keywords','image','menu_placement','status'
     ];
     protected $status = [
         'header' => 'Header',

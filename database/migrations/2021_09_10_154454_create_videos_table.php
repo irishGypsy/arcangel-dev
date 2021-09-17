@@ -24,8 +24,7 @@ class CreateVideosTable extends Migration
             $table->string('length')->nullable();
             $table->string('url')->nullable();
             $table->string('thumbnail')->nullable();
-            $table->text('file')->nullable();
-            $table->text('embed_code')->nullable();
+                $table->text('embed_code')->nullable();
             $table->boolean('pinned')->default(0);
             $table->enum('status', ['Active','Inactive'])->default('Inactive');
             $table->timestamps();

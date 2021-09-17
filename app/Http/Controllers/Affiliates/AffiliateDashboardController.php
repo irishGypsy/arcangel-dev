@@ -59,9 +59,14 @@ class AffiliateDashboardController extends BaseController
             }
         }
 
+        $payments = DB::table('affiliate_payments')->where('affiliate_id','=',$user_id)->get();
+        $products = DB::table('products')->get();
 
 
-        return view('affiliate.dashboard', compact('referrals','countrycodes','affiliate','referraltotal','referralbalance','totalreferrals','paidreferrals','unpaidreferrals','totaltransactions'));
+
+
+
+        return view('affiliate.dashboard', compact('referrals','countrycodes','affiliate','referraltotal','referralbalance','totalreferrals','paidreferrals','unpaidreferrals','totaltransactions','payments','products'));
 
     }
 

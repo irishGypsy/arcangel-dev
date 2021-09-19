@@ -18,17 +18,33 @@
                     </div>
                     <div>
                         <div class="cart_fix">
-                            <div class="log_bt">
+                            <div class="log_bt d-flex flex-row justify-content-center">
                                 @guest
                                 <a href="{{ route('login') }}" class="log_btn header-black">Login</a>
                                 <span>|</span>
                                 <a href="{{ route('register') }}" class="sig_btn header-black">Sign Up</a>
                                 <span>|</span>
                                 @endguest
-                                <a href="{{ route('checkout.cart') }}" class="icontext header-black">Cart ({{ $cartCount }})</a>
-                                    <i class="fa fa-shopping-cart"></i>
+                                    <a href="{{ route('checkout.cart') }}" class="btn btn-primary header-black mr-3" style="width:100px;">
+                                        <i class="fa fa-shopping-cart"></i> Cart ({{ $cartCount }})</a>
                                 @auth
-                                <a class="dropdown-item header-black" href="{{ route('logout') }}"><i class="fa fa-sign-out fa-lg"></i> Logout</a>
+                                    <span>|</span>
+
+                                        <div class="dropdown pl-3">
+                                            <a class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fa fa-user pl-3"></i> Profile
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                <a href="{{route('site.profile')}}" class="dropdown-item" type="button">My Profile</a>
+                                                <a href="{{route('logout')}}" class="dropdown-item" type="button">Logout</a>
+                                            </div>
+                                        </div>
+
+{{--                                    <a class="dropdown-item header-black" href="{{ route('site.profile') }}">--}}
+{{--                                        <i class="fa fa-user pl-3"></i> Profile </a>--}}
+{{--                                    <a class="dropdown-item header-black" href="{{ route('logout') }}">--}}
+{{--                                        <i class="fa fa-sign-out fa-lg"></i> Logout--}}
+                                    </a>
                                 @endauth
                             </div>
                         </div>

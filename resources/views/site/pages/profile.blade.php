@@ -19,10 +19,10 @@
 <body>
 @include('site.partials.header')
 @include('site.partials.nav')
-@include('site.partials.carousel')
-@include('site.partials.batteryfinder')
-@include('site.partials.featured')
-@include('site.partials.intro')
+<div style="background-color: white;">
+@yield('content')
+</div>
+
 @include('site.partials.footer')
 </body>
 </html>

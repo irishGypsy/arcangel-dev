@@ -1,4 +1,4 @@
-<link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/images/favicon.ico') }}">
+<link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/images/logo2-bg.png') }}">
 
 <link rel="stylesheet" type="text/css" href="{{ asset('css/mystyle.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/responsive.css') }}">

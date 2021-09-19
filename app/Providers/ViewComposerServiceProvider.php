@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Product;
 use Cart;
+use Auth;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
@@ -50,6 +51,15 @@ class ViewComposerServiceProvider extends ServiceProvider
         View::composer('site.partials.featured', function ($view) {
             $view->with('products', Product::where('popular','=','1')
                 ->get());
+        });
+
+        View::composer('site.profile.includes.affiliatelinks', function($view) {
+           $view->with('affiliate',DB::table('users')
+               ->join('affiliates','users.affiliate_id','=','affiliates.id')
+               ->where('users.id','=',Auth::guard()->user()->id)
+               ->get());
+
+
         });
     }
 }

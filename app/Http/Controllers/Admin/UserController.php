@@ -92,8 +92,7 @@ class UserController extends BaseController
     {
 
         $this->validate($request, [
-            'title'      =>  'required|max:191',
-            'image'     =>  'mimes:jpg,jpeg,png|max:1000'
+            'title'      =>  'required|max:191'
         ]);
         //ddd($request);
         $params = $request->except('_token');

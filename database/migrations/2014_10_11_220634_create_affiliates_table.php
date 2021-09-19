@@ -24,55 +24,24 @@ class CreateAffiliatesTable extends Migration
             $table->timestamps();
         });
 
-    //        DB::table('affiliates')->insert([
-//
-//            [
-//                "status"=>"Active",
-//                "bank_details"=>"299489082",
-//                "comm_in_per"=>"60",
-//                "created_at" => now(),
-//                "affiliate_code" => "905272",
-//            ],
-//
-//            [
-//                "username"=>"Donec.fringilla",
-//                "fname"=>"Hashim",
-//                "lname"=>"Dorsey",
-//                "email"=>"Donec.non.justo@semper.com",
-//                "status"=>"Active",
-////                "countrycode_id"=>'180',
-////                "commission"=>"91",
-//                "bank_details"=>"321826679",
-//                "comm_in_per"=>"63",
-//                "created_at" => now(),
-//                "affiliate_code" => "776541",
-//                "password" => bcrypt("password1")],
-//
-//            ["username"=>"hendrerit",
-//                "fname"=>"Chadwick",
-//                "lname"=>"Vance",
-//                "email"=>"non.feugiat@imperdietdictummagna.edu",
-//                "status"=>"Active",
-////                "countrycode_id"=>'130',
-////                "commission"=>"77",
-//                "bank_details"=>"334561375",
-//                "comm_in_per"=>"30",
-//                "created_at" => now(),
-//                "affiliate_code" => "087225",
-//                "password" => "password1"],
-//            ["username"=>"jbrodnax",
-//                "fname"=>"Joseph",
-//                "lname"=>"Brodnax",
-//                "email"=>"joseph.brodnax@gmail.com",
-//                "status"=>"Active",
-////                "countrycode_id"=>'234',
-//    //                "commission"=>"77",
-//                "bank_details"=>"334561375",
-//                "comm_in_per"=>"30",
-//                "created_at" => now(),
-//                "affiliate_code" => "269751",
-//                "password" => Hash::make('password1')],
-//            ]);
+            DB::table('affiliates')->insert([
+
+            [
+                "status"=>"Active",
+                "bank_details"=>"299489082",
+                "comm_in_per"=>"60",
+                "created_at" => now(),
+                "affiliate_code" => "905272",
+            ],
+
+            [
+                "status"=>"Active",
+                "bank_details"=>"321826679",
+                "comm_in_per"=>"63",
+                "created_at" => now(),
+                "affiliate_code" => "776541",
+            ]
+            ]);
     }
 
     /**

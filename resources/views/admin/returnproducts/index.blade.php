@@ -16,7 +16,6 @@
                     <table class="table table-hover table-bordered" id="sampleTable">
                         <thead>
                         <tr class="text-center">
-                            <th> # </th>
                             <th> Name </th>
                             <th> Email </th>
                             <th> Contact Number </th>
@@ -29,7 +28,6 @@
                         @foreach($returnproducts as $returnproduct)
 
                                 <tr class="text-center">
-                                    <td>{{ $returnproduct->id }}</td>
                                     <td>{{ $returnproduct->first_name.' '.$returnproduct->last_name }}</td>
                                     <td>{{ $returnproduct->email }}</td>
                                     <td>{{ $returnproduct->phone }}</td>

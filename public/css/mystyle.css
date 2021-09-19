@@ -1321,21 +1321,21 @@ a.bncart {background: #f59835;padding: 8px 18px;text-transform: uppercase;border
     font-size: xx-large;
 }
 
+.profile-title{
+    background-color: #e8a038 !important;
+    color: white !important;
+    font-weight: bold !important;
+    margin-bottom: 0 !important;
+}
 
-/*.navbar-nav {*/
-/*    flex-direction: row !important;*/
-/*    position: relative;*/
-/*    display: flex;*/
-/*    flex-wrap: nowrap;*/
-/*    justify-content: center;*/
-/*    padding-top: .5rem;*/
-/*    padding-bottom: .5rem;*/
-/*    align-content: center;*/
-/*}*/
+.profile-subtitle{
+    margin: 0 !important;
+    background-color: #e8a038 !important;
+    color: white !important;
+    padding: 4px;
+}
 
-/*.dropdown {*/
-/*    color: #dfdfdf;*/
-/*    font-size: 16px;*/
-/*    font-family: FuturaPT-Book;*/
-/*    padding:10px 0;*/
-/*}*/
+.profile-card{
+    border: none !important;
+    margin: 0 !important;
+}

@@ -36,6 +36,7 @@ class CreateUsersTable extends Migration
             $table->boolean('is_affiliate')->default('0');
             $table->bigInteger('affiliate_id')->unsigned()->nullable();
             $table->foreign('affiliate_id')->references('id')->on('affiliates');
+            $table->string('affiliate_code')->nullable();
 
             //authentication and shop cart order token
             $table->rememberToken();
@@ -47,7 +48,6 @@ class CreateUsersTable extends Migration
             [
                 'first_name' => 'john',
                 'last_name' => 'smith',
-                'is_affiliate' => '1',
                 'phone' => '832-832-0000',
                 'email' => 'jsmith@gmail.com',
                 'password' => Hash::make('password1'),
@@ -55,12 +55,13 @@ class CreateUsersTable extends Migration
                 'city' => 'localville',
                 'state_id'=> 43,
                 'zip' => '77508',
-                'countrycode_id' => 234
+                'countrycode_id' => 234,
+                'is_affiliate' => 1,
+                'affiliate_id' => 2
             ],
             [
                 'first_name' => 'Jane',
                 'last_name' => 'Wolf',
-                'is_affiliate' => '1',
                 'phone' => '281-281-0000',
                 'email' => 'jwolf@yahoo.com',
                 'password' => Hash::make('password1'),
@@ -68,12 +69,14 @@ class CreateUsersTable extends Migration
                 'city' => 'anyville',
                 'state_id'=> 43,
                 'zip' => '77058',
-                'countrycode_id' => 234
+                'countrycode_id' => 234,
+                'is_affiliate' => 0,
+                'affiliate_id' => null
             ],
             [
                 'first_name' => 'Pedro',
                 'last_name' => 'Fili',
-                'is_affiliate' => '0',
+                'is_affiliate' => 0,
                 'phone' => '876-876-0000',
                 'email' => 'pfili@photonmail.com',
                 'password' => Hash::make('password1'),
@@ -81,12 +84,13 @@ class CreateUsersTable extends Migration
                 'city' => 'Ghost Town',
                 'state_id'=> 43,
                 'zip' => '77058',
-                'countrycode_id' => 234
+                'countrycode_id' => 234,
+                'affiliate_id' => null
             ],
             [
                 'first_name' => 'Joseph',
                 'last_name' => 'Brodnax',
-                'is_affiliate' => '1',
+                'is_affiliate' => 1,
                 'phone' => '876-876-0000',
                 'email' => 'joseph.brodnax@gmail.com',
                 'password' => Hash::make('password1'),
@@ -94,7 +98,8 @@ class CreateUsersTable extends Migration
                 'city' => 'Ghost Town',
                 'state_id'=> 43,
                 'zip' => '77058',
-                'countrycode_id' => 234
+                'countrycode_id' => 234,
+                'affiliate_id' => 1
             ]
         ]);
 

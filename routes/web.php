@@ -27,13 +27,33 @@ Route::group(['prefix' => 'batteryfinders'], function(){
 
 });
 
-Route::get('/faq','App\Http\Controllers\Site\WelcomeController@getFaqs')->name('site.faq');
+Route::get('/wishlist','App\Http\Controllers\Site\WelcomeController@getWishlists')->name('site.wishlist');
 
 Route::get('/video','App\Http\Controllers\Site\WelcomeController@getVideos')->name('site.video');
 
 Route::get('/contact_us',function() {
     return view('site.pages.contact_us');
 })->name('site.contact');
+
+//Route::get('/profile',function() {
+//    return view('site.profile.index', ['pageTitle' => 'User Profile']);
+//})->name('site.profile');
+
+Route::get('/profile', 'App\Http\Controllers\Site\ProfileController@getDashboard')->name('site.profile');
+Route::post('/profile/updateuser', 'App\Http\Controllers\Site\ProfileController@updateUser')->name('site.profile.updateprofile');
+
+Route::get('/faq','App\Http\Controllers\Site\WelcomeController@getFaqs')->name('site.faq');
+
+Route::group(['prefix'  =>   'wishlists'], function() {
+
+    Route::get('/', 'App\Http\Controllers\Admin\WishlistController@index')->name('site.wishlists.index');
+    Route::get('/create', 'App\Http\Controllers\Admin\WishlistController@create')->name('site.wishlists.create');
+    Route::post('/store', 'App\Http\Controllers\Admin\WishlistController@store')->name('site.wishlists.store');
+    Route::get('/{id}/edit', 'App\Http\Controllers\Admin\WishlistController@edit')->name('site.wishlists.edit');
+    Route::post('/update', 'App\Http\Controllers\Admin\WishlistController@update')->name('site.wishlists.update');
+    Route::get('/{id}/delete', 'App\Http\Controllers\Admin\WishlistController@delete')->name('site.wishlists.delete');
+
+});
 
 Route::get('post/{id}', 'App\Http\Controllers\Site\WelcomeController@getPage')->name('post.page');
 

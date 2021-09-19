@@ -38,7 +38,7 @@
                     <div id="finish_panel">
                     </div>
 
-                    <div id="material_panel">
+                    <div id="battery_group_panel">
                         <div class="panel">
                             <div class="panel-heading">
                                 <span data-toggle="collapse" data-target="#demometerial" class="clickable">Group Number
@@ -53,11 +53,11 @@
                                     <li>
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox" name="groupchk{{ $b->id }}" id="chkBatteryGroup{{ $b->id }}" value="{{ $b->material_name }}" data_info_bat="{{ $b->id }}">
+                                                <input type="checkbox" name="groupchk{{ $b->id }}" id="chkBatteryGroup{{ $b->id }}" value="{{ $b->battery_group_name }}" data_info_bat="{{ $b->id }}">
                                                 <span class="cr">
                                                     <i class="cr-icon fa fa-check"></i>
                                                 </span>
-                                                <span class="tg">{{ $b->material_name }}</span>
+                                                <span class="tg">{{ $b->battery_group_name }}</span>
                                                 <small class="rt">
                                                 </small>
                                             </label>
@@ -68,7 +68,7 @@
                                 </ul>
                             </div><!-- end of panel-body -->
                         </div><!-- end fo panel -->
-                    </div><!-- end of material_panel  -->
+                    </div><!-- end of battery_group_panel  -->
 
                     <div id="capacity_panel">
                         <div class="panel">
@@ -149,7 +149,7 @@
 
                                         <div class="hvr-float-shadow ">
                                             <a href="/product/{{ $p->id }}">{{ $p->name }}</a>
-                                            <input type="hidden" class = "groupcheck" name="groupcheck" value="{{ $p->batterygroup->material_name }}" data-tag-batgru="{{ $p->batterygroup->material_name }}">
+                                            <input type="hidden" class = "groupcheck" name="groupcheck" value="{{ $p->batterygroup->battery_group_name }}" data-tag-batgru="{{ $p->batterygroup->battery_group_name }}">
                                             <input type="hidden" class = "groupcheck" name="capcheck" value="{{ $p->capacity->capacity_name }}" data-tag-capgru="{{ $p->capacity->capacity_name }}">
                                         </div>
 
@@ -158,7 +158,7 @@
                                                 <tbody>
                                                 <tr>
                                                     <td><b>Group Number</b></td>
-                                                    <td><p>{{ $p->batterygroup->material_name }}</p></td>
+                                                    <td><p>{{ $p->batterygroup->battery_group_name }}</p></td>
                                                 </tr>
                                                 <tr>
                                                     <td scope="row"><b>Capacity</b></td>
@@ -216,7 +216,7 @@
     var checkObj = null;
 
     // loop each filter checkbox
-    $("#material_panel input[type=checkbox]").each(function(i){
+    $("#battery_group_panel input[type=checkbox]").each(function(i){
         $(this).change(function(){
             allChecked = [];
             allCheckObj.each(function(){

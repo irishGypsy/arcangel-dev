@@ -122,4 +122,9 @@ class Product extends Model
         return $this->hasOne(Sale::class, 'productID');
     }
 
+    public function wishlist()
+    {
+        return $this->hasMany(Wishlist::class);
+    }
+
 }

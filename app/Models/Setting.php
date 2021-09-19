@@ -35,12 +35,16 @@ class Setting extends Model
      * @param null $value
      * @return bool
      */
-    public static function set($key, $value = null)
+    public static function set($key, $value)
     {
-        $setting = new self();
-        $entry = $setting->where('key', $key)->firstOrFail();
+//ddd($value);
+        $setting = new Setting();
+//ddd($setting);
+        $entry = $setting->where('key', $key)->first();
+//ddd($entry);
         $entry->value = $value;
-        $entry->saveOrFail();
+//ddd($entry);
+        $entry->save();
         Config::set('key', $value);
         if (Config::get($key) == $value) {
             return true;

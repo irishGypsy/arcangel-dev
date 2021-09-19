@@ -19,13 +19,13 @@ protected $fillable = [
 'user_id','order_id', 'product_name', 'reason','status'
 ];
 
-/**
- * @var array
- */
-protected $status = [
-'active' => 'Active',
-'inactive' => 'Inactive'
-];
+///**
+// * @var array
+// */
+//protected $status = [
+//'active' => 'Active',
+//'inactive' => 'Inactive'
+//];
 
 public function getStatus()
 {

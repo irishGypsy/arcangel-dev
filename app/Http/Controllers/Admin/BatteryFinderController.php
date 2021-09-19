@@ -182,7 +182,7 @@ class BatteryFinderController extends BaseController
         foreach($batteryfinder as $b)
         {
             $b_id = DB::table('battery_groups')
-                ->where('material_name','LIKE','%'.$b->group_name.'%')
+                ->where('battery_group_name','LIKE','%'.$b->group_name.'%')
                 ->get();
             $product = Product::query()->where('batterygroup_id','=',$b_id[0]->id)
                 ->first();
@@ -191,12 +191,12 @@ class BatteryFinderController extends BaseController
         }
 
         $battery_groups = DB::table('battery_groups')
-            ->select('material_name','id')
+            ->select('battery_group_name','id')
             ->get()
-            ->keyBy('material_name');
+            ->keyBy('battery_group_name');
 
         $capacities = DB::table('capacities')
-            ->select('capacity_name','id')
+            ->select('capacity_code','capacity_name','id')
             ->get()
             ->keyBy('capacity_name') ;
 

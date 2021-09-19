@@ -48,8 +48,12 @@ class ReturnProductController extends BaseController
     {
         $returnproducts = $this->ReturnProductRepository->listReturnProducts('id', 'asc');
 
+        $users = DB::table('users')->get(['id','first_name','last_name']);
+        $orders = DB::table('orders')->get(['id','order_number']);
+        $products = DB::table('products')->get(['id','name']);
+
         $this->setPageTitle('Return Products', 'Create Return Product');
-        return view('admin.returnproducts.create', compact('returnproducts'));
+        return view('admin.returnproducts.create', compact('returnproducts','users','orders','products'));
     }
 
     /**
@@ -79,11 +83,14 @@ class ReturnProductController extends BaseController
      */
     public function edit($id)
     {
-        $returnproducts = $this->ReturnProductRepository->findReturnProductById($id);
-//        $returnproducts = $this->ReturnProductRepository->treeList();
+        $returnproduct = $this->ReturnProductRepository->findReturnProductById($id);
 
-        $this->setPageTitle('Return Products', 'Edit Return Product : '.$returnproducts->name);
-        return view('admin.returnproducts.edit', compact('returnproducts'));
+        $users = DB::table('users')->get(['id','first_name','last_name']);
+        $orders = DB::table('orders')->get(['id','order_number']);
+        $products = DB::table('products')->get(['id','name']);
+
+        $this->setPageTitle('Return Products', 'Edit Return Product');
+        return view('admin.returnproducts.edit', compact('returnproduct','users','orders','products'));
     }
 
     /**
@@ -95,7 +102,7 @@ class ReturnProductController extends BaseController
     {
 
         $params = $request->except('_token');
-
+//ddd($params);
         $ReturnProduct = $this->ReturnProductRepository->updateReturnProduct($params);
 
         if (!$ReturnProduct) {

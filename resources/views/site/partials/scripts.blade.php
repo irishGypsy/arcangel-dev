@@ -16,8 +16,9 @@
 <script type="text/javascript" src="https://www.arcangelbattery.com/assets/front/js/smoothscroll.js"></script>
 <script type="text/javascript" src="https://www.arcangelbattery.com/assets/front/js/lightweightLightbox.min.js"></script>
 <script src="{{ asset('node_modules/tinymce/tinymce.js') }}"></script>
-{{--<script src="{{ asset('frontend/js/bootstrap.bundle.min.js') }}"> </script>--}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
 <script>
+
     $(window).scroll(function () {
         if ($(window).scrollTop() > 200) {
             $(".headpanel").addClass('sticky');

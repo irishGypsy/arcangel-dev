@@ -29,6 +29,9 @@ class ProfileController extends BaseController
 
     public function getDashboard()
     {
+
+//        Auth::guard()->logout();
+
         $referraltotal =null;
         $referralbalance =null;
         $totalreferrals =null;
@@ -123,5 +126,18 @@ class ProfileController extends BaseController
     }
     return $this->responseRedirectBack('User updated successfully' ,'success',false, false);
 }
+
+    public function logout(Request $request)
+    {
+//        ddd($request);
+
+        Auth::guard()->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect()->route('site.app');
+    }
 
 }

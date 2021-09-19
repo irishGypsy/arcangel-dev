@@ -26,13 +26,13 @@ class RedirectIfAuthenticated
                     return redirect('/admin');
                 }
                 break;
-            case 'affiliate':
-                if(Auth::guard($guard)->check()) {
-//                    ddd('hello world');
-                    return redirect('/affiliate');
-                }
-//                ddd(Auth::guard($guard)->check());
-                break;
+//            case 'affiliate':
+//                if(Auth::guard($guard)->check()) {
+////                    ddd('hello world');
+//                    return redirect('/affiliate');
+//                }
+////                ddd(Auth::guard($guard)->check());
+//                break;
             default:
                 if (Auth::guard($guard)->check()) {
                     return redirect('/');

@@ -35,10 +35,6 @@ Route::get('/contact_us',function() {
     return view('site.pages.contact_us');
 })->name('site.contact');
 
-//Route::get('/profile',function() {
-//    return view('site.profile.index', ['pageTitle' => 'User Profile']);
-//})->name('site.profile');
-
 Route::get('/profile', 'App\Http\Controllers\Site\ProfileController@getDashboard')->name('site.profile');
 Route::post('/profile/updateuser', 'App\Http\Controllers\Site\ProfileController@updateUser')->name('site.profile.updateprofile');
 
@@ -46,12 +42,12 @@ Route::get('/faq','App\Http\Controllers\Site\WelcomeController@getFaqs')->name('
 
 Route::group(['prefix'  =>   'wishlists'], function() {
 
-    Route::get('/', 'App\Http\Controllers\Admin\WishlistController@index')->name('site.wishlists.index');
-    Route::get('/create', 'App\Http\Controllers\Admin\WishlistController@create')->name('site.wishlists.create');
-    Route::post('/store', 'App\Http\Controllers\Admin\WishlistController@store')->name('site.wishlists.store');
-    Route::get('/{id}/edit', 'App\Http\Controllers\Admin\WishlistController@edit')->name('site.wishlists.edit');
-    Route::post('/update', 'App\Http\Controllers\Admin\WishlistController@update')->name('site.wishlists.update');
-    Route::get('/{id}/delete', 'App\Http\Controllers\Admin\WishlistController@delete')->name('site.wishlists.delete');
+    Route::get('/', 'App\Http\Controllers\Site\WishlistController@index')->name('site.wishlists.index');
+//    Route::get('/create', 'App\Http\Controllers\Site\WishlistController@create')->name('site.wishlists.create');
+//    Route::post('/store', 'App\Http\Controllers\Site\WishlistController@store')->name('site.wishlists.store');
+//    Route::get('/{id}/edit', 'App\Http\Controllers\Site\WishlistController@edit')->name('site.wishlists.edit');
+//    Route::post('/update', 'App\Http\Controllers\Site\WishlistController@update')->name('site.wishlists.update');
+//    Route::get('/{id}/delete', 'App\Http\Controllers\Site\WishlistController@delete')->name('site.wishlists.delete');
 
 });
 
@@ -87,6 +83,8 @@ Route::get('paypaltest', function(){  return view('products.welcome');});
 Route::get('payment', 'App\Http\Controllers\PayPalController@payment')->name('payment');
 Route::get('cancel', 'App\Http\Controllers\PayPalController@cancel')->name('payment.cancel');
 Route::get('payment/success', 'App\Http\Controllers\PayPalController@success')->name('payment.success');
+
+Route::get('/logout/x', 'App\Http\Controllers\Site\ProfileController@logout')->name('logout.x');
 
 Auth::routes();
 require 'admin.php';

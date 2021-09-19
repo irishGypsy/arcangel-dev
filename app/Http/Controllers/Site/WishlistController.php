@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Site;
 
 use Auth;
 use Illuminate\Http\Request;
@@ -12,7 +12,7 @@ class WishlistController extends BaseController
 {
 //use Auth;
     /**
-     * @var WishlistContract
+     * @var $WishlistContract
      */
     protected $WishlistRepository;
 

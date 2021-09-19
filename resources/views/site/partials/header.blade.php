@@ -31,12 +31,14 @@
                                     <span>|</span>
 
                                         <div class="dropdown pl-3">
-                                            <a class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <a class="btn btn-primary header-black dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <i class="fa fa-user pl-3"></i> Profile
                                             </a>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                <a href="{{route('site.profile')}}" class="dropdown-item" type="button">My Profile</a>
-                                                <a href="{{route('logout')}}" class="dropdown-item" type="button">Logout</a>
+                                                <a href="{{route('site.profile')}}" class="dropdown-item">My Profile</a>
+{{--                                                <form action="" method="POST">--}}
+                                                <a href="{{route('logout.x')}}" class="dropdown-item">Logout</a>
+{{--                                                </form>--}}
                                             </div>
                                         </div>
 

@@ -26,14 +26,6 @@
                 <a href="{{ route('post.page', $f->id) }}">{{ \Illuminate\Support\Str::upper($f->title) }}</a>
             </div>
         @endforeach
-        <div class="p-1">|</div>
-        <div class="p-1">
-            <a href="">BECOME AN AFFILIATE</a>
-        </div>
-        <div class="p-1">|</div>
-        <div class="p-1">
-            <a href="{{ route('affiliate.login') }}">AFFILIATE LOGIN</a>
-        </div>
     </div>
             <div class="social_outer">
                 <div class="social">

@@ -30,8 +30,6 @@ class ProfileController extends BaseController
     public function getDashboard()
     {
 
-//        Auth::guard()->logout();
-
         $referraltotal =null;
         $referralbalance =null;
         $totalreferrals =null;
@@ -39,18 +37,20 @@ class ProfileController extends BaseController
         $unpaidreferrals =null;
         $totaltransactions =null;
 
-
         $countrycodes = DB::table('country_codes')->get();
         $states = DB::table('state_codes')->get();
 
-        $user_id = Auth::guard()->user()->attribute_id;
-//ddd($user_id);
+        $user_id = Auth::guard()->user()->id;
+        $affiliate_id = Auth::guard()->user()->affiliate_id;
+
         $affiliate = DB::table('affiliates')
             ->join('users','affiliates.id','=','users.affiliate_id')
-            ->where('affiliates.id','=',$user_id)
+            ->where('affiliates.id','=',$affiliate_id)
                     ->first();
+        $addresses = DB::table('addresses')
+                        ->where('user_id','=', $user_id)
+                        ->first();
 
-//ddd($affiliate);
         $referrals = DB::table('referrals')->where('affiliate_id','=',$user_id)->get();
         foreach($referrals as $r)
         {
@@ -74,15 +74,11 @@ class ProfileController extends BaseController
                     ->join('products','wishlists.product_id','=','products.id')
                     ->join('product_images','wishlists.product_id','=','product_images.product_id')
                     ->where('wishlists.user_id','=',Auth::guard()->user()->id)
-                    ->get();
-//ddd($orders);
-//ddd($wishlist);$wishlist
-
+                    ->get(['wishlists.id','products.name','products.price','product_images.image']);
+//ddd($wishlist);
         $pageTitle = 'My Profile';
 
-
-
-        return view('site.profile.index', compact('referrals','countrycodes','affiliate','referraltotal','referralbalance','totalreferrals','paidreferrals','unpaidreferrals','totaltransactions','payments','products','pageTitle','wishlist','states','orders'));
+        return view('site.profile.index', compact('referrals','countrycodes','affiliate','referraltotal','referralbalance','totalreferrals','paidreferrals','unpaidreferrals','totaltransactions','payments','products','pageTitle','wishlist','states','orders','addresses'));
 
     }
 
@@ -90,6 +86,7 @@ class ProfileController extends BaseController
     {
         $user_id = Auth::guard()->user()->id;
     }
+
     public function getAffiliateLinks()
     {
 
@@ -110,18 +107,12 @@ class ProfileController extends BaseController
 
     public function updateUser(Request $request)
 {
-//    ddd($request);
 
-//    $this->validate($request, [
-//        'title'      =>  'required|max:191'
-//    ]);
-    //ddd($request);
     $params = $request->except('_token');
-//ddd($params);
+
     $user = $this->UserRepository->updateUser($params);
 
     if (!$user) {
-//
         return $this->responseRedirectBack('Error occurred while updating User.', 'error', true, true);
     }
     return $this->responseRedirectBack('User updated successfully' ,'success',false, false);
@@ -129,7 +120,6 @@ class ProfileController extends BaseController
 
     public function logout(Request $request)
     {
-//        ddd($request);
 
         Auth::guard()->logout();
 

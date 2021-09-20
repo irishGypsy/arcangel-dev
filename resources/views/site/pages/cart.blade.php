@@ -6,15 +6,15 @@
     <title>@yield('title') - {{ config('app.name') }}</title>
     @include('site.partials.styles')
     @include('site.partials.scripts')
-    <script>
-        $(window).scroll(function () {
-            if ($(window).scrollTop() > 200) {
-                $("#stickymenu").addClass('sticky');
-            } else {
-                $("#stickymenu").removeClass('sticky');
-            }
-        });
-    </script>
+{{--    <script>--}}
+{{--        $(window).scroll(function () {--}}
+{{--            if ($(window).scrollTop() > 200) {--}}
+{{--                $("#stickymenu").addClass('sticky');--}}
+{{--            } else {--}}
+{{--                $("#stickymenu").removeClass('sticky');--}}
+{{--            }--}}
+{{--        });--}}
+{{--    </script>--}}
 </head>
 <body style="background-color:#333333">
 @include('site.partials.header')
@@ -37,7 +37,7 @@
     <div class="d-flex flex-column" style="background-color: white;">
 
         <div class="d-flex flex-row justify-content-center">
-            @if (\Cart::isEmpty())
+            @if (\Cart::session(Auth::guard()->user()->id)->isEmpty())
                 <div class="col-lg-7 m-lg-3">
 
                         <p class="alert alert-warning">Your shopping cart is empty.</p>
@@ -57,7 +57,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach(\Cart::getContent() as $item)
+                            @foreach(\Cart::session(Auth::guard()->user()->id)->getContent() as $item)
                                 <tr><tr><td><div style="height: 30px;"></div> </td></tr>
     {{--                                    Name of product--}}
                                     <td style="vertical-align: middle;">
@@ -84,7 +84,7 @@
     {{--                                    Price of each item  --}}
                                     <td style="vertical-align: middle;">
                                         <div class="price-wrap" style="vertical-align: middle;">
-                                            <var class="price">${{ config('settings.currency_symbol'). $item->price }}</var>
+                                            <var class="price">{{ config('settings.currency_symbol'). number_format($item->price,2,'.',',') }}</var>
                                             <small class="text-muted">each</small>
                                         </div>
                                     </td>
@@ -101,7 +101,7 @@
                                     <td style="vertical-align: middle;">
                                         <div class="price-wrap">
                                             <var class="price">
-                                                ${{ \Cart::get($item->id)->getPriceSum() }}
+                                                ${{ \Cart::session(Auth::guard()->user()->id)->get($item->id)->getPriceSum() }}
                                             </var>
                                         </div>
                                     </td>
@@ -121,7 +121,7 @@
                 <div class="border">
                     <div class="border d-flex flex-row justify-content-between p-2 ">
                         <div class="">Sub Total</div>
-                        <div class="">$ {{ number_format(\Cart::getSubTotalWithoutConditions(),2,'.',',') }}</div>
+                        <div class="">$ {{ $subTotal }}</div>
                     </div>
                     <br>
                     <div class="border d-flex flex-row justify-content-between p-2 ">
@@ -132,7 +132,7 @@
                     <div class="border d-flex flex-row justify-content-between p-2 ">
                         <div class="">Coupon Discount</div>
                         <div class="">-($
-                            {{ Cart::getConditions()->isEmpty() ? "0" : number_format(Cart::getConditions()['coupon']->parsedRawValue,2,'.',',') }})</div>
+                            {{ Cart::session(Auth::guard()->user()->id)->getConditions()->isEmpty() ? "0" : number_format(Cart::session(Auth::guard()->user()->id)->getConditions()['coupon']->parsedRawValue,2,'.',',') }})</div>
                     </div>
                     <br>
                     <div class="border bg-light d-flex flex-row justify-content-between p-2">
@@ -140,14 +140,14 @@
                             <div class="font-weight-light">(inclusive of all taxes)
                             </div>
                         </div>
-                        <div class="font-weight-bold"> $ {{ number_format(\Cart::getTotal(),2,'.',',') }}</div>
+                        <div class="font-weight-bold"> $ {{ \Cart::session(Auth::guard()->user()->id)->getTotal() }}</div>
                     </div>
                 </div>
             </div>
         </div>
 
 <br>
-            <div class="d-flex flex-row justify-content-around">
+            <div class="d-flex flex-row justify-content-center">
                 <div class="col-lg-4 mx-lg-1 border border-light" style="width:60%;">
                     <form class="border border-light" action="{{route('checkout.cart.applycouponcode')}}" method="post" role="form" enctype="multipart/form-data">
                         @csrf
@@ -165,14 +165,6 @@
             </div>
     </div>
 <br>
-{{--   {{ Cart::getTotal() }}--}}
-{{--    <br> - <br>--}}
-{{--    {{ Cart::getConditions()['coupon']->parsedRawValue }}--}}
-{{--    <br> = <br>--}}
-{{--{{ Cart::getConditions()->isEmpty() ? "0" : Cart::getTotal() - Cart::getConditions()['coupon']->parsedRawValue }}--}}
-{{--    {{ Cart::getConditions() }}--}}
-{{--        {{ Cart::getConditions()['coupon']->parsedRawValue }}--}}
-{{--        {{ Cart::clearCartConditions() }}--}}
 
 <br>
 

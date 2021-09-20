@@ -30,7 +30,7 @@
                         <li class="nav-item"><a class="nav-link" href="#affiliatelinks" data-toggle="tab">Affiliate Links</a></li>
                         <li class="nav-item"><a class="nav-link" href="#referrals" data-toggle="tab">Referrals</a></li>
                         <li class="nav-item"><a class="nav-link" href="#payments" data-toggle="tab">Payments</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#affiliateorders" data-toggle="tab">Affiliate Orders</a></li>
+{{--                        <li class="nav-item"><a class="nav-link" href="#affiliateorders" data-toggle="tab">Affiliate Orders</a></li>--}}
                     @endif
 
                     <li class="nav-item"><a class="nav-link" href="{{ route('logout') }}" data-toggle="tab">Logout</a></li>
@@ -72,9 +72,9 @@
                     <div class="tab-pane fade" id="payments">
                         @include('site.profile.includes.payments')
                     </div>
-                    <div class="tab-pane fade" id="affiliateorders">
-                        @include('admin.settings.includes.analytics')
-                    </div>
+{{--                    <div class="tab-pane fade" id="affiliateorders">--}}
+{{--                        @include('admin.settings.includes.analytics')--}}
+{{--                    </div>--}}
 
                 @endif
 

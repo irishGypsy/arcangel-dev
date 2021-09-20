@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Site;
 
 use Cart;
+use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -14,22 +15,32 @@ class CartController extends Controller
     public function getCart()
     {
 
-        $totalShipping = null;
-        foreach(Cart::getContent() as $c){
+        $totalShipping = 0;
+
+        foreach(Cart::session(Auth::guard()->user()->id)->getContent() as $c){
             $totalShipping = $totalShipping + ($c->conditions->parsedRawValue * $c->quantity);
         }
+//ddd( Cart::session(Auth::guard()->user()->id)->getSubTotal());
+        $subTotal = Cart::session(Auth::guard()->user()->id)->getSubTotal();
+
+
+        $cartCount = Cart::session(Auth::guard()->user()->id)->getContent()->count();
 
         $coupons = DB::table('coupons')->where('status','=','Free')->get();
         $sales = DB::table('sales')->get();
 
-        return view('site.pages.cart', compact('coupons','sales', 'totalShipping'));
+        return view('site.pages.cart', compact('coupons','sales', 'totalShipping','cartCount','subTotal'));
     }
 
     public function removeItem($id)
     {
-        Cart::remove($id);
+//        ddd($id);
 
-        if (Cart::isEmpty()) {
+        Cart::session(Auth::guard()->user()->id)->remove($id);
+
+
+
+        if (Cart::session(Auth::guard()->user()->id)->isEmpty()) {
             return redirect('/');
         }
         return redirect()->back()->with('message', 'Item removed from cart successfully.');
@@ -63,7 +74,7 @@ class CartController extends Controller
     public function addQty($id)
     {
 
-        Cart::update($id,array('quantity' => 1));
+        Cart::session(Auth::guard()->user()->id)->update($id,array('quantity' => 1));
 
         return redirect()->back()->with('message', 'Quantity added to cart successfully.');
 
@@ -72,7 +83,7 @@ class CartController extends Controller
     public function subtractQty($id)
     {
 
-        Cart::update($id,array('quantity' => -1));
+        Cart::session(Auth::guard()->user()->id)->update($id,array('quantity' => -1));
 
         return redirect()->back()->with('message', 'Quantity subtracted from cart successfully.');
 

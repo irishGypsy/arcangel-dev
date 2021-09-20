@@ -14,8 +14,12 @@
 //    Route::group(['middleware' => ['auth:affiliate']], function () {
 //
 //        Route::get('/', 'App\Http\Controllers\Affiliates\AffiliateDashboardController@getDashboard')->name('affiliate.dashboard');
-        Route::post('updateProfile', 'App\Http\Controllers\Affiliates\AffiliateDashboardController@updateProfile')->name('affiliate.updateprofile');
-//        Route::post('updateBank','App\Http\Controllers\Affiliates\AffiliateDashboardController@updateProfile')->name('affiliate.updatebank');
+
+
+
+
+
+        //        Route::post('updateBank','App\Http\Controllers\Affiliates\AffiliateDashboardController@updateProfile')->name('affiliate.updatebank');
 //        Route::post('changePassword','App\Http\Controllers\Affiliates\AffiliateDashboardController@updatePass')->name('affiliate.updatepass');
 //
 //    });

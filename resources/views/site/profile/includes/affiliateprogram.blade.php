@@ -9,7 +9,7 @@
     @if(Auth::guard()->user()->is_affiliate)
         <div class="card col-md-12">
             <p class="pt-4"><i>
-Starting earning commissions right away with teh Arc-Angel Battery Affiliate program.  Simply click on the 'Affiliate Links' tab to the left to see your personalized URL's for each of our products.  Anyone who orders and purchases a battery through that link will earn you commission. You can use these links on your website, store or social media right away.
+Starting earning commissions right away with the Arc-Angel Battery Affiliate program.  Simply click on the 'Affiliate Links' tab to the left to see your personalized URL's for each of our products.  Anyone who orders and purchases a battery through that link will earn you commission. You can use these links on your website, store or social media right away.
                 </i></p>
         </div>
     @else

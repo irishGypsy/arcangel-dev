@@ -17,7 +17,6 @@ use App\Http\Controllers\SliderController;
 Route::get('/', 'App\Http\Controllers\Site\WelcomeController@display')->name('site.app');
 
 Route::group(['prefix' => 'batteryfinders'], function(){
-
     Route::get('/getmakes', 'App\Http\Controllers\Admin\BatteryFinderController@listMakes');
     Route::get('/getmodels/{make}', 'App\Http\Controllers\Admin\BatteryFinderController@listModels');
     Route::get('/getyears/{make}/{model}', 'App\Http\Controllers\Admin\BatteryFinderController@listYears');
@@ -31,23 +30,30 @@ Route::get('/wishlist','App\Http\Controllers\Site\WelcomeController@getWishlists
 
 Route::get('/video','App\Http\Controllers\Site\WelcomeController@getVideos')->name('site.video');
 
-Route::get('/contact_us',function() {
-    return view('site.pages.contact_us');
-})->name('site.contact');
+Route::get('/contact_us',function() { return view('site.pages.contact_us'); })->name('site.contact');
 
 Route::get('/profile', 'App\Http\Controllers\Site\ProfileController@getDashboard')->name('site.profile');
 Route::post('/profile/updateuser', 'App\Http\Controllers\Site\ProfileController@updateUser')->name('site.profile.updateprofile');
 
+Route::group(['prefix' => 'addresses'],function(){
+    Route::post('/', 'App\Http\Controllers\Site\AddressController@index')->name('site.addresses.index');
+    Route::post('/update', 'App\Http\Controllers\Site\AddressController@update')->name('site.addresses.update');
+    Route::post('/create', 'App\Http\Controllers\Site\AddressController@store')->name('site.addresses.create');
+    Route::post('/{id}/edit', 'App\Http\Controllers\Site\AddressController@edit')->name('site.addresses.edit');
+    Route::post('/store', 'App\Http\Controllers\Site\AddressController@store')->name('site.addresses.store');
+    Route::post('/delete', 'App\Http\Controllers\Site\AddressController@delete')->name('site.addresses.delete');
+
+});
+
 Route::get('/faq','App\Http\Controllers\Site\WelcomeController@getFaqs')->name('site.faq');
 
 Route::group(['prefix'  =>   'wishlists'], function() {
-
     Route::get('/', 'App\Http\Controllers\Site\WishlistController@index')->name('site.wishlists.index');
-//    Route::get('/create', 'App\Http\Controllers\Site\WishlistController@create')->name('site.wishlists.create');
-//    Route::post('/store', 'App\Http\Controllers\Site\WishlistController@store')->name('site.wishlists.store');
-//    Route::get('/{id}/edit', 'App\Http\Controllers\Site\WishlistController@edit')->name('site.wishlists.edit');
-//    Route::post('/update', 'App\Http\Controllers\Site\WishlistController@update')->name('site.wishlists.update');
-//    Route::get('/{id}/delete', 'App\Http\Controllers\Site\WishlistController@delete')->name('site.wishlists.delete');
+    Route::get('/create', 'App\Http\Controllers\Site\WishlistController@create')->name('site.wishlists.create');
+    Route::post('/store', 'App\Http\Controllers\Site\WishlistController@store')->name('site.wishlists.store');
+    Route::get('/{id}/edit', 'App\Http\Controllers\Site\WishlistController@edit')->name('site.wishlists.edit');
+    Route::post('/update', 'App\Http\Controllers\Site\WishlistController@update')->name('site.wishlists.update');
+    Route::get('/{id}/delete', 'App\Http\Controllers\Site\WishlistController@delete')->name('site.wishlists.delete');
 
 });
 
@@ -61,13 +67,15 @@ Route::get('/product/{id}', 'App\Http\Controllers\Site\ProductController@show')-
 
 Route::post('/product/add/cart', 'App\Http\Controllers\Site\ProductController@addToCart')->name('product.add.cart');
 
-Route::get('/cart', 'App\Http\Controllers\Site\CartController@getCart')->name('checkout.cart');
-Route::get('/cart/item/{id}/remove', 'App\Http\Controllers\Site\CartController@removeItem')->name('checkout.cart.remove');
-Route::get('/cart/clear', 'App\Http\Controllers\Site\CartController@clearCart')->name('checkout.cart.clear');
-Route::post('/cart/applycouponcode', 'App\Http\Controllers\Site\CartController@applyCouponCode')->name('checkout.cart.applycouponcode');
-Route::get('/cart/addQty/{id}', 'App\Http\Controllers\Site\CartController@addQty')->name('checkout.cart.addQty');
-Route::get('/cart/subtractQty{id}', 'App\Http\Controllers\Site\CartController@subtractQty')->name('checkout.cart.subtractQty');
+Route::group(['prefix' => 'cart'], function(){
+    Route::get('/', 'App\Http\Controllers\Site\CartController@getCart')->name('checkout.cart');
+    Route::get('/item/{id}/remove', 'App\Http\Controllers\Site\CartController@removeItem')->name('checkout.cart.remove');
+    Route::get('/clear', 'App\Http\Controllers\Site\CartController@clearCart')->name('checkout.cart.clear');
+    Route::post('/applycouponcode', 'App\Http\Controllers\Site\CartController@applyCouponCode')->name('checkout.cart.applycouponcode');
+    Route::get('/addQty/{id}', 'App\Http\Controllers\Site\CartController@addQty')->name('checkout.cart.addQty');
+    Route::get('/subtractQty{id}', 'App\Http\Controllers\Site\CartController@subtractQty')->name('checkout.cart.subtractQty');
 
+});
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/checkout', 'App\Http\Controllers\Site\CheckoutController@getCheckout')->name('checkout.index');
@@ -88,4 +96,4 @@ Route::get('/logout/x', 'App\Http\Controllers\Site\ProfileController@logout')->n
 
 Auth::routes();
 require 'admin.php';
-require 'affiliates.php';
+//require 'affiliates.php';

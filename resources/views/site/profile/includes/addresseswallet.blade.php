@@ -7,14 +7,14 @@
             </div>
         </div>
         <div class="container">
-            <div class="row">
-                <div class="col-smmd-12">
-                    @if (Session::has('error'))
-                        <p class="alert alert-danger">{{ Session::get('error') }}</p>
-                    @endif
-                </div>
-            </div>
-            <form action="{{ route('checkout.review.order') }}" method="POST" role="form">
+{{--            <div class="row">--}}
+{{--                <div class="col-smmd-12">--}}
+{{--                    @if (Session::has('error'))--}}
+{{--                        <p class="alert alert-danger">{{ Session::get('error') }}</p>--}}
+{{--                    @endif--}}
+{{--                </div>--}}
+{{--            </div>--}}
+            <form action="{{ route('site.addresses.update') }}" method="POST" role="form">
                 @csrf
                 <div class="row">
                     <div class="col-md-12">
@@ -23,58 +23,67 @@
                                 <div class="form-row">
                                     <div class="col form-group">
                                         <label>First name <span class="m-l-5 text-danger"> *</span></label>
-                                        <input type="text" class="form-control" id="billing_first_name" name="billing_first_name">
+                                        <input class="form-control @error('billing_first_name') is-invalid @enderror" type="text" name="billing_first_name" id="billing_first_name" value="{{ old('billing_first_name', $addresses->billing_first_name) }}"/>
+                                        <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                                        @error('billing_first_name') {{ $message }} @enderror
                                     </div>
                                     <div class="col form-group">
                                         <label>Last name <span class="m-l-5 text-danger"> *</span></label>
-                                        <input type="text" class="form-control" id="billing_last_name" name="billing_last_name">
+                                        <input class="form-control @error('billing_last_name') is-invalid @enderror" type="text" name="billing_last_name" id="billing_last_name" value="{{ old('billing_last_name', $addresses->billing_last_name) }}"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Address <span class="m-l-5 text-danger"> *</span></label>
-                                    <input type="text" class="form-control" id="billing_address" name="billing_address">
+                                    <input class="form-control @error('billing_address') is-invalid @enderror" type="text" name="billing_address" id="billing_address" value="{{ old('billing_address', $addresses->billing_address) }}"/>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label>City <span class="m-l-5 text-danger"> *</span></label>
-                                        <input type="text" class="form-control" id="billing_city" name="billing_city">
+                                        <input class="form-control @error('billing_city') is-invalid @enderror" type="text" name="billing_city" id="billing_city" value="{{ old('billing_city', $addresses->billing_city) }}"/>
                                     </div>
                                     <div class="form-group col-md-3">
-                                        <label class="control-label" for="billing_state">State</label>
-                                        <select name="billing_state" id="billing_state" class="form-control @error('billing_state') is-invalid @enderror">
+                                        <label class="control-label" for="billing_state_id">State</label>
+                                        <select name="billing_state_id" id="billing_state_id" class="form-control @error('billing_state_id') is-invalid @enderror">
                                             <option value="0">Choose...</option>
                                             @foreach($states as $s)
-                                                <option value="{{$s->id}}">{{$s->state}}</option>
+                                                @if($addresses->billing_state_id == $s->id)
+                                                    <option value="{{$s->id}}" selected>{{$s->state}}</option>
+                                                @else
+                                                    <option value="{{$s->id}}">{{$s->state}}</option>
+                                                @endif
                                             @endforeach
                                         </select>
-                                        @error('billing_state') {{ $message }} @enderror
+                                        @error('billing_state_id') {{ $message }} @enderror
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label>Post Code <span class="m-l-5 text-danger"> *</span></label>
-                                        <input type="text" class="form-control" id="billing_post_code" name="billing_post_code">
+                                        <input class="form-control @error('billing_zip') is-invalid @enderror" type="text" name="billing_zip" id="billing_zip" value="{{ old('billing_zip', $addresses->billing_zip) }}"/>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
-                                        <label class="control-label" for="billing_country">Country</label>
-                                        <select name="billing_country" id="billing_country" class="form-control @error('billing_country') is-invalid @enderror">
+                                        <label class="control-label" for="billing_countrycode_id">Country</label>
+                                        <select name="billing_countrycode_id" id="billing_countrycode_id" class="form-control @error('billing_countrycode_id') is-invalid @enderror">
                                             <option value="0">Choose...</option>
                                             @foreach($countrycodes as $s)
-                                                <option value="{{$s->id}}">{{$s->country}}</option>
+                                                @if($addresses->billing_countrycode_id == $s->id)
+                                                    <option value="{{$s->id}}" selected>{{$s->country}}</option>
+                                                @else
+                                                    <option value="{{$s->id}}">{{$s->country}}</option>
+                                                @endif
                                             @endforeach
                                         </select>
-                                        @error('billing_country') {{ $message }} @enderror
+                                        @error('billing_countrycode_id') {{ $message }} @enderror
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label>Phone Number <span class="m-l-5 text-danger"> *</span></label>
-                                        <input type="text" class="form-control" id="billing_phone_number" name="billing_phone_number">
+                                        <input class="form-control @error('billing_phone_number') is-invalid @enderror" type="text" name="billing_phone_number" id="billing_phone_number" value="{{ old('billing_phone_number', $addresses->billing_phone_number) }}"/>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label>Email Address <span class="m-l-5 text-danger"> *</span></label>
-                                        <input type="text" class="form-control" id="billing_email" name="billing_email" value="{{ auth()->user()->email }}">
-                                        <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                        <input class="form-control @error('billing_email') is-invalid @enderror" type="text" name="billing_email" id="billing_email" value="{{ old('billing_email', $addresses->billing_email) }}"/>
                                     </div>
                                 </div>
                             </article>
@@ -93,62 +102,70 @@
                                 <div class="form-row">
                                     <div class="col form-group">
                                         <label>First name <span class="m-l-5 text-danger"> *</span></label>
-                                        <input type="text" class="form-control" id="shipping_first_name" name="shipping_first_name">
+                                        <input class="form-control @error('shipping_first_name') is-invalid @enderror" type="text" name="shipping_first_name" id="shipping_first_name" value="{{ old('shipping_first_name', $addresses->shipping_first_name) }}"/>
                                     </div>
                                     <div class="col form-group">
                                         <label>Last name <span class="m-l-5 text-danger"> *</span></label>
-                                        <input type="text" class="form-control" id="shipping_last_name" name="shipping_last_name">
+                                        <input class="form-control @error('shipping_last_name') is-invalid @enderror" type="text" name="shipping_last_name" id="shipping_last_name" value="{{ old('shipping_last_name', $addresses->shipping_last_name) }}"/>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Address <span class="m-l-5 text-danger"> *</span></label>
-                                            <input type="text" class="form-control" id="shipping_address" name="shipping_address">
+                                            <input class="form-control @error('shipping_address') is-invalid @enderror" type="text" name="shipping_address" id="shipping_address" value="{{ old('shipping_address', $addresses->shipping_address) }}"/>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label>City <span class="m-l-5 text-danger"> *</span></label>
-                                        <input type="text" class="form-control" id="shipping_city" name="shipping_city">
+                                        <input class="form-control @error('shipping_city') is-invalid @enderror" type="text" name="shipping_city" id="shipping_city" value="{{ old('shipping_city', $addresses->shipping_city) }}"/>
                                     </div>
                                     <div class="form-group col-md-3">
-                                        <label class="control-label" for="shipping_state">State</label>
-                                        <select name="shipping_state" id="shipping_state" class="form-control @error('shipping_state') is-invalid @enderror">
+                                        <label class="control-label" for="shipping_state_id">State</label>
+                                        <select name="shipping_state_id" id="shipping_state_id" class="form-control @error('shipping_state_id') is-invalid @enderror">
                                             <option value="0">Choose...</option>
                                             @foreach($states as $s)
-                                                <option value="{{$s->id}}">{{$s->state}}</option>
+                                                @if($addresses->shipping_state_id == $s->id)
+                                                    <option value="{{$s->id}}" selected>{{$s->state}}</option>
+                                                @else
+                                                    <option value="{{$s->id}}">{{$s->state}}</option>
+                                                @endif
                                             @endforeach
                                         </select>
-                                        @error('shipping_state') {{ $message }} @enderror
+                                        @error('shipping_state_id') {{ $message }} @enderror
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label>Post Code <span class="m-l-5 text-danger"> *</span></label>
-                                        <input type="text" class="form-control" id="shipping_post_code" name="shipping_post_code">
+                                        <input class="form-control @error('shipping_zip') is-invalid @enderror" type="text" name="shipping_zip" id="shipping_zip" value="{{ old('shipping_zip', $addresses->shipping_zip) }}"/>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
-                                        <label class="control-label" for="shipping_country">Country</label>
-                                        <select name="shipping_country" id="shipping_country" class="form-control @error('shipping_country') is-invalid @enderror">
+                                        <label class="control-label" for="shipping_countrycode_id">Country</label>
+                                        <select name="shipping_countrycode_id" id="shipping_countrycode_id" class="form-control @error('shipping_countrycode_id') is-invalid @enderror">
                                             <option value="0">Choose...</option>
                                             @foreach($countrycodes as $s)
-                                                <option value="{{$s->id}}">{{$s->country}}</option>
+                                                @if($addresses->shipping_countrycode_id == $s->id)
+                                                    <option value="{{$s->id}}" selected>{{$s->country}}</option>
+                                                @else
+                                                    <option value="{{$s->id}}">{{$s->country}}</option>
+                                                @endif
                                             @endforeach
                                         </select>
-                                        @error('shipping_country') {{ $message }} @enderror
+                                        @error('shipping_countrycode_id') {{ $message }} @enderror
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label>Phone Number <span class="m-l-5 text-danger"> *</span></label>
-                                        <input type="text" class="form-control" id="shipping_phone_number" name="shipping_phone_number">
+                                        <input class="form-control @error('shipping_phone_number') is-invalid @enderror" type="text" name="shipping_phone_number" id="shipping_phone_number" value="{{ old('shipping_phone_number', $addresses->shipping_phone_number) }}"/>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label>Email Address <span class="m-l-5 text-danger"> *</span></label>
-                                        <input type="text" class="form-control" id="shipping_email" name="shipping_email" value="{{ auth()->user()->email }}">
-                                        <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                        <input class="form-control @error('shipping_email') is-invalid @enderror" type="text" name="shipping_email" id="shipping_email" value="{{ old('shipping_email', $addresses->shipping_email) }}"/>
+{{--                                        <small class="form-text text-muted">We'll never share your email with anyone else.</small>--}}
                                     </div>
                                 </div>
                             </article>

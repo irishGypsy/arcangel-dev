@@ -41,10 +41,10 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="control-label" for="phone_number">Phone Number</label>
-                        <input class="form-control @error('phone_number') is-invalid @enderror" type="text" placeholder="Enter phone_number" id="phone_number" name="phone_number" value="{{ old('phone_number', Auth::guard()->user()->phone_number) }}"/>
+                        <label class="control-label" for="phone">Phone Number</label>
+                        <input class="form-control @error('phone') is-invalid @enderror" type="text" placeholder="Enter phone" id="phone" name="phone" value="{{ old('phone', Auth::guard()->user()->phone) }}"/>
                         <div class="invalid-feedback active">
-                            <i class="fa fa-exclamation-circle fa-fw"></i> @error('phone_number') <span>{{ $message }}</span> @enderror
+                            <i class="fa fa-exclamation-circle fa-fw"></i> @error('phone') <span>{{ $message }}</span> @enderror
                         </div>
                     </div>
                 </div>

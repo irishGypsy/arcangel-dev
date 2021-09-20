@@ -1,7 +1,7 @@
 
 
 <div class="tile">
-    <form action="{{ route('affiliate.updateprofile') }}" method="POST" role="form" enctype="multipart/form-data">
+    <form action="{{ route('site.profile.updateprofile') }}" method="POST" role="form" enctype="multipart/form-data">
         @csrf
         <h3 class="tile-title profile-title p-2">Change Password</h3>
         <hr>

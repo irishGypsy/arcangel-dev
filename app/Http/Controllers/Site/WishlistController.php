@@ -111,7 +111,7 @@ class WishlistController extends BaseController
         if (!$wishlist) {
             return $this->responseRedirectBack('Error occurred while deleting Wishlist.', 'error', true, true);
         }
-        return $this->responseRedirect('admin.wishlists.index', 'Wishlist deleted successfully' ,'success',false, false);
+        return $this->responseRedirect('site.profile', 'Wishlist deleted successfully' ,'success',false, false);
     }
 }
 

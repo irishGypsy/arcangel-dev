@@ -50,6 +50,8 @@ use App\Contracts\AffiliateDashboardContract;
 use App\Repositories\AffiliateDashboardRepository;
 use App\Contracts\WishlistContract;
 use App\Repositories\WishlistRepository;
+use App\Contracts\AddressContract;
+use App\Repositories\AddressRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -76,7 +78,8 @@ class RepositoryServiceProvider extends ServiceProvider
         ProductShippingInfoContract::class      =>          ProductShippingInfoRepository::class,
         VideoContract::class                    =>          VideoRepository::class,
         AffiliateDashboardContract::class       =>          AffiliateDashboardRepository::class,
-        WishlistContract::class                 =>          WishlistRepository::class
+        WishlistContract::class                 =>          WishlistRepository::class,
+        AddressContract::class                  =>          AddressRepository::class
 
     ];
 

@@ -7,49 +7,29 @@
     @include('site.partials.styles')
     @include('site.partials.scripts')
 
-    <script>
-        $(window).scroll(function () {
-            if ($(window).scrollTop() > 200) {
-                $(".headpanel").addClass('sticky');
-            } else {
-                $(".headpanel").removeClass('sticky');
-
-            }
-
-        });
-
-    </script>
-    {{--    @include('site.partials.header')--}}
-
 </head>
 <body style="background-color:#333333">
 @include('site.partials.header')
 @include('site.partials.nav')
 
-
-
 <div class="content-wrapper" style="background-color: white;">
-    <div class="clear"></div><!-- end of clear -->
-
+    <div class="clear"></div>
     <div class="filterpanel">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12 leftfilter align-items-center">
                     <div id="finish_panel">
                     </div>
-
                     <div id="battery_group_panel">
                         <div class="panel">
                             <div class="panel-heading">
                                 <span data-toggle="collapse" data-target="#demometerial" class="clickable">Group Number
                                     <i class="fa fa-minus-circle"></i>
                                 </span>
-                            </div><!-- end of panel-heading -->
-
+                            </div>
                             <div class="panel-body collapse in scrol" id="demometerial">
                                 <ul class="list-unstyled listli">
                                     @foreach($battery_groups as $b)
-
                                     <li>
                                         <div class="checkbox">
                                             <label>
@@ -63,13 +43,11 @@
                                             </label>
                                         </div>
                                     </li>
-
                                     @endforeach
                                 </ul>
-                            </div><!-- end of panel-body -->
-                        </div><!-- end fo panel -->
-                    </div><!-- end of battery_group_panel  -->
-
+                            </div>
+                        </div>
+                    </div>
                     <div id="capacity_panel">
                         <div class="panel">
                             <div class="panel-heading">
@@ -93,27 +71,10 @@
                                     @endforeach
                                 </ul>
                                 <div class="cl"></div>
-                            </div><!-- end of panel-body -->
-                        </div><!-- end fo panel -->
+                            </div>
+                        </div>
                     </div>
-
-
-{{--                    <div class="panel">--}}
-{{--                        <div class="panel-heading"><span data-toggle="collapse" data-target="#demoprice" class="clickable">Price <i class="fa fa-minus-circle"></i></span>--}}
-{{--                        </div><!-- end of panel-heading -->--}}
-{{--                        <div class="panel-body collapse in scrol" id="demoprice">--}}
-
-{{--                            <div class="rangeslider">--}}
-{{--                                <b class="lep" id="app_min_price">$ 1</b>--}}
-{{--                                <div class="slider slider-horizontal" id=""><div class="slider-track"><div class="slider-track-low" style="left: 0px; width: 0%;"></div><div class="slider-selection" style="left: 0%; width: 100%;"></div><div class="slider-track-high" style="right: 0px; width: 0%;"></div><div class="slider-handle min-slider-handle round" role="slider" aria-valuemin="1" aria-valuemax="2600" aria-valuenow="1" tabindex="0" style="left: 0%;"></div><div class="slider-handle max-slider-handle round" role="slider" aria-valuemin="1" aria-valuemax="2600" aria-valuenow="2600" tabindex="0" style="left: 100%;"></div></div><div class="tooltip tooltip-main top" role="presentation" style="left: 50%; margin-left: -30px;"><div class="tooltip-arrow"></div><div class="tooltip-inner">1 : 2600</div></div><div class="tooltip tooltip-min top" role="presentation" style="left: 0%; margin-left: -11.5px;"><div class="tooltip-arrow"></div><div class="tooltip-inner">1</div></div><div class="tooltip tooltip-max top" role="presentation" style="left: 100%; margin-left: -21.5px;"><div class="tooltip-arrow"></div><div class="tooltip-inner">2600</div></div></div><input id="ex2" type="text" class="span2" value="1,2600" data-slider-min="1" data-slider-max="2600" data-slider-step="5" data-slider-value="[1,2600]" data-value="1,2600" style="display: none;">--}}
-{{--                                <b class="rip" id="app_max_price">$ 2600</b>--}}
-{{--                            </div><!-- end of rangeslider -->--}}
-
-{{--                        </div><!-- end of panel-body -->--}}
-{{--                    </div><!-- end fo panel -->--}}
-
-                </div><!-- end of col -->
-
+                </div>
                 <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12 rightfilter pd_n1">
                     <div class="prodboxlist">
                         <div id="showProdList">
@@ -130,29 +91,24 @@
                                         </select>
                                     </div>
                                 </form>
-                            </div><!-- end of boxselect -->
-
-                            <div class="clear"></div><!-- end of clear -->
+                            </div>
+                            <div class="clear"></div>
                             <div id="scrolldiv" class="products_list">
-
                                 @foreach($products as $p)
-
                                 <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 pro_bdr product_box">
                                     <div class="panel prodbox">
                                         <div class="panel-body pro_imgs">
                                             <a href="/product/{{ $p->id }}" id="p_count">
                                                 <div class="imgbox">
                                                     <img src="{{ asset('storage/'.$p->images->first()->image) }}" alt="{{ $p->name }}">
-                                                </div><!-- end of imgbox -->
+                                                </div>
                                             </a>
-                                        </div><!-- end of panel-body -->
-
+                                        </div>
                                         <div class="hvr-float-shadow ">
                                             <a href="/product/{{ $p->id }}">{{ $p->name }}</a>
                                             <input type="hidden" class = "groupcheck" name="groupcheck" value="{{ $p->batterygroup->battery_group_name }}" data-tag-batgru="{{ $p->batterygroup->battery_group_name }}">
                                             <input type="hidden" class = "groupcheck" name="capcheck" value="{{ $p->capacity->capacity_name }}" data-tag-capgru="{{ $p->capacity->capacity_name }}">
                                         </div>
-
                                         <div class="panel-footer">
                                             <table class="table">
                                                 <tbody>
@@ -177,24 +133,20 @@
                                             <div class="ctn">
                                                 <a class="bncart" href="/product/{{ $p->id }}" title="Add to Cart">Buy Now</a>
                                             </div>
-                                        </div><!-- end of panel-footer-->
-                                    </div><!-- end of prodbox -->
-                                </div><!-- end of col -->
-
+                                        </div>
+                                    </div>
+                                </div>
                                 @endforeach
-
-                            </div><!-- end of products_list -->
-                        </div><!-- close showprodlist -->
-                    </div><!-- end of prodboxlist -->
-                </div><!-- end of rightfilter -->
-            </div><!-- end of row -->
-
-        </div><!-- end of container -->
-    </div><!-- end of filterpanel -->
-    <div class="clear"></div><!-- end of clear -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
 </div>
 <script>
-
     // get var ALL checkboxes
     var allCheckObj = $("input[type=checkbox]");
     // get all checkbox vals
@@ -214,7 +166,6 @@
     var checkVal = null;
     var boxObj = null;
     var checkObj = null;
-
     // loop each filter checkbox
     $("#battery_group_panel input[type=checkbox]").each(function(i){
         $(this).change(function(){
@@ -239,7 +190,6 @@
             })
         })
 });
-
     $("#capacity_panel input[type=checkbox]").each(function(i){
         $(this).change(function(){
             allChecked = [];
@@ -263,8 +213,6 @@
             })
         })
     });
-
 </script>
-
     @include('site.partials.footer')
 

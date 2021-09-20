@@ -7,6 +7,7 @@
         </a>
     </div>
     <br>
+    <div class="sticky-top">
     <div class="d-flex flex-row justify-content-center col-md-12 border-top" id="stickymenu" style="width:80%; margin: 0 auto;border-color: #a2a2a2;">
         <div class="p-3">
             <a href="{{ route('products.list') }}">PRODUCTS</a>
@@ -25,5 +26,6 @@
                 <a href="{{ route('post.page', $h->id) }}">{{ \Illuminate\Support\Str::upper($h->title) }}</a>
             </div>
         @endforeach
+    </div>
     </div>
 </div>

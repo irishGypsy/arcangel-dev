@@ -81,7 +81,7 @@ class ProductController extends BaseController
 
         $capacities = DB::table('capacities')->select('id','capacity_name')->get();
 
-        $batterygroups = DB::table('battery_groups')->select('id','material_name')->get();
+        $batterygroups = DB::table('battery_groups')->select('id','battery_group_name')->get();
 
         $countrycodes = DB::table('country_codes')->select('id','country')->get();
 

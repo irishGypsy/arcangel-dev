@@ -24,28 +24,26 @@
                                 <span>|</span>
                                 <a href="{{ route('register') }}" class="sig_btn header-black">Sign Up</a>
                                 <span>|</span>
+                                <a href="{{ route('checkout.cart') }}" class="btn btn-primary header-black mr-3" style="width:100px;">
+                                    <i class="fa fa-shopping-cart"></i> Cart (0)</a>
+{{--                                <span>|</span>--}}
                                 @endguest
-                                    <a href="{{ route('checkout.cart') }}" class="btn btn-primary header-black mr-3" style="width:100px;">
-                                        <i class="fa fa-shopping-cart"></i> Cart ({{ $cartCount }})</a>
                                 @auth
+                                    <a href="{{ route('checkout.cart') }}" class="btn btn-primary header-black mr-3" style="width:100px;">
+                                        <i class="fa fa-shopping-cart"></i> Cart ({{ $cartCount ?? '0' }})
+                                    </a>
                                     <span>|</span>
-
-                                        <div class="dropdown pl-3">
-                                            <a class="btn btn-primary header-black dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fa fa-user pl-3"></i> Profile
-                                            </a>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                <a href="{{route('site.profile')}}" class="dropdown-item">My Profile</a>
+                                    <div class="dropdown pl-3">
+                                        <a class="btn btn-primary header-black dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa fa-user pl-3"></i> Profile
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                            <a href="{{route('site.profile')}}" class="dropdown-item">My Profile</a>
 {{--                                                <form action="" method="POST">--}}
-                                                <a href="{{route('logout.x')}}" class="dropdown-item">Logout</a>
+                                            <a href="{{route('logout.x')}}" class="dropdown-item">Logout</a>
 {{--                                                </form>--}}
-                                            </div>
                                         </div>
-
-{{--                                    <a class="dropdown-item header-black" href="{{ route('site.profile') }}">--}}
-{{--                                        <i class="fa fa-user pl-3"></i> Profile </a>--}}
-{{--                                    <a class="dropdown-item header-black" href="{{ route('logout') }}">--}}
-{{--                                        <i class="fa fa-sign-out fa-lg"></i> Logout--}}
+                                    </div>
                                     </a>
                                 @endauth
                             </div>

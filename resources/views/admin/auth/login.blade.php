@@ -43,7 +43,7 @@
         </form>
     </div>
 </section>
-<script src="{{ asset('backend/js/jquery-3.2.1.min.js') }}"></script>
+<script src="{{ asset('backend/js/jquery-3.5.1.min.js') }}"></script>
 <script src="{{ asset('backend/js/popper.min.js') }}"></script>
 <script src="{{ asset('backend/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('backend/js/main.js') }}"></script>

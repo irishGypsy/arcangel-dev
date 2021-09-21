@@ -58,9 +58,9 @@
                                             <select name="batterygroup_id" id="batterygroup_id" class="form-control @error('batterygroup_id') is-invalid @enderror">
                                                 @foreach($batterygroups as $b)
                                                     @if($b->id == $product->batterygroup_id)
-                                                        <option value="{{ $b->id }}" selected>{{ $b->material_name }}</option>
+                                                        <option value="{{ $b->id }}" selected>{{ $b->battery_group_name }}</option>
                                                     @else
-                                                        <option value="{{ $b->id }}">{{ $b->material_name }}</option>
+                                                        <option value="{{ $b->id }}">{{ $b->battery_group_name }}</option>
                                                     @endif
                                                 @endforeach
                                             </select>

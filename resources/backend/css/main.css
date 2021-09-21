@@ -1643,6 +1643,7 @@ pre code {
   padding: 0.75rem;
   vertical-align: top;
   border-top: 1px solid #dee2e6;
+    font-size: 14px !important;
 }
 
 .table thead th {
@@ -13741,19 +13742,19 @@ be a descendant of the grid when it is being dragged.
   margin-bottom: 5px;
   font-weight: 400;
   font-size: 16px;
-  color: white;
+  color: black;
 }
 
 .widget-small .info p {
   margin: 0;
   font-size: 16px;
-  color:white;
+  color:black;
 }
 
 .widget-small .info b {
     margin: 0;
     font-size: 20px;
-    color:white;
+    color:black;
 }
 
 .widget-small.primary {

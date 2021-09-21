@@ -9,6 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('backend/css/main.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('backend/css/font-awesome/4.7.0/css/font-awesome.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('backend/css/bootstrap.min.css') }}">
 
 </head>
 <body class="app sidebar-mini rtl">
@@ -17,15 +18,50 @@
 <main class="app-content" id="app">
     @yield('content')
 </main>
+
 </body>
 </html>
-@stack('scripts')
-<script src="{{ asset('backend/js/jquery-3.2.1.min.js') }}"></script>
-<script src="{{ asset('backend/js/popper.min.js') }}"></script>
+{{--@stack('scripts')--}}
+{{--<script src="{{ asset('backend/js/jquery-3.5.1.min.js') }}"> </script>--}}
+<script src="{{ asset('backend/js/jquery-3.6.js') }}" ></script>
 <script src="{{ asset('backend/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('backend/js/popper.min.js') }}"></script>
 <script src="{{ asset('backend/js/main.js') }}"></script>
 <script src="{{ asset('backend/js/plugins/pace.min.js') }}"></script>
 <script src="{{ asset('node_modules/tinymce/tinymce.js') }}"></script>
+<script src="{{ asset('backend/js/plugins/chart.js') }}"></script>
+{{--<script src="{{ asset('backend/js/app.js') }}"></script>--}}
+<script type="text/javascript" src="{{ asset('backend/js/plugins/jquery.dataTables.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('backend/js/plugins/dataTables.bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{asset('backend/js/plugins/chart.js')}}"></script>
+
+<script type="text/javascript">
+
+        var data = {
+            labels: {!!  $labels  !!},
+            datasets: [
+                {
+                    label: "Sales",
+                    fillColor: "rgba(25,193,193,0.2)",
+                    strokeColor: "rgb(10,47,168,1)",
+                    pointColor: "rgba(220,220,220,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(220,220,220,1)",
+                    data: {{ $data }}
+                }
+            ]
+        };
+
+        var ctxb = $("#salesBarChart").get(0).getContext("2d");
+        var barChart = new Chart(ctxb).Bar(data);
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#sampleTable').DataTable();
+    });
+    //
+</script>
 <script type="text/javascript">
     tinymce.init({
         selector: 'textarea.tinymce-editor',

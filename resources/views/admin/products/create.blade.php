@@ -1,9 +1,9 @@
 @extends('admin.app')
 @section('title') {{ $pageTitle }} @endsection
-{{--@section('styles')--}}
+@section('styles')
 {{--    <link rel="stylesheet" type="text/css" href="{{ asset('backend/js/plugins/dropzone/dist/min/dropzone.min.css') }}"/>--}}
-{{--@endsection--}}
-=@section('content')
+@endsection
+@section('content')
     <div class="app-title">
         <div>
             <h1><i class="fa fa-shopping-bag"></i> {{ $pageTitle }}</h1>
@@ -53,7 +53,7 @@
                                         <select name="batterygroup_id" id="batterygroup_id" class="form-control @error('batterygroup_id') is-invalid @enderror">
                                             <option value="0">Choose...</option>
                                             @foreach($batterygroups as $b)
-                                                <option value="{{$b->id}}">{{$b->material_name}}</option>
+                                                <option value="{{$b->id}}">{{$b->battery_group_name}}</option>
                                             @endforeach
                                         </select>
                                         @error('batterygroup_id') {{ $message }} @enderror
@@ -170,7 +170,7 @@
     {{--                    4th row - tech specs--}}
                             <div class="form-group">
                                 <label class="control-label" for="technical_specifications">Technical Specifications <span class="m-l-5 text-danger"> *</span></label>
-                                <textarea name="technical_specifications" rows="5" cols="40" class="form-control tinymce-editor"></textarea>
+                                <textarea name="technical_specifications" rows="5" cols="40" class="tinymce-editor form-control "></textarea>
                             </div>
                                 <div class="tile-footer">
                                     <div class="row d-print-none mt-2">
@@ -189,4 +189,44 @@
     </div>
 
 @endsection
+@push('scripts')
+<script src="{{ asset('node_modules/tinymce/tinymce.js') }}"></script>
+<script type="text/javascript">
 
+    tinymce.init({
+        selector: 'textarea.tinymce-editor',
+        height: 500,
+        menubar: false,
+        plugins: [
+            'advlist autolink lists link image charmap print preview anchor',
+            'searchreplace visualblocks code fullscreen',
+            'insertdatetime media table paste code help image imagetools wordcount'
+        ],
+        toolbar1: 'undo redo | formatselect | fontselect | fontsizeselect bold italic backcolor',
+        toolbar2:    ' | alignleft aligncenter ' +
+            'alignright alignjustify | bullist numlist outdent indent | ' +
+            'removeformat | imagetools | help' ,
+        menu: {
+            file: {title: 'File', items: 'newdocument restoredraft | preview | print '},
+            edit: {title: 'Edit', items: 'undo redo | cut copy paste | selectall | searchreplace'},
+            view: {
+                title: 'View',
+                items: 'code | visualaid visualchars visualblocks | spellchecker | preview fullscreen'
+            },
+            insert: {
+                title: 'Insert',
+                items: 'image link media template codesample inserttable | charmap emoticons hr | pagebreak nonbreaking anchor toc | insertdatetime'
+            },
+            format: {
+                title: 'Format',
+                items: 'bold italic underline strikethrough superscript subscript codeformat | formats blockformats fontformats fontsizes align lineheight | forecolor backcolor | removeformat'
+            },
+            tools: {title: 'Tools', items: 'spellchecker spellcheckerlanguage | code wordcount'},
+            table: {title: 'Table', items: 'inserttable | cell row column | tableprops deletetable'},
+            help: {title: 'Help', items: 'help'}
+        },
+        content_css: '//www.tiny.cloud/css/codepen.min.css'
+    });
+</script>
+
+@endpush

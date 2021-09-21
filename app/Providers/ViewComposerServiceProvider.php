@@ -21,9 +21,9 @@ class ViewComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer('site.partials.nav', function ($view) {
+//        View::composer('site.partials.nav', function ($view) {
 //            $view->with('categories', Category::orderByRaw('-name ASC')->get()->nest());
-        });
+//        });
 //        View::composer('site.partials.header', function ($view) {
 //            $view->with('cartCount', function() {
 //                if(Cart::session(Auth::guard()->user()->getContent()->count() == 0)){
@@ -37,36 +37,56 @@ class ViewComposerServiceProvider extends ServiceProvider
 //        });
         View::composer('site.partials.nav', function ($view) {
             $view->with('header_posts', DB::table('posts')
-                                            ->where([
-                                                ['menu_placement','=','Header'],
+                ->where([
+                    ['menu_placement', '=', 'Header'],
 
-                                                ['status','=','Active']])
-                                            ->get());
+                    ['status', '=', 'Active']])
+                ->get());
         });
 
         View::composer('site.partials.footer', function ($view) {
             $view->with('footer_posts', DB::table('posts')
-                ->where('status','=','Active')
+                ->where('status', '=', 'Active')
                 ->get());
         });
 
         View::composer('site.partials.carousel', function ($view) {
             $view->with('banners', DB::table('banners')
-                ->where('status','=','Active')
+                ->where('status', '=', 'Active')
                 ->get());
         });
 
         View::composer('site.partials.featured', function ($view) {
-            $view->with('products', Product::where('popular','=','1')
+            $view->with('products', Product::where('popular', '=', '1')
                 ->get());
         });
 
-        View::composer('site.profile.includes.affiliatelinks', function($view) {
-           $view->with('affiliate',DB::table('users')
-               ->join('affiliates','users.affiliate_id','=','affiliates.id')
-               ->where('users.id','=',Auth::guard()->user()->id)
-               ->get());
+        View::composer('auth.register', function ($view) {
+            $view->with('states', DB::table('state_codes')
+                ->get())
+                ->with('countrycodes', DB::table('country_codes')
+                    ->get());
+        });
 
+        View::composer('admin.dashboard.index', function ($view) {
+            $view->with('ordercount', DB::table('orders')->count())
+                ->with('ordersum', DB::table('orders')->sum('grand_total'));
+
+
+        });
+
+        View::composer('admin.app', function ($view) {
+
+            $view->with('labels', DB::table('orders')
+                ->selectRaw('YEAR(created_at),MONTH(created_at),LEFT(MONTHNAME(created_at),3) as month,count(*) as count')
+                ->groupByRaw('YEAR(created_at), MONTH(created_at)')
+                ->orderByRaw('YEAR(created_at),MONTH(created_at)')
+                ->get()->pluck('month')->toJson())
+                ->with('data', DB::table('orders')
+                    ->selectRaw('YEAR(created_at),MONTH(created_at),MONTHNAME(created_at) as month,count(*) as count')
+                    ->groupByRaw('YEAR(created_at), MONTH(created_at)')
+                    ->orderByRaw('YEAR(created_at),MONTH(created_at)')
+                    ->get()->pluck('count')->toJson());
 
         });
     }

@@ -27,29 +27,20 @@
                         <span class="app-menu__label">Group Number</span>
                     </a>
                 </li>
-            </ul>
-        </li>
-
-
-
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">Affiliate Management System</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-
-            <ul class="treeview-menu">
                 <li>
-                    <a class="treeview-item {{ Route::currentRouteName() == 'admin.affiliates.index' ? 'active' : '' }}" href="{{ route('admin.affiliates.index') }}">
+                    <a class="treeview-item {{ Route::currentRouteName() == 'admin.packages.index' ? 'active' : '' }}" href="{{ route('admin.packages.index') }}">
                         <i class="app-menu__icon fa fa-dashboard"></i>
-                        <span class="app-menu__label">Affiliates</span>
+                        <span class="app-menu__label">Packages</span>
                     </a>
                 </li>
                 <li>
-                    <a class="treeview-item {{ Route::currentRouteName() == 'admin.referrals.index' ? 'active' : '' }}" href="{{ route('admin.referrals.index') }}">
+                    <a class="treeview-item {{ Route::currentRouteName() == 'admin.productpackages.index' ? 'active' : '' }}" href="{{ route('admin.productpackages.index') }}">
                         <i class="app-menu__icon fa fa-dashboard"></i>
-                        <span class="app-menu__label">Referrals</span>
+                        <span class="app-menu__label">Product Packages</span>
                     </a>
                 </li>
             </ul>
         </li>
-
         <li>
             <a class="app-menu__item {{ Route::currentRouteName() == 'admin.batteryfinders.index' ? 'active' : '' }}" href="{{ route('admin.batteryfinders.index') }}">
                 <i class="app-menu__icon fa fa-dashboard"></i>

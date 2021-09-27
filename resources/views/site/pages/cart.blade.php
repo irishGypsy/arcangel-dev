@@ -6,15 +6,6 @@
     <title>@yield('title') - {{ config('app.name') }}</title>
     @include('site.partials.styles')
     @include('site.partials.scripts')
-{{--    <script>--}}
-{{--        $(window).scroll(function () {--}}
-{{--            if ($(window).scrollTop() > 200) {--}}
-{{--                $("#stickymenu").addClass('sticky');--}}
-{{--            } else {--}}
-{{--                $("#stickymenu").removeClass('sticky');--}}
-{{--            }--}}
-{{--        });--}}
-{{--    </script>--}}
 </head>
 <body style="background-color:#333333">
 @include('site.partials.header')
@@ -92,7 +83,7 @@
                                     <td style="vertical-align: middle;">
                                         <div class="price-wrap">
                                             <var class="price">
-                                                ${{ $item->attributes->shipping }}
+                                                ${{ number_format($item->attributes->shipping,2,'.',',') }}
                                             </var>
                                             <small class="text-muted">each</small>
                                         </div>
@@ -101,7 +92,7 @@
                                     <td style="vertical-align: middle;">
                                         <div class="price-wrap">
                                             <var class="price">
-                                                ${{ \Cart::session(Auth::guard()->user()->id)->get($item->id)->getPriceSum() }}
+                                                ${{ number_format(\Cart::session(Auth::guard()->user()->id)->get($item->id)->getPriceSum(),2,'.',',') }}
                                             </var>
                                         </div>
                                     </td>
@@ -121,7 +112,7 @@
                 <div class="border">
                     <div class="border d-flex flex-row justify-content-between p-2 ">
                         <div class="">Sub Total</div>
-                        <div class="">$ {{ $subTotal }}</div>
+                        <div class="">$ {{ number_format(\Cart::session(Auth::guard()->user()->id)->getSubTotalWithoutConditions(),2,'.',',') }}</div>
                     </div>
                     <br>
                     <div class="border d-flex flex-row justify-content-between p-2 ">

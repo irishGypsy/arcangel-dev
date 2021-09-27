@@ -88,20 +88,45 @@
                                     <form action="{{ route('product.add.cart') }}" method="POST" role="form" id="addToCart">
                                         @csrf
                                         <div class="row">
-                                        <div class="col-sm-12">
-                                            <dl class="row">
-                                                <dt class="col-sm-3">Quantity: </dt>
-                                                    <input class="form-control" type="number" min="1" value="1" max="{{ $product->id }}" name="qty" style="width:70px;">
-                                                    <input type="hidden" name="productId" value="{{ $product->id }}">
-                                                <input type="hidden" name="price" value="{{ $saleprice != null ? $saleprice : $product->price }}">
-                                                <dd class="col-sm-9"><button type="submit" class="btn btn-success">
+                                           <div class="col-sm-12">
+                                                <div class="row">
+                                                    <div class="col-sm-6 my-1">
+                                                        <b>Quantity:</b>
+                                                    </div>
+                                                        <div class="col-sm-6 my-1">
+                                                            <input class="form-control" type="number" min="1" value="1" max="{{ $product->id }}" name="qty" style="width:70px;">
+                                                            <input type="hidden" name="productId" value="{{ $product->id }}">
+                                                            <input type="hidden" name="price" value="{{ $saleprice != null ? $saleprice : $product->price }}">
+                                                        </div>
+                                                </div>
+
+                                               @if($packages->count() >=1)
+                                               <div class="row">
+                                                   <div class="col-sm-6 my-1">
+                                                       <b>Choose a package to customize your battery:</b>
+                                                   </div>
+                                                   <div class="col-sm-6 my-1">
+                                                       <select class="form-control my-1">
+                                                           <option value="">Choose...</option>
+                                                           @foreach($packages as $p)
+                                                               <option value="{{ $p->package_id }}">
+                {{ $p->name.'     ( + $'.number_format($p->price_adjustment,2,'.',',').') ' }}
+                                                               </option>
+                                                               @endforeach
+                                                       </select>
+                                                   </div>
+                                               </div>
+                                               @endif
+
+                                                <div class="col-sm-12 my-2 text-right">
+                                                    <button type="submit" class="btn btn-primary px-4">
                                                         <i class="fas fa-shopping-cart"></i> Add To Cart
                                                     </button>
 
-                                                </dd>
-                                            </dl>
+                                                </div>
+                                            </div>
                                         </div>
-                                        </div>
+
                                     </form>
 
 <br>
@@ -122,27 +147,7 @@
         </div>
     </section>
     <br>
-{{--    <hr>--}}
+
     <br>
 @include('site.partials.footer')
-{{--@stop--}}
-@push('scripts')
-{{--    <script>--}}
-{{--        $(document).ready(function () {--}}
-{{--            $('#addToCart').submit(function (e) {--}}
-{{--                if ($('.option').val() == 0) {--}}
-{{--                    e.preventDefault();--}}
-{{--                    alert('Please select an option');--}}
-{{--                }--}}
-{{--            });--}}
-{{--            $('.option').change(function () {--}}
-{{--                $('#productPrice').html("{{ $product->sale_price != '' ? $product->sale_price : $product->price }}");--}}
-{{--                let extraPrice = $(this).find(':selected').data('price');--}}
-{{--                let price = parseFloat($('#productPrice').html());--}}
-{{--                let finalPrice = (Number(extraPrice) + price).toFixed(2);--}}
-{{--                $('#finalPrice').val(finalPrice);--}}
-{{--                $('#productPrice').html(finalPrice);--}}
-{{--            });--}}
-{{--        });--}}
-{{--    </script>--}}
-@endpush
+

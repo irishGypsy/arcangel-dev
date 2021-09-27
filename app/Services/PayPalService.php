@@ -44,16 +44,13 @@ class PayPalService
 
     public function processPayment($order)
     {
-        // Add shipping amount if you want to charge for shipping
-        $shipping = sprintf('%0.2f', 0);
-        // Add any tax amount if you want to apply any tax rule
+
+        $shipping = sprintf('%0.2f', $order->shipping);
         $tax = sprintf('%0.2f', 0);
 
-        // Create a new instance of Payer class
         $payer = new Payer();
         $payer->setPaymentMethod("paypal");
 
-        // Adding items to the list
         $items = array();
         foreach ($order->items as $item)
         {
@@ -62,38 +59,33 @@ class PayPalService
                 ->setCurrency(config('settings.currency_code'))
                 ->setQuantity($item->quantity)
                 ->setPrice(sprintf('%0.2f', $item->price));
-
             array_push($items, $orderItems[$item->id]);
         }
 
         $itemList = new ItemList();
         $itemList->setItems($items);
 
-        // Setting Shipping Details
         $details = new Details();
         $details->setShipping($shipping)
             ->setTax($tax)
-            ->setSubtotal(sprintf('%0.2f', $order->grand_total));
+            ->setSubtotal(sprintf('%0.2f', $order->subtotal))
+        ;
 
-        // Create chargeable amount
         $amount = new Amount();
         $amount->setCurrency(config('settings.currency_code'))
             ->setTotal(sprintf('%0.2f', $order->grand_total))
             ->setDetails($details);
 
-        // Creating a transaction
         $transaction = new Transaction();
         $transaction->setAmount($amount)
             ->setItemList($itemList)
             ->setDescription($order->user->full_name)
             ->setInvoiceNumber($order->order_number);
 
-        // Setting up redirection urls
         $redirectUrls = new RedirectUrls();
         $redirectUrls->setReturnUrl(route('checkout.payment.complete'))
             ->setCancelUrl(route('checkout.index'));
 
-        // Creating payment instance
         $payment = new Payment();
         $payment->setIntent("sale")
             ->setPayer($payer)
@@ -101,9 +93,7 @@ class PayPalService
             ->setTransactions(array($transaction));
 
         try {
-
             $payment->create($this->payPal);
-
         } catch (PayPalConnectionException $exception) {
             echo $exception->getCode(); // Prints the Error Code
             echo $exception->getData(); // Prints the detailed error message
@@ -136,17 +126,7 @@ class PayPalService
         }
 
         if ($result->state === 'approved') {
-            $transactions = $result->getTransactions();
-            $transaction = $transactions[0];
-            $invoiceId = $transaction->invoice_number;
-
-            $relatedResources = $transactions[0]->getRelatedResources();
-            $sale = $relatedResources[0]->getSale();
-            $saleId = $sale->getId();
-
-            $transactionData = ['salesId' => $saleId, 'invoiceId' => $invoiceId];
-
-            return $transactionData;
+            return $result;
         } else {
             echo "<h3>".$result->state."</h3>";
             var_dump($result);

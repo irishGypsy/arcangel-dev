@@ -9,8 +9,8 @@
         <a href="{{ route('admin.products.create') }}" class="btn btn-primary pull-right">Add Product</a>
     </div>
     @include('admin.partials.flash')
-{{--============ start general tab =============    --}}
 <div class="tab-content">
+{{--============ start general tab =============    --}}
     <div class="tab-pane active" id="general">
         <div class="row">
             <div class="col-md-12">
@@ -49,9 +49,9 @@
     {{--                                clickable star indicator to set item popular or not--}}
                                     <td><a href="{{ route('admin.products.flippopular', $product->id) }}">
                                         @if($product->popular)
-                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star primary" aria-hidden="true"></i>
                                         @else
-                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o primary" aria-hidden="true"></i>
                                         @endif
                                         </a>
                                     </td>

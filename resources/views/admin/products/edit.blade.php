@@ -14,10 +14,11 @@
         <div class="col-md-3">
             <div class="tile p-0">
                 <ul class="nav flex-column nav-tabs user-tabs">
-                    <li class="nav-item"><a class="nav-link active" href="#general" data-toggle="tab">General</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#images" data-toggle="tab">Images</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#shipinfo" data-toggle="tab">Shipping Info</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#inventory" data-toggle="tab">Inventory</a></li>
+                    <li class="nav-item"><a class="nav-link active sub-sidebar-links" href="#general" data-toggle="tab">General</a></li>
+                    <li class="nav-item"><a class="nav-link sub-sidebar-links" href="#images" data-toggle="tab">Images</a></li>
+                    <li class="nav-item"><a class="nav-link sub-sidebar-links" href="#shipinfo" data-toggle="tab">Shipping Info</a></li>
+                    <li class="nav-item"><a class="nav-link sub-sidebar-links" href="#inventory" data-toggle="tab">Inventory</a></li>
+                    <li class="nav-item"><a class="nav-link sub-sidebar-links" href="#packages" data-toggle="tab">Packages</a></li>
                 </ul>
             </div>
         </div>
@@ -192,8 +193,8 @@
                             <div class="tile-footer">
                                 <div class="row d-print-none mt-2">
                                     <div class="col-12 text-right">
-                                        <button class="btn btn-success" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Update Product</button>
-                                        <a class="btn btn-danger" href="{{ route('admin.products.index') }}"><i class="fa fa-fw fa-lg fa-arrow-left"></i>Go Back</a>
+                                        <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Update Product</button>
+                                        <a class="btn btn-secondary" href="{{ route('admin.products.index') }}"><i class="fa fa-fw fa-lg fa-arrow-left"></i>Go Back</a>
                                     </div>
                                 </div>
                             </div></div>
@@ -209,19 +210,19 @@
 {{--                            <div class="row">--}}
                                 <div class="row">
                                     <div class="col-md-12">
-{{----}}
-                                        <form action="" class="dropzone" id="dropzone" style="border: 2px dashed rgba(0,0,0,0.3)">
 
 {{--                                        <form action="" class="dropzone" id="dropzone" style="border: 2px dashed rgba(0,0,0,0.3)">--}}
+
+                                        <form action="" class="dropzone" id="dropzone" style="border: 2px dashed rgba(0,0,0,0.3)">
                                             <input type="hidden" name="product_id" value="{{ $product->id }}">
                                             {{ csrf_field() }}
-{{--                                        </form>--}}
                                         </form>
+{{--                                        </form>--}}
                                     </div>
                                 </div>
                                 <div class="row d-print-none mt-2">
                                     <div class="col-12 text-right">
-                                        <button class="btn btn-success" type="button" id="uploadButton">
+                                        <button class="btn btn-primary" type="button" id="uploadButton">
                                             <i class="fa fa-fw fa-lg fa-upload"></i>Upload Images
                                         </button>
                                     </div>
@@ -254,7 +255,7 @@
                                 @csrf
                                     <h3 class="tile-title">Product Information</h3>
                                     <hr>
-                                    <div class="tile-body">
+                                <div class="tile-body">
                                     <div class="row">
                                         <div class="col-md-3">
                                             <div class="form-group">
@@ -383,8 +384,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
-
                                     </div>
 
                                     <div class="row">
@@ -415,9 +414,13 @@
 
                                 </div>
                                 <div class="tile-footer">
-                                    <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Update Product Shipping Info</button>
-                                    &nbsp;&nbsp;&nbsp;
-                                    <a class="btn btn-secondary" href="{{ route('admin.products.index') }}"><i class="fa fa-fw fa-lg fa-times-circle"></i>Back to Products</a>
+                                    <div class="row d-print-none mt-2">
+                                        <div class="col-12 text-right">
+                                            <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Update Product Shipping Info</button>
+                                            &nbsp;&nbsp;&nbsp;
+                                            <a class="btn btn-secondary" href="{{ route('admin.products.index') }}"><i class="fa fa-fw fa-lg fa-times-circle"></i>Back to Products</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -429,19 +432,16 @@
                         <form action="{{ route('admin.inventories.update') }}" method="POST" role="form" enctype="multipart/form-data">
                             @csrf
                             <div class="tile-body">
-                                {{--            title  --}}
                                 <div class="form-group">
                                     <label class="control-label" for="name"> Name: </label><br>
                                     <h3><label class="control-label">{{ $product->name }}</label></h3>
                                     <input type="hidden" name="id" value="{{ $product->inventory->id }}">
                                 </div>
-                                {{--            available qty  --}}
                                 <div class="form-group">
                                     <label class="control-label" for="available_qty"> Available Qty <span class="m-l-5 text-danger"> *</span></label>
                                     <input class="form-control @error('available_qty') is-invalid @enderror" type="text" name="available_qty" id="available_qty" value="{{ old('available_qty', $product->inventory->available_qty) }}"/>
                                     @error('available_qty') {{ $message }} @enderror
                                 </div>
-                                {{--            integrations  --}}
                                 <div class="form-group">
                                     <label class="control-label" for="integrations"> Integrations </label>
                                     <select name="integrations" id="integrations" class="form-control @error('integrations') is-invalid @enderror">
@@ -451,7 +451,6 @@
                                         <option value="Both"  {{ $product->inventory->integrations == "Both" ? "selected" : "" }}>Both</option>
                                     </select>
                                 </div>
-                                {{--            amazon qty & listing id  --}}
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -460,7 +459,6 @@
                                             @error('amazon_qty') {{ $message }} @enderror
                                         </div>
                                     </div>
-
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label" for="amazon_listing_id"> Amazon Listing ID <span class="m-l-5 text-danger"> *</span></label>
@@ -469,8 +467,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                {{--            ebay qty & listing id   --}}
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -487,13 +483,10 @@
                                         </div>
                                     </div>
                                 </div>
-
-
-
                                 <div class="tile-footer">
                                     <div class="row d-print-none mt-2">
                                         <div class="col-12 text-right">
-                                            <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Update Inventory</button>
+                                            <button class="btn btn-primary button-colorfix" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Update Inventory</button>
                                             &nbsp;&nbsp;&nbsp;
                                             <a class="btn btn-secondary" href="{{ route('admin.products.index') }}"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>
                                         </div>
@@ -501,22 +494,62 @@
                                 </div>
                             </div>
                         </form>
-
                     </div>
-
-
                 </div>
 
+                <div class="tab-pane" id="packages">
+                    <div class="tile">
+                        <h3 class="tile-title">{{ $subTitle }}</h3>
+                        <form action="{{ route('admin.productpackages.update') }}" method="POST" role="form" enctype="multipart/form-data">
+                            @csrf
+                            <div class="tile-body">
+                                <div class="form-group">
+                                    <label class="control-label" for="product_id"> {{ $product->name }}</label><br>
+                                    <input type="hidden" value="{{ $product->id }}" id="product_id" name="product_id">
+                                </div>
 
+                                <div class="form-group">
+                                    <label class="control-label"> Available Packages: </label><br>
+                                    @foreach($pp as $j)
+                                        @if($j['checked'])
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="pkg{{ $j['package_id'] }}" id="pkg{{ $j['package_id'] }}" checked>
+                                            <label class="form-check-label" for="pkg{{ $j['package_id'] }}">
+                                                {{ $j['package_name'] }}
+                                            </label>
+                                        </div>
+                                        @else
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="pkg{{ $j['package_id'] }}" id="pkg{{ $j['package_id'] }}">
+                                                <label class="form-check-label" for="pkg{{ $j['package_id'] }}">
+                                                    {{ $j['package_name'] }}
+                                                </label>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                </div>
 
+                            </div>
+                            <div class="tile-footer">
+                                <div class="row d-print-none mt-2">
+                                    <div class="col-12 text-right">
+                                        <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Update Packages</button>
+                                        &nbsp;&nbsp;&nbsp;
+                                        <a class="btn btn-secondary" href="{{ route('admin.products.index') }}"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
                 </div>
 
             </div>
         </div>
-{{--    </div>--}}
+    </div>
+
 @endsection
 @push('scripts')
-{{--    <script type="text/javascript" src="{{ asset('backend/js/plugins/select2.min.js') }}"></script>--}}
     <script type="text/javascript" src="{{ asset('backend/js/plugins/dropzone/dist/min/dropzone.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('backend/js/plugins/bootstrap-notify.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('backend/js/app.js') }}"></script>
@@ -524,7 +557,6 @@
         <script type="text/javascript">
             $('#ship_type').val("{{$product->ship_type}}");
             $('#sales_applicable').val("{{$product->sales_applicable}}");
-
             tinymce.init({
                 selector: 'textarea.tinymce-editor',
                 height: 500,
@@ -560,11 +592,9 @@
                 content_css: '//www.tiny.cloud/css/codepen.min.css'
             });
         </script>
-
     <script>
         Dropzone.autoDiscover = false;
         $( document ).ready(function() {
-            // $('#categories').select2();
             let myDropzone = new Dropzone("#dropzone", {
                 paramName: "image",
                 addRemoveLinks: false,
@@ -603,3 +633,4 @@
         });
     </script>
 @endpush
+

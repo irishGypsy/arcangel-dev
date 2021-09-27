@@ -1,5 +1,14 @@
 <header id="header" class="header-black" style="background-color: #f5f5f5;">
                 <div class="d-flex flex-row justify-content-around header-flex log-bt cart_fix" style="height:50px;">
+                    <div class="">
+                        <div class="cart-fix">
+                            <a href="https://www.instagram.com/ArcAngelBatteryLLC/"><i class="fa fa-instagram fa-3x" aria-hidden="true"></i></a>
+                            <a href="https://www.facebook.com/Arc-Angel-Battery-172640030326755"><i class="fa fa-facebook-square fa-3x" aria-hidden="true"></i></a>
+                            <a href="https://www.youtube.com/channel/UCeQC51Knz-gSXvrLdyWRQpA"><i class="fa fa-youtube-square fa-3x" aria-hidden="true"></i></a>
+
+                        </div>
+
+                    </div>
                     <div style="width:200px">
                     </div>
                     <div>
@@ -30,7 +39,7 @@
                                 @endguest
                                 @auth
                                     <a href="{{ route('checkout.cart') }}" class="btn btn-primary header-black mr-3" style="width:100px;">
-                                        <i class="fa fa-shopping-cart"></i> Cart ({{ $cartCount ?? '0' }})
+                                        <i class="fa fa-shopping-cart"></i> Cart ({{ Cart::session(Auth::guard()->user()->id)->getContent()->count() }})
                                     </a>
                                     <span>|</span>
                                     <div class="dropdown pl-3">

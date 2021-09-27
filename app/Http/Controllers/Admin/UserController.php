@@ -52,16 +52,11 @@ class UserController extends BaseController
      */
     public function store(Request $request)
     {
-//
-        $this->validate($request, [
-            'title'      =>  'required|max:191',
-            'image'     =>  'mimes:jpg,jpeg,png|max:1000'
-        ]);
 
         $params = $request->except('_token');
 
         $user= $this->UserRepository->createUser($params);
-        //ddd($user);
+
         if (!$user) {
 
             return $this->responseRedirectBack('Error occurred while creating user.', 'error', true, true);
@@ -91,16 +86,12 @@ class UserController extends BaseController
     public function update(Request $request)
     {
 
-        $this->validate($request, [
-            'title'      =>  'required|max:191'
-        ]);
-        //ddd($request);
         $params = $request->except('_token');
 
         $user = $this->UserRepository->updateUser($params);
 
         if (!$user) {
-//
+
             return $this->responseRedirectBack('Error occurred while updating User.', 'error', true, true);
         }
         return $this->responseRedirectBack('User updated successfully' ,'success',false, false);

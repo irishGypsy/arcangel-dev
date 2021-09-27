@@ -9,9 +9,9 @@ class Order extends Model
     protected $table = 'orders';
 
     protected $fillable = [
-        'order_number', 'user_id', 'status', 'grand_total', 'item_count', 'payment_status', 'payment_method',
-        'billing_first_name', 'billing_last_name', 'billing_address', 'billing_city', 'billing_state', 'billing_country', 'billing_post_code', 'billing_phone_number',
-        'shipping_first_name', 'shipping_last_name', 'shipping_address', 'shipping_city', 'shipping_country', 'shipping_post_code', 'shipping_phone_number', 'notes'
+        'order_number', 'user_id', 'status','subtotal','shipping', 'grand_total', 'item_count', 'payment_status', 'payment_method',
+        'billing_first_name', 'billing_last_name', 'billing_address', 'billing_city', 'billing_state', 'billing_country', 'billing_post_code','billing_email', 'billing_phone_number',
+        'shipping_first_name', 'shipping_last_name', 'shipping_address', 'shipping_city', 'shipping_country', 'shipping_post_code', 'shipping_phone_number', 'shipping_email', 'notes','referral_number','delivered_at'
     ];
 
     public function user()

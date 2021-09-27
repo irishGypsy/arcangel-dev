@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use Cart;
+use Auth;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\OrderItem;
@@ -18,14 +19,19 @@ class OrderRepository extends BaseRepository implements OrderContract
 
     public function storeOrderDetails($params)
     {
+//        ddd($params);
         $order = Order::create([
             'order_number'      =>  'ORD-'.strtoupper(uniqid()),
             'user_id'           => auth()->user()->id,
-            'status'            =>  'pending',
-            'grand_total'       =>  Cart::getSubTotal(),
-            'item_count'        =>  Cart::getTotalQuantity(),
+            'status'            =>  'processing',
+            'subtotal'          =>  $params['subtotal'],
+//                \Cart::session(Auth::guard()->user()->id)->getSubTotalWithoutConditions(),
+            'shipping'          =>  $params['shipping'],
+            'grand_total'       =>  $params['total'],
+//            \Cart::session(Auth::guard()->user()->id)->getTotal(),
+            'item_count'        =>  \Cart::session(Auth::guard()->user()->id)-> getTotalQuantity(),
             'payment_status'    =>  0,
-            'payment_method'    =>  null,
+            'payment_method'    =>  $params['payWith'],
             'billing_first_name'        =>  $params['billing_first_name'],
             'billing_last_name'         =>  $params['billing_last_name'],
             'billing_address'           =>  $params['billing_address'],
@@ -33,6 +39,7 @@ class OrderRepository extends BaseRepository implements OrderContract
             'billing_state'              =>  $params['billing_state'],
             'billing_country'           =>  $params['billing_country'],
             'billing_post_code'         =>  $params['billing_post_code'],
+            'billing_email'         =>  $params['billing_email'],
             'billing_phone_number'      =>  $params['billing_phone_number'],
             'shipping_first_name'        =>  $params['shipping_first_name'],
             'shipping_last_name'         =>  $params['shipping_last_name'],
@@ -41,13 +48,14 @@ class OrderRepository extends BaseRepository implements OrderContract
             'shipping_state'              =>  $params['shipping_state'],
             'shipping_country'           =>  $params['shipping_country'],
             'shipping_post_code'         =>  $params['shipping_post_code'],
+            'shipping_email'         =>  $params['shipping_email'],
             'shipping_phone_number'      =>  $params['shipping_phone_number'],
-            'notes'             =>  $params['notes']
+            'notes'                     =>  $params['notes']
         ]);
 
         if ($order) {
 
-            $items = Cart::getContent();
+            $items = \Cart::session(Auth::guard()->user()->id)->getContent();
 
             foreach ($items as $item)
             {
@@ -56,15 +64,16 @@ class OrderRepository extends BaseRepository implements OrderContract
                 $product = Product::where('name', $item->name)->first();
 
                 $orderItem = new OrderItem([
+                    'order_id'      => $order->id,
                     'product_id'    =>  $product->id,
                     'quantity'      =>  $item->quantity,
-                    'price'         =>  $item->getPriceSum()
+                    'price'         =>  $item->price
                 ]);
 
                 $order->items()->save($orderItem);
             }
         }
-
+//ddd($order);
         return $order;
     }
 

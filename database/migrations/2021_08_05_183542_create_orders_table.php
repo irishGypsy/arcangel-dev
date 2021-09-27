@@ -18,9 +18,12 @@ class CreateOrdersTable extends Migration
             $table->string('order_number')->unique();
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
+            $table->string('referral_number')->nullable();
 
-            $table->enum('status', ['pending', 'processing', 'completed', 'decline'])->default('pending');
-            $table->decimal('grand_total', 20, 6);
+            $table->enum('status', ['processing', 'delivered', 'cancelled','returned'])->default('processing');
+            $table->decimal('subtotal',20,6)->nullable();
+            $table->decimal('shipping',20,6)->nullable();
+            $table->decimal('grand_total', 20, 6)->nullable();
             $table->unsignedInteger('item_count');
 
             $table->boolean('payment_status')->default(1);
@@ -48,6 +51,8 @@ class CreateOrdersTable extends Migration
             $table->string('shipping_post_code')->nullable();
             $table->string('shipping_phone_number')->nullable();
             $table->text('notes')->nullable();
+
+            $table->date('delivered_at')->nullable();
 
             $table->timestamps();
         });
@@ -81,7 +86,7 @@ class CreateOrdersTable extends Migration
             [
                 "order_number"=>"7AG6523",
                 "user_id"=>2,
-                "status"=>"decline",
+                "status"=>"cancelled",
                 "grand_total"=>"921.70",
                 "item_count"=>7,
                 "payment_status"=>0,
@@ -106,7 +111,7 @@ class CreateOrdersTable extends Migration
             [
                 "order_number"=>"5FW2435",
                 "user_id"=>2,
-                "status"=>"completed",
+                "status"=>"delivered",
                 "grand_total"=>"226.50",
                 "item_count"=>9,
                 "payment_status"=>1,
@@ -131,7 +136,7 @@ class CreateOrdersTable extends Migration
             [
                 "order_number"=>"2LM1422",
                 "user_id"=>3,
-                "status"=>"pending",
+                "status"=>"processing",
                 "grand_total"=>"1502.45",
                 "item_count"=>7,
                 "payment_status"=>1,
@@ -156,7 +161,7 @@ class CreateOrdersTable extends Migration
             [
                 "order_number"=>"2FG1959",
                 "user_id"=>2,
-                "status"=>"pending",
+                "status"=>"processing",
                 "grand_total"=>"686.11",
                 "item_count"=>3,
                 "payment_status"=>1,
@@ -230,7 +235,7 @@ class CreateOrdersTable extends Migration
             ],
             ["order_number"=>"9VR2768",
                 "user_id"=>1,
-                "status"=>"pending",
+                "status"=>"processing",
                 "grand_total"=>"1062.86",
                 "item_count"=>10,
                 "payment_status"=>0,
@@ -253,7 +258,7 @@ class CreateOrdersTable extends Migration
                 "billing_city"=>"Rae Lakes"],
             ["order_number"=>"4YK3963",
                 "user_id"=>1,
-                "status"=>"decline",
+                "status"=>"cancelled",
                 "grand_total"=>"1093.47",
                 "item_count"=>2,
                 "payment_status"=>1,
@@ -276,7 +281,7 @@ class CreateOrdersTable extends Migration
                 "billing_city"=>"Multan"],
             ["order_number"=>"1WA6853",
                 "user_id"=>3,
-                "status"=>"completed",
+                "status"=>"delivered",
                 "grand_total"=>"710.84",
                 "item_count"=>4,
                 "payment_status"=>1,
@@ -299,7 +304,7 @@ class CreateOrdersTable extends Migration
                 "billing_city"=>"Quinte West"],
             ["order_number"=>"1UU4295",
                 "user_id"=>2,
-                "status"=>"decline",
+                "status"=>"cancelled",
                 "grand_total"=>"328.66",
                 "item_count"=>9,
                 "payment_status"=>0,
@@ -322,7 +327,7 @@ class CreateOrdersTable extends Migration
                 "billing_city"=>"Pontarlier"],
             ["order_number"=>"8PB2431",
                 "user_id"=>3,
-                "status"=>"decline",
+                "status"=>"cancelled",
                 "grand_total"=>"1161.90",
                 "item_count"=>6,
                 "payment_status"=>0,
@@ -345,7 +350,7 @@ class CreateOrdersTable extends Migration
                 "billing_city"=>"Gruitrode"],
             ["order_number"=>"4AT8387",
                 "user_id"=>3,
-                "status"=>"pending",
+                "status"=>"processing",
                 "grand_total"=>"1014.33",
                 "item_count"=>4,
                 "payment_status"=>1,
@@ -368,7 +373,7 @@ class CreateOrdersTable extends Migration
                 "billing_city"=>"Heerenveen"],
             ["order_number"=>"2YD5244",
                 "user_id"=>2,
-                "status"=>"pending",
+                "status"=>"processing",
                 "grand_total"=>"613.64",
                 "item_count"=>8,
                 "payment_status"=>0,
@@ -437,7 +442,7 @@ class CreateOrdersTable extends Migration
                 "billing_city"=>"Lauro de Freitas"],
             ["order_number"=>"1XP5893",
                 "user_id"=>3,
-                "status"=>"decline",
+                "status"=>"cancelled",
                 "grand_total"=>"1548.52",
                 "item_count"=>7,
                 "payment_status"=>0,
@@ -460,7 +465,7 @@ class CreateOrdersTable extends Migration
                 "billing_city"=>"Redruth"],
             ["order_number"=>"9XY3377",
                 "user_id"=>3,
-                "status"=>"decline",
+                "status"=>"cancelled",
                 "grand_total"=>"913.42",
                 "item_count"=>7,
                 "payment_status"=>1,
@@ -483,7 +488,7 @@ class CreateOrdersTable extends Migration
                 "billing_city"=>"Marbella"],
             ["order_number"=>"6XZ1918",
                 "user_id"=>1,
-                "status"=>"completed",
+                "status"=>"delivered",
                 "grand_total"=>"217.38",
                 "item_count"=>6,
                 "payment_status"=>1,
@@ -552,7 +557,7 @@ class CreateOrdersTable extends Migration
                 "billing_city"=>"Saint-Prime"],
             ["order_number"=>"9ZX4255",
                 "user_id"=>1,
-                "status"=>"pending",
+                "status"=>"processing",
                 "grand_total"=>"1795.54",
                 "item_count"=>9,
                 "payment_status"=>0,
@@ -575,7 +580,7 @@ class CreateOrdersTable extends Migration
                 "billing_city"=>"Oxford County"],
             ["order_number"=>"7OE7334",
                 "user_id"=>3,
-                "status"=>"decline",
+                "status"=>"cancelled",
                 "grand_total"=>"538.76",
                 "item_count"=>10,
                 "payment_status"=>1,
@@ -598,7 +603,7 @@ class CreateOrdersTable extends Migration
                 "billing_city"=>"Houffalize"],
             ["order_number"=>"9SG7871",
                 "user_id"=>3,
-                "status"=>"pending",
+                "status"=>"processing",
                 "grand_total"=>"1161.83",
                 "item_count"=>4,
                 "payment_status"=>1,
@@ -621,7 +626,7 @@ class CreateOrdersTable extends Migration
                 "billing_city"=>"Tranås"],
             ["order_number"=>"5WM8957",
                 "user_id"=>3,
-                "status"=>"decline",
+                "status"=>"cancelled",
                 "grand_total"=>"762.57",
                 "item_count"=>2,
                 "payment_status"=>1,
@@ -644,7 +649,7 @@ class CreateOrdersTable extends Migration
                 "billing_city"=>"Florencia"],
             ["order_number"=>"7NA4427",
                 "user_id"=>2,
-                "status"=>"pending",
+                "status"=>"processing",
                 "grand_total"=>"778.72",
                 "item_count"=>4,
                 "payment_status"=>0,
@@ -667,7 +672,7 @@ class CreateOrdersTable extends Migration
                 "billing_city"=>"Laguna Blanca"],
             ["order_number"=>"4IQ1769",
                 "user_id"=>2,
-                "status"=>"completed",
+                "status"=>"delivered",
                 "grand_total"=>"555.15",
                 "item_count"=>4,
                 "payment_status"=>0,
@@ -690,7 +695,7 @@ class CreateOrdersTable extends Migration
                 "billing_city"=>"Perth"],
             ["order_number"=>"1QB3328",
                 "user_id"=>1,
-                "status"=>"pending",
+                "status"=>"processing",
                 "grand_total"=>"906.72",
                 "item_count"=>9,
                 "payment_status"=>0,
@@ -713,7 +718,7 @@ class CreateOrdersTable extends Migration
                 "billing_city"=>"Ciudad Real"],
             ["order_number"=>"9CW1756",
                 "user_id"=>2,
-                "status"=>"completed",
+                "status"=>"delivered",
                 "grand_total"=>"1728.83",
                 "item_count"=>8,
                 "payment_status"=>1,
@@ -782,7 +787,7 @@ class CreateOrdersTable extends Migration
                 "billing_city"=>"Rivello"],
             ["order_number"=>"1SR2626",
                 "user_id"=>1,
-                "status"=>"decline",
+                "status"=>"cancelled",
                 "grand_total"=>"1891.14",
                 "item_count"=>8,
                 "payment_status"=>1,
@@ -805,7 +810,7 @@ class CreateOrdersTable extends Migration
                 "billing_city"=>"Gellik"],
             ["order_number"=>"7OV3819",
                 "user_id"=>1,
-                "status"=>"decline",
+                "status"=>"cancelled",
                 "grand_total"=>"914.46",
                 "item_count"=>6,
                 "payment_status"=>1,
@@ -851,7 +856,7 @@ class CreateOrdersTable extends Migration
                 "billing_city"=>"Carstairs"],
             ["order_number"=>"1HI3815",
                 "user_id"=>3,
-                "status"=>"decline",
+                "status"=>"cancelled",
                 "grand_total"=>"80.44",
                 "item_count"=>5,
                 "payment_status"=>0,
@@ -874,7 +879,7 @@ class CreateOrdersTable extends Migration
                 "billing_city"=>"Caledon"],
             ["order_number"=>"1CP7254",
                 "user_id"=>3,
-                "status"=>"pending",
+                "status"=>"processing",
                 "grand_total"=>"567.42",
                 "item_count"=>2,
                 "payment_status"=>0,
@@ -897,7 +902,7 @@ class CreateOrdersTable extends Migration
                 "billing_city"=>"Mackay"],
             ["order_number"=>"4NC8117",
                 "user_id"=>1,
-                "status"=>"completed",
+                "status"=>"delivered",
                 "grand_total"=>"686.04",
                 "item_count"=>3,
                 "payment_status"=>1,
@@ -943,7 +948,7 @@ class CreateOrdersTable extends Migration
                 "billing_city"=>"Curaco de Vélez"],
             ["order_number"=>"5CX2377",
                 "user_id"=>2,
-                "status"=>"pending",
+                "status"=>"processing",
                 "grand_total"=>"743.86",
                 "item_count"=>7,
                 "payment_status"=>0,
@@ -966,7 +971,7 @@ class CreateOrdersTable extends Migration
                 "billing_city"=>"Livingston"],
             ["order_number"=>"6DU6375",
                 "user_id"=>3,
-                "status"=>"pending",
+                "status"=>"processing",
                 "grand_total"=>"835.07",
                 "item_count"=>8,
                 "payment_status"=>1,

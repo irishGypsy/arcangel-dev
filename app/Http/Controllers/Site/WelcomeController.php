@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Banner;
 use App\Models\Faq;
-use App\MOdels\Video;
+use App\Models\Video;
 use App\Models\Product;
 use App\Models\BatteryFinders;
 use Illuminate\Support\Facades\DB;

@@ -36,7 +36,7 @@ class BannerRepository extends BaseRepository implements BannerContract
      * @param array $columns
      * @return mixed
      */
-    public function ListBanners(string $order = 'id', string $sort = 'asc', array $columns = ['*'])
+    public function listBanners(string $order = 'id', string $sort = 'asc', array $columns = ['*'])
     {
         return $this->all($columns, $order, $sort);
     }
@@ -70,17 +70,13 @@ class BannerRepository extends BaseRepository implements BannerContract
 
             $image = null;
 
-            if ($collection->has('image') && ($params['image'] instanceof  UploadedFile)) {
-                $image = $this->uploadOne($params['image'], 'banners');
-            }
-
             $merge = $collection->merge(compact('image'));
 
-            $Banner = new Banner($merge->all());
+            $serialNumber = new Banner($merge->all());
 
-            $Banner->save();
+            $serialNumber->save();
 
-            return $Banner;
+            return $serialNumber;
 
         } catch (QueryException $exception) {
             throw new InvalidArgumentException($exception->getMessage());
@@ -96,16 +92,8 @@ class BannerRepository extends BaseRepository implements BannerContract
         $banner = $this->findBannerById($params['id']);
 
         $collection = collect($params)->except('_token');
+
         $image = null;
-//ddd($params);
-        if ($collection->has('image') && ($params['image'] instanceof  UploadedFile)) {
-
-            if ($banner->image != null) {
-                $this->deleteOne($banner->image);
-            }
-
-            $image = $this->uploadOne($params['image'], 'banners');
-        }
 
         $merge = $collection->merge(compact( 'image'));
 
@@ -131,12 +119,5 @@ class BannerRepository extends BaseRepository implements BannerContract
         return $banner;
     }
 
-    public function findBySlug($slug)
-    {
-        return Banner::with('banners')
-            ->where('slug', $slug)
-//            ->where('menu', 1)
-            ->first();
-    }
 }
 

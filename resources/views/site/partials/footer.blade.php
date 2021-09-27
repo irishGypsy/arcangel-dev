@@ -2,7 +2,7 @@
 <div class="" style="background-color: black !important;width:100%;">
     <br>
     <div class="mbm">
-        <img style="width:127px;" src="http://localhost:3000/frontend/images/logo2.png" alt="Arc Angel Battery">
+        <img style="width:127px;" src="{{ asset('frontend/images/logo2.png') }} " alt="Arc Angel Battery">
     </div>
     <div class="d-flex flex-row justify-content-center col-md-12" id="stickymenu" style="width:80%; margin: 0 auto;color:#a2a2a2;font-size:14px;">
         <div class="p-1">
@@ -29,7 +29,9 @@
     </div>
             <div class="social_outer">
                 <div class="social">
-                    <a class="face" href="https://www.facebook.com/Arc-Angel-Battery-172640030326755/?modal=admin_todo_tour" target="_blank"><i class="fa fa-facebook fa-fw"></i></a>
+                    <a class="face" href="https://www.facebook.com/Arc-Angel-Battery-172640030326755/?modal=admin_todo_tour" target="_blank"><i class="fa fa-instagram fa-fw fa-2x"></i></a>
+                    <a class="face" href="https://www.facebook.com/Arc-Angel-Battery-172640030326755/?modal=admin_todo_tour" target="_blank"><i class="fa fa-facebook fa-fw fa-2x"></i></a>
+                    <a class="face" href="https://www.facebook.com/Arc-Angel-Battery-172640030326755/?modal=admin_todo_tour" target="_blank"><i class="fa fa-youtube-square fa-fw fa-2x"></i></a>
                 </div>
                 <p>Join us for more inspiration!</p>
                 <p class="f_copy">Copyright © 2018 Arc-Angel Battery LLC. All rights

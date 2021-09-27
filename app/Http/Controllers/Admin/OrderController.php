@@ -28,9 +28,29 @@ class OrderController extends BaseController
     public function show($orderNumber)
     {
         $order = $this->orderRepository->findOrderByNumber($orderNumber);
-
+        $shipping_state = DB::table('state_codes')
+                            ->where('id', $order->shipping_state)
+                            ->get('abbreviation');
+        $shipping_country = DB::table('country_codes')
+                            ->where('id',$order->shipping_country)
+                            ->get('country');
+        $shipping_state = $shipping_state[0]->abbreviation;
+        $shipping_country = $shipping_country[0]->country;
+//ddd($shipping_state);
         $this->setPageTitle('Order Details', $orderNumber);
-        return view('admin.orders.show', compact('order'));
+        return view('admin.orders.show', compact('order','shipping_state','shipping_country'));
+    }
+
+    public function updateStatus($id, $value)
+    {
+        DB::table('orders')
+            ->where('id','=', $id)
+            ->update(['status' => $value]);
+
+        $orders = $this->orderRepository->listOrders();
+
+        $this->setPageTitle('Orders', 'List of all orders');
+        return view('admin.orders.index', compact('orders'));
     }
 
     public function orderCount()

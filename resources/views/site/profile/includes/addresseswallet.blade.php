@@ -7,13 +7,6 @@
             </div>
         </div>
         <div class="container">
-{{--            <div class="row">--}}
-{{--                <div class="col-smmd-12">--}}
-{{--                    @if (Session::has('error'))--}}
-{{--                        <p class="alert alert-danger">{{ Session::get('error') }}</p>--}}
-{{--                    @endif--}}
-{{--                </div>--}}
-{{--            </div>--}}
             <form action="{{ route('site.addresses.update') }}" method="POST" role="form">
                 @csrf
                 <div class="row">

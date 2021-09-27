@@ -52,7 +52,7 @@
        $("#engine").prop('disabled', true);
 
         $.ajax({
-            url: "http://localhost:3000/batteryfinders/getmakes",
+            url: "{{ route('battery.getmakes') }}",
             contentType: "application/json",
             dataType: 'json',
             success: function(result){
@@ -72,7 +72,7 @@
         function (){
             $("#model").prop('disabled', false);
             $.ajax({
-                url: "http://localhost:3000/batteryfinders/getmodels/" + $("#make").val() ,
+                url: "{{ url('batteryfinders/getmodels') }}" + "/" + $("#make").val() ,
                 contentType: "application/json",
                 dataType: 'json',
                 success: function(result){
@@ -93,7 +93,7 @@
         function (){
             $("#year").prop('disabled', false);
             $.ajax({
-                url: "http://localhost:3000/batteryfinders/getyears/"
+                url: "{{ url('/batteryfinders/getyears') }}" + "/"
                         + $("#make").val() +"/"
                         + $("#model").val(),
                 contentType: "application/json",
@@ -116,7 +116,7 @@
         function (){
             $("#engine").prop('disabled', false);
             $.ajax({
-                url: "http://localhost:3000/batteryfinders/getengines/"
+                url: "{{ url('/batteryfinders/getengines') }}" + "/"
                     + $("#make").val() +"/"
                     + $("#model").val() + "/"
                     + $("#year").val(),

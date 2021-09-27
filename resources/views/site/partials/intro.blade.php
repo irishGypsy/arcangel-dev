@@ -7,7 +7,7 @@
                 <p></p><p><span style="font-size:12px"><span style="font-family:arial,helvetica,sans-serif"><span style="color:rgb(107, 107, 107)">Arc-Angel Battery prides ourselves on our quality high performance Lithium Iron Phosphate Batteries (LiFePO4). No matter the application our batteries are up to the task.&nbsp;</span></span></span></p>
                 <p>&nbsp;</p>
                 <p></p>
-                <a href="https://www.arcangelbattery.com/about-us">Read More</a>
+                <a href="{{ route('post.page', ['id' => 1]) }}">Read More</a>
             </div>
             <div class="col-md-5 col-sm-5 col-xs-12 simp_right">
                 <div class="simp_right_img"></div>

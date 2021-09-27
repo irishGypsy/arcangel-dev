@@ -56,14 +56,14 @@ class ProductController extends BaseController
         if(!$sale == null)
         {
             $saleprice = $product->price - ($product->price * $sale->discount);
-////            $product->price = $saleprice;
         }
-//
-//        ddd(gettype($saleprice));
-
-
-//ddd($product);
-        return view('site.pages.product', compact('product', 'saleprice'));
+        $packages = DB::table('product_packages')
+                        ->leftJoin('packages','product_packages.package_id','=','packages.id')
+                        ->where('product_packages.product_id','=',$id)
+                        ->where('product_packages.checked','=',1)
+                        ->get();
+//        ddd($packages);
+        return view('site.pages.product', compact('product', 'saleprice','packages'));
     }
 
     public function addToCart(Request $request)
@@ -75,8 +75,9 @@ class ProductController extends BaseController
         $product = $this->productRepository->findProductById($request->input('productId'));
         $options = $request->except('_token', 'productId', 'price', 'qty');
         $options = array_add($options,"shipping", $product->shipping);
+        $options = array_add($options,"product_id", $product->id);
 
-//        ddd($product->shipping);
+//        ddd($options);
 
         $shippingCondition = new \Darryldecode\Cart\CartCondition(array(
             'name' => 'shipping',
@@ -92,6 +93,8 @@ class ProductController extends BaseController
                 $options,
                 $shippingCondition
         );
+
+//        ddd(Cart::session(Auth::guard()->user()->id)->getContent());
 
         return redirect()->back()->with('message', 'Item added to cart successfully.');
     }

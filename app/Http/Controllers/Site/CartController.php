@@ -18,6 +18,7 @@ class CartController extends Controller
         $totalShipping = 0;
 
         foreach(Cart::session(Auth::guard()->user()->id)->getContent() as $c){
+
             $totalShipping = $totalShipping + ($c->conditions->parsedRawValue * $c->quantity);
         }
 //ddd( Cart::session(Auth::guard()->user()->id)->getSubTotal());

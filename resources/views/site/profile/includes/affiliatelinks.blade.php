@@ -24,7 +24,7 @@
                                 <td>{{ $o->id }}</td>
                                 <td><img src="{{ asset('frontend/images/logo2.png') }}" width="80px"></td>
                                 <td>{{ $o->name }}</td>
-                                <td>https://www.arcangelbattery.com/ref?id={{ $affiliate[0]->affiliate_code }}&url=product/{{ $o->id }}</td>
+                                <td>https://www.arcangelbattery.com/ref?id={{ $affiliate->affiliate_code }}&url=product/{{ $o->id }}</td>
                             </tr>
                         @endforeach
                         </tbody>

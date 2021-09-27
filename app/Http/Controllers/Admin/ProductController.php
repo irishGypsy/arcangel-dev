@@ -10,7 +10,10 @@ use App\Http\Controllers\BaseController;
 use App\Http\Requests\StoreProductFormRequest;
 use App\Repositories\ProductRepository;
 use App\Repositories\InventoryRepository;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use phpDocumentor\Reflection\Types\Integer;
 
 class ProductController extends BaseController
 {
@@ -79,14 +82,79 @@ class ProductController extends BaseController
     {
         $product = $this->productRepository->findProductById($id);
 
-        $capacities = DB::table('capacities')->select('id','capacity_name')->get();
+        $products = DB::table('products')
+//            ->rightJoin('product_packages','products.id', '=','product_packages.product_id')
+//            ->where('product_packages.product_id','=',$product->id)
+            ->get();
+//        ddd($products);
 
-        $batterygroups = DB::table('battery_groups')->select('id','battery_group_name')->get();
+        $capacities = DB::table('capacities')
+            ->select('id','capacity_name')
+            ->get();
 
-        $countrycodes = DB::table('country_codes')->select('id','country')->get();
+        $batterygroups = DB::table('battery_groups')
+            ->select('id','battery_group_name')
+            ->get();
 
+        $countrycodes = DB::table('country_codes')
+            ->select('id','country')
+            ->get();
+
+        $packages = DB::table('packages')
+//            ->leftJoin('product_packages','packages.id','=','product_packages.package_id')
+//            ->where('product_packages.product_id','=',$product->id)
+            ->get();
+
+        $productpackages = DB::table('product_packages')
+//            ->join('products','product_packages.product_id','=','products.id')
+            ->where('product_packages.product_id','=',$product->id)
+            ->get();
+
+        $pp = new Collection();
+        foreach($packages as $p)
+        {
+            $c = $this->existsIn($p->id, $productpackages, $product->id, $p->name, $p->description);
+
+            $pp->push($c);
+
+        }
+
+
+//        ddd($pp);
+//        ddd($productpackages);
         $this->setPageTitle('Products', 'Edit Product');
-        return view('admin.products.edit', compact( 'product','capacities', 'batterygroups','countrycodes'));
+        return view('admin.products.edit', compact( 'product','products','capacities', 'batterygroups','countrycodes','packages','productpackages', 'pp'));
+    }
+
+    public function existsIn(int $id, Collection $array, int $pid, string $name, string $description)
+    {
+        foreach ($array as $a) {
+
+            if ($a->package_id == $id && $a->checked == 1) {
+                $b = new Collection([
+                    "product_id" => $pid,
+                    "package_id" => $a->package_id,
+                    "package_name" => $name,
+                    "description" => $description,
+                    "checked" => 1,
+                    "price_adjustment" => $a->price_adjustment
+                ]);
+                return $b;
+            } else {
+                continue;
+            }
+        }
+//        if ($a->package_id == $id && $a->checked == 1) {
+            $b = new Collection([
+                "product_id" => $pid,
+                "package_id" => $id,
+                "package_name" => $name,
+                "description" => $description,
+                "checked" => 0,
+                "price_adjustment" => 0.00
+            ]);
+            return $b;
+//        }
     }
 
     public function update(StoreProductFormRequest $request)

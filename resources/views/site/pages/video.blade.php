@@ -39,15 +39,15 @@
 
     <div class="border border-dark rounded my-lg-2 bg-light d-flex flex-row justify-content-between" style="width:70%; margin:0 auto;">
         <div class="border-dark p-10 m-lg-3 mr-md-3">
-            @if($v->file == null)
+{{--            @if($v->file == null)--}}
                 <a href="{{ $v->url }}" data-toggle="lightbox">
                     <img src="{{ asset('storage/'.$v->thumbnail) }}" width="300px">
                 </a>
-            @else
-                <a href="{{ asset('storage/'. $v->file) }}" data-toggle="lightbox">
-                    <img src="{{ asset('storage/'.$v->thumbnail) }}" width="300px">
-                </a>
-            @endif
+{{--            @else--}}
+{{--                <a href="{{ asset('storage/'. $v->file) }}" data-toggle="lightbox">--}}
+{{--                    <img src="{{ asset('storage/'.$v->thumbnail) }}" width="300px">--}}
+{{--                </a>--}}
+{{--            @endif--}}
 {{--                <img src="{{ asset('storage/'.$v->thumbnail) }}" width="300px">--}}
 {{--            </a>--}}
         </div>
